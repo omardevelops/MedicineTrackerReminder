@@ -19,8 +19,22 @@ class Prescription {
     var quantity : Int
     var notes : String
     
-    init(<#parameters#>) {
-        <#statements#>
+    init(name : String,
+     photo : UIImage,
+     category : String,
+     color : UIColor,
+     startDate : Date,
+     endDate : Date,
+     quantity : Int,
+     notes : String) {
+        self.name = name
+        self.photo = photo
+        self.category = category
+        self.color = color
+        self.startDate = startDate
+        self.endDate = endDate
+        self.quantity = quantity
+        self.notes = notes
     }
 }
 

@@ -17,6 +17,7 @@
 		29563ECB255D2F5E0017667D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29563EC9255D2F5E0017667D /* LaunchScreen.storyboard */; };
 		29563ED3255D2FF70017667D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29563ED2255D2FF70017667D /* SettingsVC.swift */; };
 		29563ED5255D38980017667D /* Prescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29563ED4255D38980017667D /* Prescription.swift */; };
+		29563ED7255D43650017667D /* AddPrescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29563ED6255D43650017667D /* AddPrescriptionVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		29563ECC255D2F5E0017667D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29563ED2255D2FF70017667D /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		29563ED4255D38980017667D /* Prescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prescription.swift; sourceTree = "<group>"; };
+		29563ED6255D43650017667D /* AddPrescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPrescriptionVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +71,9 @@
 				29563EBD255D2F5C0017667D /* MyPrescriptionsVC.swift */,
 				29563EBF255D2F5C0017667D /* CalendarVC.swift */,
 				29563ED2255D2FF70017667D /* SettingsVC.swift */,
-				29563EC1255D2F5C0017667D /* Main.storyboard */,
 				29563ED4255D38980017667D /* Prescription.swift */,
+				29563ED6255D43650017667D /* AddPrescriptionVC.swift */,
+				29563EC1255D2F5C0017667D /* Main.storyboard */,
 				29563EC7255D2F5E0017667D /* Assets.xcassets */,
 				29563EC9255D2F5E0017667D /* LaunchScreen.storyboard */,
 				29563ECC255D2F5E0017667D /* Info.plist */,
@@ -156,6 +159,7 @@
 				29563ED5255D38980017667D /* Prescription.swift in Sources */,
 				29563EBC255D2F5C0017667D /* SceneDelegate.swift in Sources */,
 				29563EC6255D2F5C0017667D /* MedicineTracker.xcdatamodeld in Sources */,
+				29563ED7255D43650017667D /* AddPrescriptionVC.swift in Sources */,
 				29563ED3255D2FF70017667D /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
