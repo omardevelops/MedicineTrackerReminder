@@ -15,6 +15,7 @@
 		29563EC6255D2F5C0017667D /* MedicineTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29563EC4255D2F5C0017667D /* MedicineTracker.xcdatamodeld */; };
 		29563EC8255D2F5E0017667D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29563EC7255D2F5E0017667D /* Assets.xcassets */; };
 		29563ECB255D2F5E0017667D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29563EC9255D2F5E0017667D /* LaunchScreen.storyboard */; };
+		29563ED3255D2FF70017667D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29563ED2255D2FF70017667D /* SettingsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		29563EC7255D2F5E0017667D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29563ECA255D2F5E0017667D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29563ECC255D2F5E0017667D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29563ED2255D2FF70017667D /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				29563EBB255D2F5C0017667D /* SceneDelegate.swift */,
 				29563EBD255D2F5C0017667D /* FirstViewController.swift */,
 				29563EBF255D2F5C0017667D /* SecondViewController.swift */,
+				29563ED2255D2FF70017667D /* SettingsVC.swift */,
 				29563EC1255D2F5C0017667D /* Main.storyboard */,
 				29563EC7255D2F5E0017667D /* Assets.xcassets */,
 				29563EC9255D2F5E0017667D /* LaunchScreen.storyboard */,
@@ -149,6 +152,7 @@
 				29563EBA255D2F5C0017667D /* AppDelegate.swift in Sources */,
 				29563EBC255D2F5C0017667D /* SceneDelegate.swift in Sources */,
 				29563EC6255D2F5C0017667D /* MedicineTracker.xcdatamodeld in Sources */,
+				29563ED3255D2FF70017667D /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
