@@ -18,8 +18,7 @@ class AddPrescriptionVC: UIViewController {
     }
     
     // latest push
-    
-    @IBOutlet weak var nameField: UITextField!
+
     
     /*
     // MARK: - Navigation
