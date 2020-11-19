@@ -9,8 +9,9 @@
 import UIKit
 
 class MyPrescriptionsVC: UIViewController {
-    
-    static var cellCount = 7;
+
+
+    static var cellCount = 11;
 
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
