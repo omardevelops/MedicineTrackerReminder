@@ -18,6 +18,8 @@
 		29563ED3255D2FF70017667D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29563ED2255D2FF70017667D /* SettingsVC.swift */; };
 		29563ED5255D38980017667D /* Prescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29563ED4255D38980017667D /* Prescription.swift */; };
 		29563ED7255D43650017667D /* AddPrescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29563ED6255D43650017667D /* AddPrescriptionVC.swift */; };
+		F4DC7D762565FC9700086AF7 /* prescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DC7D742565FC9700086AF7 /* prescriptionCell.swift */; };
+		F4DC7D772565FC9700086AF7 /* prescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4DC7D752565FC9700086AF7 /* prescriptionCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		29563ED2255D2FF70017667D /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		29563ED4255D38980017667D /* Prescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prescription.swift; sourceTree = "<group>"; };
 		29563ED6255D43650017667D /* AddPrescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPrescriptionVC.swift; sourceTree = "<group>"; };
+		F4DC7D742565FC9700086AF7 /* prescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = prescriptionCell.swift; sourceTree = "<group>"; };
+		F4DC7D752565FC9700086AF7 /* prescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = prescriptionCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,8 @@
 			children = (
 				29563EB9255D2F5C0017667D /* AppDelegate.swift */,
 				29563EBB255D2F5C0017667D /* SceneDelegate.swift */,
+				F4DC7D742565FC9700086AF7 /* prescriptionCell.swift */,
+				F4DC7D752565FC9700086AF7 /* prescriptionCell.xib */,
 				29563EBD255D2F5C0017667D /* MyPrescriptionsVC.swift */,
 				29563EBF255D2F5C0017667D /* CalendarVC.swift */,
 				29563ED2255D2FF70017667D /* SettingsVC.swift */,
@@ -143,6 +149,7 @@
 				29563ECB255D2F5E0017667D /* LaunchScreen.storyboard in Resources */,
 				29563EC8255D2F5E0017667D /* Assets.xcassets in Resources */,
 				29563EC3255D2F5C0017667D /* Main.storyboard in Resources */,
+				F4DC7D772565FC9700086AF7 /* prescriptionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +168,7 @@
 				29563EC6255D2F5C0017667D /* MedicineTracker.xcdatamodeld in Sources */,
 				29563ED7255D43650017667D /* AddPrescriptionVC.swift in Sources */,
 				29563ED3255D2FF70017667D /* SettingsVC.swift in Sources */,
+				F4DC7D762565FC9700086AF7 /* prescriptionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
