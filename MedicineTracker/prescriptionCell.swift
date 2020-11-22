@@ -10,6 +10,10 @@ import UIKit
 
 class prescriptionCell: UICollectionViewCell {
 
+    @IBAction func edit(_ sender: Any) {
+          
+     /*   MyPrescriptionsVC.performSegueWithIdentifier("showActionPreview", sender: nil)*/
+    }
     @IBOutlet weak var pLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

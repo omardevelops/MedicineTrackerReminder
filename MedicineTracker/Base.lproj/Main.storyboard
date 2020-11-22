@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -135,7 +135,7 @@
             </objects>
             <point key="canvasLocation" x="-597" y="0.0"/>
         </scene>
-        <!--Prescription-->
+        <!--Add Prescription-->
         <scene sceneID="XGK-26-ONI">
             <objects>
                 <viewController id="lTY-yc-D7m" customClass="AddPrescriptionVC" customModule="MedicineTracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -143,7 +143,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GrZ-WI-2Yp">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrZ-WI-2Yp">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbB-JH-T8k">
@@ -239,87 +239,36 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJP-ed-VCA">
-                                                <rect key="frame" x="54" y="327" width="106" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" systemColor="linkColor"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                <state key="normal" title="Daily">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="repeatDailyButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="Ol3-Wl-gCv"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6h-9L-Vlf">
-                                                <rect key="frame" x="168" y="327" width="106" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" systemColor="linkColor"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                <state key="normal" title="Weekly">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="repeatWeeklyButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="ttn-Pc-gSO"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUe-Je-Zdq">
-                                                <rect key="frame" x="282" y="327" width="106" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" systemColor="linkColor"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                <state key="normal" title="Monthly">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="repeatMonthlyButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="wtr-2A-P32"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPG-7M-Di9">
-                                                <rect key="frame" x="54" y="390" width="70" height="24"/>
+                                                <rect key="frame" x="54" y="503" width="70" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VHh-j3-b4P">
-                                                <rect key="frame" x="54" y="422" width="319" height="34"/>
+                                                <rect key="frame" x="54" y="535" width="319" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLR-fw-KgG">
-                                                <rect key="frame" x="59" y="474" width="43" height="24"/>
+                                                <rect key="frame" x="59" y="587" width="43" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KWg-65-zbs">
-                                                <rect key="frame" x="54" y="500" width="319" height="34"/>
+                                                <rect key="frame" x="54" y="613" width="319" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4u-Nv-u5d">
-                                                <rect key="frame" x="54" y="550" width="140" height="30"/>
+                                                <rect key="frame" x="54" y="663" width="140" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
@@ -335,10 +284,117 @@
                                                     <action selector="notificationButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="GE5-fw-Rdl"/>
                                                 </connections>
                                             </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mmr-Kx-9CZ">
+                                                <rect key="frame" x="0.0" y="327" width="414" height="55"/>
+                                                <subviews>
+                                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GIg-yE-enD">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S7Q-DF-Oev">
+                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJP-ed-VCA">
+                                                                        <rect key="frame" x="53" y="7" width="106" height="40"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                        <state key="normal" title="Daily">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="8"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="repeatDailyButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="Ol3-Wl-gCv"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6h-9L-Vlf">
+                                                                        <rect key="frame" x="197" y="7" width="106" height="40"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                        <state key="normal" title="Weekly">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="8"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="repeatWeeklyButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="ttn-Pc-gSO"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6rw-xn-c6F">
+                                                                        <rect key="frame" x="492" y="7" width="106" height="40"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                        <state key="normal" title="Custom">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="8"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="repeatWeeklyButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="mBZ-lP-uQ3"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUe-Je-Zdq">
+                                                                        <rect key="frame" x="338" y="7" width="106" height="40"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                        <state key="normal" title="Monthly">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="8"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="repeatMonthlyButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="wtr-2A-P32"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" red="0.8672696352" green="0.91017228360000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="600" id="cL6-t3-cgV"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.8672696352" green="0.91017228360000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstItem="S7Q-DF-Oev" firstAttribute="top" secondItem="GIg-yE-enD" secondAttribute="top" id="8Gb-MI-Zgz"/>
+                                                            <constraint firstItem="S7Q-DF-Oev" firstAttribute="leading" secondItem="GIg-yE-enD" secondAttribute="leading" id="ZGR-gh-MYg"/>
+                                                            <constraint firstItem="S7Q-DF-Oev" firstAttribute="centerY" secondItem="GIg-yE-enD" secondAttribute="centerY" id="fR2-DR-Bw0"/>
+                                                            <constraint firstAttribute="bottom" secondItem="S7Q-DF-Oev" secondAttribute="bottom" id="k1S-Gc-6U7"/>
+                                                            <constraint firstAttribute="trailing" secondItem="S7Q-DF-Oev" secondAttribute="trailing" id="yjj-qx-s9G"/>
+                                                        </constraints>
+                                                    </scrollView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="414" id="31A-ft-MOp"/>
+                                                    <constraint firstAttribute="trailing" secondItem="GIg-yE-enD" secondAttribute="trailing" id="34W-TH-OL7"/>
+                                                    <constraint firstAttribute="height" constant="55" id="EQe-VB-5hw"/>
+                                                    <constraint firstAttribute="bottom" secondItem="GIg-yE-enD" secondAttribute="bottom" id="LI3-bX-zIz"/>
+                                                    <constraint firstItem="GIg-yE-enD" firstAttribute="leading" secondItem="Mmr-Kx-9CZ" secondAttribute="leading" id="aeD-IL-oO8"/>
+                                                    <constraint firstItem="GIg-yE-enD" firstAttribute="top" secondItem="Mmr-Kx-9CZ" secondAttribute="top" id="vv8-4n-fiy"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" red="0.87058823529411766" green="0.90980392156862744" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="Mmr-Kx-9CZ" firstAttribute="top" secondItem="vbB-JH-T8k" secondAttribute="top" constant="327" id="9Le-NE-biJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mmr-Kx-9CZ" secondAttribute="trailing" id="lQS-eE-NNB"/>
                                             <constraint firstAttribute="height" constant="1500" id="osl-8p-kqn"/>
+                                            <constraint firstItem="Mmr-Kx-9CZ" firstAttribute="leading" secondItem="vbB-JH-T8k" secondAttribute="leading" id="sss-Qs-GUw"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4br-os-3dD">
@@ -349,6 +405,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <color key="backgroundColor" red="0.8672696352" green="0.91017228360000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="vbB-JH-T8k" firstAttribute="centerX" secondItem="GrZ-WI-2Yp" secondAttribute="centerX" id="3GF-oH-D4s"/>
                                     <constraint firstItem="vbB-JH-T8k" firstAttribute="leading" secondItem="GrZ-WI-2Yp" secondAttribute="leading" id="DxA-q8-SXw"/>
@@ -359,7 +416,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="apJ-c8-ZuJ"/>
-                        <color key="backgroundColor" red="0.90740354036759552" green="0.93348758756041073" blue="0.95592364530862939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.8672696352" green="0.91017228360000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="apJ-c8-ZuJ" firstAttribute="trailing" secondItem="GrZ-WI-2Yp" secondAttribute="trailing" id="3Gb-dU-hre"/>
                             <constraint firstItem="GrZ-WI-2Yp" firstAttribute="leading" secondItem="apJ-c8-ZuJ" secondAttribute="leading" id="QxG-qc-5Jp"/>
@@ -367,7 +424,7 @@
                             <constraint firstItem="GrZ-WI-2Yp" firstAttribute="top" secondItem="apJ-c8-ZuJ" secondAttribute="top" id="xYa-Ei-Ylv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Prescription" largeTitleDisplayMode="always" id="L1I-wI-1CX">
+                    <navigationItem key="navigationItem" title="Add Prescription" largeTitleDisplayMode="always" id="L1I-wI-1CX">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7k0-Da-oa3"/>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Mkn-Bs-cqc"/>
                     </navigationItem>
@@ -556,6 +613,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J2X-Nq-Xxc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2742.0289855072465" y="-1635.2678571428571"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="h3f-RL-gay">
+            <objects>
+                <viewController id="NT3-8J-jdz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9L5-AO-qcw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit Prescription" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqE-e9-Ucb">
+                                <rect key="frame" x="105" y="367" width="204" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fYa-F7-AeK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NA1-6J-EY4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1693" y="360"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="fH8-lL-Fd2">
+            <objects>
+                <viewController id="YF3-4J-4hH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rtl-DW-EFU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="View Presciption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpG-nr-f4r">
+                                <rect key="frame" x="105" y="378" width="207" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="I4F-dN-x2x"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mEN-V4-JfK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2564" y="360"/>
         </scene>
     </scenes>
     <resources>
