@@ -8,15 +8,169 @@
 
 import UIKit
 
-class AddPrescriptionVC: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-
-        // Do any additional setup after loading the view.
+extension UIColor {
+    class var customLightBlue : UIColor {
+        let x = 0x00C9FF
+        return UIColor.rgb(fromHex: x)
+    }
+    class var customBlue : UIColor {
+        let x = 0x008FFF
+        return UIColor.rgb(fromHex: x)
     }
     
+    class func rgb(fromHex: Int) -> UIColor {
+
+        let red =   CGFloat((fromHex & 0xFF0000) >> 16) / 0xFF
+        let green = CGFloat((fromHex & 0x00FF00) >> 8) / 0xFF
+        let blue =  CGFloat(fromHex & 0x0000FF) / 0xFF
+        let alpha = CGFloat(1.0)
+
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
+}
+
+class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+
+    
+    @IBOutlet weak var nameTF: UITextField!
+    @IBOutlet weak var startDateTF: UITextField!
+    @IBOutlet weak var endDateTF: UITextField!
+    @IBOutlet weak var categoryPillButton: UIButton!
+    @IBOutlet weak var categoryDrugButton: UIButton!
+    @IBOutlet weak var repeatDailyButton: UIButton!
+    @IBOutlet weak var repeatWeeklyButton: UIButton!
+    @IBOutlet weak var repeatMonthlyButton: UIButton!
+    @IBOutlet weak var amountTF: UITextField!
+    @IBOutlet weak var noteTF: UITextField!
+    @IBOutlet weak var notificationButton: UIButton!
+    @IBOutlet weak var remindTF: UITextField!
+    
+    private var startDatePicker : UIDatePicker?
+    private var endDatePicker : UIDatePicker?
+    var pillEnabled : Bool = false
+    var drugEnabled : Bool = false
+    var dailyEnabled : Bool = false
+    var weeklyEnabled : Bool = false
+    var monthlyEnabled : Bool = false
+    var customEnabled : Bool = false
+    var pickerView = UIPickerView()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //start date
+        startDatePicker = UIDatePicker()
+        startDatePicker?.datePickerMode = .date
+        startDatePicker?.addTarget(self, action: #selector(AddPrescriptionVC.startDateChanged(datePicker:)), for: .valueChanged)
+        //end date
+        endDatePicker = UIDatePicker()
+        endDatePicker?.datePickerMode = .date
+        endDatePicker?.addTarget(self, action: #selector(AddPrescriptionVC.endDateChanged(datePicker:)), for: .valueChanged)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddPrescriptionVC.viewTapped(gestureRecognizer:)))
+        view.addGestureRecognizer(tapGesture)
+        
+        if startDateTF != nil {
+           startDateTF.inputView = startDatePicker
+        }
+        if endDateTF != nil {
+            endDateTF.inputView = endDatePicker
+        }
+        //remind me
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        
+        if remindTF != nil {
+            remindTF.inputView = pickerView
+            remindTF.textAlignment = .center
+            remindTF.placeholder = "X minutes before"
+        }
+    }
+    
+    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
+        view.endEditing(true)
+    }
+    
+    @objc func startDateChanged(datePicker: UIDatePicker){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "DD/MM/YYYY"
+        startDateTF.text = dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
+    }
+    @objc func endDateChanged(datePicker: UIDatePicker){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "DD/MM/YYYY"
+        endDateTF.text = dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
+    }
+    
+    @IBAction func notificationButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "add2notification", sender: self)
+    }
+    
+    //category
+    @IBAction func categoryPillButton(_ sender: UIButton) {
+        if pillEnabled == false{
+            categoryPillButton.backgroundColor = UIColor.customLightBlue
+            categoryPillButton.setTitle("Pill", for: .normal)
+            pillEnabled = true
+            categoryDrugButton.backgroundColor = UIColor.customBlue
+            categoryDrugButton.setTitle("Drug ✓", for: .normal)
+            drugEnabled = false
+        }else {
+            categoryPillButton.backgroundColor = UIColor.customBlue
+            categoryPillButton.setTitle("Pill ✓", for: .normal)
+            pillEnabled = false
+            categoryDrugButton.backgroundColor = UIColor.customLightBlue
+            categoryDrugButton.setTitle("Drug", for: .normal)
+            drugEnabled = true
+        }
+    }
+    
+    @IBAction func categoryDrugButton(_ sender: UIButton) {
+        if drugEnabled == false {
+            categoryDrugButton.backgroundColor = UIColor.customLightBlue
+            categoryDrugButton.setTitle("Drug", for: .normal)
+            drugEnabled = true
+            categoryPillButton.backgroundColor = UIColor.customBlue
+            categoryPillButton.setTitle("Pill ✓", for: .normal)
+            pillEnabled = false
+        }else {
+            categoryDrugButton.backgroundColor = UIColor.customBlue
+            categoryDrugButton.setTitle("Drug ✓", for: .normal)
+            drugEnabled = false
+            categoryPillButton.backgroundColor = UIColor.customLightBlue
+            categoryPillButton.setTitle("Pill", for: .normal)
+            pillEnabled = true
+        }
+    }
+    //repeat
+    
+    @IBAction func repeatDailyButton(_ sender: UIButton) {
+        if dailyEnabled == false {
+            repeatDailyButton.backgroundColor = UIColor.customLightBlue
+            repeatDailyButton.setTitle("Daily", for: .normal)
+            dailyEnabled = true
+        }
+    }
+    @IBAction func repeatWeeklyButton(_ sender: UIButton) {
+    }
+    @IBAction func repeatMonthlyButton(_ sender: UIButton) {
+    }
+    //remind me
+    let remind = ["1 minute before","2 minutes before","3 minutes before","4 minutes before","5 minutes before","6 minutes before","7 minutes before","8 minutes before","9 minutes before","10 minutes before","11 minutes before","12 minutes before","13 minutes before","14 minutes before","15 minutes before",]
+    
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return remind.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return remind[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        remindTF.text = remind[row]
+        remindTF.resignFirstResponder()
+    }
     // latest push
 
     
