@@ -14,7 +14,7 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var myPrescriptions : [Prescription]?
-    static var cellCount = 11
+    static var cellCount = 11 // TODO: Remove this
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -29,7 +29,7 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     @IBAction func addPrescription(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Add Prescription", message: "", preferredStyle: .alert)
+       /* let alert = UIAlertController(title: "Add Prescription", message: "", preferredStyle: .alert)
         
         alert.addTextField()
         
@@ -55,7 +55,10 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
         })
         
         alert.addAction(action)
-        present(alert, animated: true)
+        present(alert, animated: true)*/
+        
+        // Changed by me, Omar
+        performSegue(withIdentifier: "addDetailSegue", sender: self)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         print("Tapped Cell #", indexPath.row)

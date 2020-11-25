@@ -31,7 +31,7 @@ extension UIColor {
 
 class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    
+    // MARK: Outlets
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var startDateTF: UITextField!
     @IBOutlet weak var endDateTF: UITextField!
@@ -40,11 +40,15 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var repeatDailyButton: UIButton!
     @IBOutlet weak var repeatWeeklyButton: UIButton!
     @IBOutlet weak var repeatMonthlyButton: UIButton!
+    @IBOutlet weak var morningTimeButtonOutlet: UIButton!
+    @IBOutlet weak var afternoonTimeButtonOutlet: UIButton!
+    @IBOutlet weak var eveningTimeButtonOutlet: UIButton!
     @IBOutlet weak var amountTF: UITextField!
     @IBOutlet weak var noteTF: UITextField!
     @IBOutlet weak var notificationButton: UIButton!
     @IBOutlet weak var remindTF: UITextField!
     
+    // MARK: View Variables
     private var startDatePicker : UIDatePicker?
     private var endDatePicker : UIDatePicker?
     var pillEnabled : Bool = false
@@ -53,6 +57,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var weeklyEnabled : Bool = false
     var monthlyEnabled : Bool = false
     var customEnabled : Bool = false
+    var morningChecked : Bool = false
+    var afternoonChecked : Bool = false
+    var eveningChecked : Bool = false
+    
     var pickerView = UIPickerView()
     
     override func viewDidLoad() {
@@ -101,6 +109,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         endDateTF.text = dateFormatter.string(from: datePicker.date)
         view.endEditing(true)
     }
+    
+    // MARK: Buttons Actions
     
     @IBAction func notificationButton(_ sender: UIButton) {
         self.performSegue(withIdentifier: "add2notification", sender: self)
@@ -155,6 +165,72 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     @IBAction func repeatMonthlyButton(_ sender: UIButton) {
     }
+    
+    @IBAction func morningTimeButton(_ sender: UIButton) {
+        if(morningChecked) {
+            morningChecked = false
+        } else {
+            morningChecked = true
+        }
+        updateDoseTimeButtons()
+    }
+    
+    
+    @IBAction func afternoonTimeButton(_ sender: UIButton) {
+        if(afternoonChecked) {
+            afternoonChecked = false
+        } else {
+            afternoonChecked = true
+        }
+        updateDoseTimeButtons()
+    }
+    
+    
+    @IBAction func eveningTimeButton(_ sender: UIButton) {
+        if(eveningChecked) {
+            eveningChecked = false
+        } else {
+            eveningChecked = true
+        }
+        updateDoseTimeButtons()
+    }
+    
+    @IBAction func moreDoseTimeButton(_ sender: UIButton) {
+        // Perform segue and pass on the values of the dose times
+    }
+    
+    func updateDoseTimeButtons() { // Changes the colors and text of the buttons depending on selected/checked value
+        
+        if(morningChecked) {
+            morningTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
+            morningTimeButtonOutlet.setTitle("Morning ✓", for: .normal)
+            
+        } else {
+            morningTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            morningTimeButtonOutlet.setTitle("Morning", for: .normal)
+        }
+        
+        if(afternoonChecked) {
+            afternoonTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
+            afternoonTimeButtonOutlet.setTitle("Afternoon ✓", for: .normal)
+            
+        } else {
+            afternoonTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            afternoonTimeButtonOutlet.setTitle("Afternoon", for: .normal)
+        }
+        
+        if(eveningChecked) {
+            eveningTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
+            eveningTimeButtonOutlet.setTitle("Evening ✓", for: .normal)
+            
+        } else {
+            eveningTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            eveningTimeButtonOutlet.setTitle("Evening", for: .normal)
+            
+        }
+        
+    }
+    
     //remind me
     let remind = ["1 minute before","2 minutes before","3 minutes before","4 minutes before","5 minutes before","6 minutes before","7 minutes before","8 minutes before","9 minutes before","10 minutes before","11 minutes before","12 minutes before","13 minutes before","14 minutes before","15 minutes before",]
     
