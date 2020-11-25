@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: Core Data Context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -20,30 +20,56 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        collectionView.register(prescriptionCell.nib(), forCellWithReuseIdentifier: "prescriptionCell")
-        
-        
         collectionView.delegate = self
         collectionView.dataSource = self
+        // No need for this as we can use a prototype cell instead
+        collectionView.register(prescriptionCell.nib(), forCellWithReuseIdentifier: "prescriptionCell")
+        fetchPrescriptions()
         
-
-        // Do any additional setup after loading the view.
     }
     
+    @IBAction func addPrescription(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Add Prescription", message: "", preferredStyle: .alert)
+        
+        alert.addTextField()
+        
+        let action = UIAlertAction(title: "Add Person", style: .default, handler: {action in
+            
+            // Get textfield for alert
+            let textfield = alert.textFields![0]
+            
+            // Create a prescription object
+            let newPrescription = Prescription(context: self.context)
+            newPrescription.name = textfield.text
+            
+            // Save data
+            do {
+                try self.context.save()
+            }
+            catch {
+                // TODO: Handle error
+            }
+            
+            // Re-fetch data
+            self.fetchPrescriptions()
+        })
+        
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         print("Tapped Cell #", indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection: Int) -> Int {
-        //return myPrescriptions?.count ?? 0
-        return MyPrescriptionsVC.cellCount
+        return myPrescriptions?.count ?? 0
+        //return MyPrescriptionsVC.cellCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "prescriptionCell", for: indexPath) as! prescriptionCell
-        
-        
+        let prescription = myPrescriptions![indexPath.row]
+        cell.configure(with: prescription.name ?? "null")
         return cell
     }
     

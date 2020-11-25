@@ -20,8 +20,11 @@ class prescriptionCell: UICollectionViewCell {
         // Initialization code
     }
     
-    public func configure(with image: UIImage){
-        pLabel.text = "Presctiption"
+    public func configure(with name: String){
+        //TODO: Configure Image and Color
+        
+        pLabel.text = name
+        
     }
     
     static func nib() -> UINib {
