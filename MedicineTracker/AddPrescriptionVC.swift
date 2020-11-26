@@ -31,7 +31,6 @@ extension UIColor {
 
 class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    
 
     // MARK: Outlets
     @IBOutlet weak var nameTF: UITextField!
@@ -349,21 +348,44 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     // MARK: Check Form
-    // Checks if form is valid and ready to be used as a Prescription object
-    func checkFormValidity() {
-        
+    // Checks if form is valid and ready to be used as a Prescription object. Checks if required fields are empty or not.
+    func isFormValid() -> Bool {
+        if(nameTF.hasText && amountTF.hasText && startDateTF.hasText && endDateTF.hasText) {
+            return true
+        } else {
+            return false
+        }
     }
     // latest push
 
     
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func nextButton(_ sender: UIBarButtonItem) {
+        if(isFormValid()) {
+            performSegue(withIdentifier: "verificationSegue", sender: self)
+        } else {
+            print("Nope")
+        }
+        
     }
-    */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "verificationSegue") {
+            let destinationVC = segue.destination as! VerifyBeforeAddingVC
+            
+            // Move data to the verification view in order to add it to the Prescriptions NS Context Object
+            destinationVC.name = nameTF.text ?? "Prescription"
+            //destinationVC.color =
+            destinationVC.isRepeats = isRepeats
+            //destinationVC.frequency =
+            //destinationVC.dosageTimes =
+            destinationVC.notes = noteTF.text ?? ""
+            //destinationVC.notificationType =
+            
+        }
+    }
+    
 
 }
