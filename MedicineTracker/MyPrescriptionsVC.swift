@@ -18,6 +18,12 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    //go to edit view func
+    @objc func editCell() {
+        performSegue(withIdentifier: "goToEdit", sender: self)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -61,6 +67,12 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
         performSegue(withIdentifier: "addDetailSegue", sender: self)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        
+        //DELETE CELL
+        let ps = myPrescriptions![indexPath.row]
+        context.delete(ps)
+        self.fetchPrescriptions()
+        
         print("Tapped Cell #", indexPath.row)
     }
     
@@ -71,6 +83,10 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "prescriptionCell", for: indexPath) as! prescriptionCell
+        
+           cell.editB.tag = indexPath.row
+           cell.editB.addTarget(self, action: #selector(editCell), for: .touchUpInside)
+        
         let prescription = myPrescriptions![indexPath.row]
         cell.configure(with: prescription.name ?? "null")
         return cell

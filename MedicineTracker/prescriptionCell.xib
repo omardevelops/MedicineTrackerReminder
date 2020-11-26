@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,26 +12,27 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="prescriptionCell" customModule="MedicineTracker" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="184" height="143"/>
+            <rect key="frame" x="0.0" y="0.0" width="184" height="138"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="184" height="143"/>
+                <rect key="frame" x="0.0" y="0.0" width="184" height="138"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prescription" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fn-GE-48x">
                         <rect key="frame" x="10" y="88" width="164" height="45"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="164" id="wRh-MT-Wdo"/>
+                            <constraint firstAttribute="width" constant="164" id="Ong-vQ-ON9"/>
+                            <constraint firstAttribute="height" constant="45" id="p7N-ro-NZE"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5EK-He-oTs">
-                        <rect key="frame" x="10" y="10" width="74" height="74"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5EK-He-oTs">
+                        <rect key="frame" x="6" y="6" width="74" height="74"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="7dQ-NO-50I"/>
-                            <constraint firstAttribute="height" constant="50" id="EUb-Sz-j7U"/>
+                            <constraint firstAttribute="width" constant="74" id="7dQ-NO-50I"/>
+                            <constraint firstAttribute="height" constant="74" id="EUb-Sz-j7U"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="6"/>
                         <state key="normal">
@@ -41,41 +41,39 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deP-Hx-AHc">
-                        <rect key="frame" x="149" y="10" width="25" height="25"/>
+                        <rect key="frame" x="146" y="10" width="28" height="28"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="Ukf-LJ-Ylw"/>
-                            <constraint firstAttribute="width" constant="25" id="wqB-Ej-7tB"/>
+                            <constraint firstAttribute="height" constant="28" id="Ukf-LJ-Ylw"/>
+                            <constraint firstAttribute="width" constant="28" id="wqB-Ej-7tB"/>
                         </constraints>
-                        <state key="normal" title="Button">
+                        <state key="normal">
                             <imageReference key="image" image="ellipsis.circle" catalog="system" symbolScale="large" renderingMode="original"/>
                         </state>
-                        <connections>
-                            <action selector="edit:" destination="gTV-IL-0wX" eventType="touchUpInside" id="b7g-7n-k3z"/>
-                        </connections>
                     </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" systemColor="systemYellowColor"/>
             <constraints>
-                <constraint firstItem="9Fn-GE-48x" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="8i6-8L-MQ7"/>
+                <constraint firstItem="9Fn-GE-48x" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="AI6-Fs-w3F"/>
                 <constraint firstItem="deP-Hx-AHc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="OIs-V6-epc"/>
-                <constraint firstAttribute="trailing" secondItem="9Fn-GE-48x" secondAttribute="trailing" constant="10" id="UsS-Ym-UR5"/>
-                <constraint firstItem="5EK-He-oTs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="WD6-Tu-fQX"/>
-                <constraint firstItem="9Fn-GE-48x" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="88" id="eaV-dL-zIQ"/>
-                <constraint firstAttribute="bottom" secondItem="9Fn-GE-48x" secondAttribute="bottom" constant="10" id="er9-nc-Sxa"/>
-                <constraint firstItem="5EK-He-oTs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="idh-Ys-iUX"/>
+                <constraint firstItem="5EK-He-oTs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="6" id="WD6-Tu-fQX"/>
+                <constraint firstAttribute="trailing" secondItem="9Fn-GE-48x" secondAttribute="trailing" constant="10" id="dR1-tO-twg"/>
+                <constraint firstItem="5EK-He-oTs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="idh-Ys-iUX"/>
                 <constraint firstAttribute="trailing" secondItem="deP-Hx-AHc" secondAttribute="trailing" constant="10" id="j7I-Oq-Mb5"/>
+                <constraint firstItem="9Fn-GE-48x" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="88" id="oTE-as-Qpq"/>
+                <constraint firstAttribute="bottom" secondItem="9Fn-GE-48x" secondAttribute="bottom" constant="5" id="sgZ-EC-GUs"/>
             </constraints>
-            <size key="customSize" width="184" height="143"/>
+            <size key="customSize" width="184" height="138"/>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="7"/>
                 <userDefinedRuntimeAttribute type="string" keyPath="layer.masksToBounds" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="editB" destination="deP-Hx-AHc" id="JVI-y1-zMo"/>
                 <outlet property="pLabel" destination="9Fn-GE-48x" id="icb-dT-ZfH"/>
             </connections>
-            <point key="canvasLocation" x="57.971014492753625" y="118.86160714285714"/>
+            <point key="canvasLocation" x="145" y="121"/>
         </collectionViewCell>
     </objects>
     <resources>
