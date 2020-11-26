@@ -39,8 +39,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var frequencyLabel: UILabel!
     @IBOutlet weak var frequencyInfoButton: UIButton!
     @IBOutlet weak var frequencyView: UIView! // WARNING: This is also connected to its child ScrollView, be warned when editing this
-    @IBOutlet weak var categoryPillButton: UIButton!
-    @IBOutlet weak var categoryDrugButton: UIButton!
+    //@IBOutlet weak var categoryPillButton: UIButton!
+    //@IBOutlet weak var categoryDrugButton: UIButton!
     @IBOutlet weak var repeatDailyButton: UIButton!
     @IBOutlet weak var repeatWeeklyButton: UIButton!
     @IBOutlet weak var repeatMonthlyButton: UIButton!
@@ -89,7 +89,6 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddPrescriptionVC.viewTapped(gestureRecognizer:)))
         view.addGestureRecognizer(tapGesture)
         
-        updateDoseTimeButtons()
         
         if startDateTF != nil {
            startDateTF.inputView = startDatePicker
@@ -155,7 +154,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         self.performSegue(withIdentifier: "add2notification", sender: self)
     }
     
-    //category
+    /*
     @IBAction func categoryPillButton(_ sender: UIButton) {
         if pillEnabled == false{
             categoryPillButton.backgroundColor = UIColor.customLightBlue
@@ -190,7 +189,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             categoryPillButton.setTitle("Pill", for: .normal)
             pillEnabled = true
         }
-    }
+    }*/
     //repeat
     
     @IBAction func repeatDailyButton(_ sender: UIButton) {
