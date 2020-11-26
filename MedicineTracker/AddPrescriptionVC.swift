@@ -30,29 +30,51 @@ extension UIColor {
 }
 
 class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
     
+
+    // MARK: Outlets
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var startDateTF: UITextField!
     @IBOutlet weak var endDateTF: UITextField!
-    @IBOutlet weak var categoryPillButton: UIButton!
-    @IBOutlet weak var categoryDrugButton: UIButton!
+    @IBOutlet weak var endDateLabel: UILabel!
+    @IBOutlet weak var frequencyLabel: UILabel!
+    @IBOutlet weak var frequencyInfoButton: UIButton!
+    @IBOutlet weak var frequencyView: UIView! // WARNING: This is also connected to its child ScrollView, be warned when editing this
+    //@IBOutlet weak var categoryPillButton: UIButton!
+    //@IBOutlet weak var categoryDrugButton: UIButton!
     @IBOutlet weak var repeatDailyButton: UIButton!
     @IBOutlet weak var repeatWeeklyButton: UIButton!
     @IBOutlet weak var repeatMonthlyButton: UIButton!
+    @IBOutlet weak var morningTimeButtonOutlet: UIButton!
+    @IBOutlet weak var afternoonTimeButtonOutlet: UIButton!
+    @IBOutlet weak var eveningTimeButtonOutlet: UIButton!
+    @IBOutlet weak var fourthTimeButtonOutlet: UIButton!
+    @IBOutlet weak var fifthTimeButtonOutlet: UIButton!
+    @IBOutlet weak var sixthTimeButtonOutlet: UIButton!
+    
+    @IBOutlet weak var repeatsSwitch: UISwitch!
     @IBOutlet weak var amountTF: UITextField!
     @IBOutlet weak var noteTF: UITextField!
     @IBOutlet weak var notificationButton: UIButton!
     @IBOutlet weak var remindTF: UITextField!
     
+    // MARK: View Variables
     private var startDatePicker : UIDatePicker?
     private var endDatePicker : UIDatePicker?
     var pillEnabled : Bool = false
     var drugEnabled : Bool = false
+    var isRepeats : Bool = true
     var dailyEnabled : Bool = false
     var weeklyEnabled : Bool = false
     var monthlyEnabled : Bool = false
     var customEnabled : Bool = false
+    var morningChecked : Bool = false
+    var afternoonChecked : Bool = false
+    var eveningChecked : Bool = false
+    var fourthChecked : Bool = false
+    var fifthChecked : Bool = false
+    var sixthChecked : Bool = false
+    
     var pickerView = UIPickerView()
     
     override func viewDidLoad() {
@@ -67,6 +89,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         endDatePicker?.addTarget(self, action: #selector(AddPrescriptionVC.endDateChanged(datePicker:)), for: .valueChanged)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddPrescriptionVC.viewTapped(gestureRecognizer:)))
         view.addGestureRecognizer(tapGesture)
+        
         
         if startDateTF != nil {
            startDateTF.inputView = startDatePicker
@@ -102,11 +125,37 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         view.endEditing(true)
     }
     
+    // MARK: Buttons Actions
+    
+    @IBAction func pressRepeatsSwitch(_ sender: UISwitch) {
+        if(sender.isOn) {
+            endDateTF.isHidden = false
+            endDateLabel.isHidden = false
+            frequencyLabel.isHidden = false
+            frequencyInfoButton.isHidden = false
+            frequencyView.isHidden = false
+            frequencyView.isUserInteractionEnabled = true
+            
+            isRepeats = true
+            
+        } else {
+            endDateTF.isHidden = true
+            endDateLabel.isHidden = true
+            frequencyLabel.isHidden = true
+            frequencyInfoButton.isHidden = true
+            frequencyView.isHidden = true
+            frequencyView.isUserInteractionEnabled = false
+            
+            isRepeats = false
+            
+        }
+    }
+    
     @IBAction func notificationButton(_ sender: UIButton) {
         self.performSegue(withIdentifier: "add2notification", sender: self)
     }
     
-    //category
+    /*
     @IBAction func categoryPillButton(_ sender: UIButton) {
         if pillEnabled == false{
             categoryPillButton.backgroundColor = UIColor.customLightBlue
@@ -141,7 +190,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             categoryPillButton.setTitle("Pill", for: .normal)
             pillEnabled = true
         }
-    }
+    }*/
     //repeat
     
     @IBAction func repeatDailyButton(_ sender: UIButton) {
@@ -155,6 +204,132 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     @IBAction func repeatMonthlyButton(_ sender: UIButton) {
     }
+    
+    @IBAction func morningTimeButton(_ sender: UIButton) {
+        if(morningChecked) {
+            morningChecked = false
+        } else {
+            morningChecked = true
+        }
+        updateDoseTimeButtons()
+    }
+    
+    
+    @IBAction func afternoonTimeButton(_ sender: UIButton) {
+        if(afternoonChecked) {
+            afternoonChecked = false
+        } else {
+            afternoonChecked = true
+        }
+        updateDoseTimeButtons()
+    }
+    
+    
+    @IBAction func eveningTimeButton(_ sender: UIButton) {
+        if(eveningChecked) {
+            eveningChecked = false
+        } else {
+            eveningChecked = true
+        }
+        updateDoseTimeButtons()
+    }
+    
+    
+    @IBAction func fourthTimeButton(_ sender: UIButton) {
+        if(fourthChecked) {
+            fourthChecked = false
+        } else {
+            fourthChecked = true
+        }
+        updateDoseTimeButtons()
+        
+    }
+    
+    @IBAction func fifthTimeButton(_ sender: UIButton) {
+        if(fifthChecked) {
+            fifthChecked = false
+        } else {
+            fifthChecked = true
+        }
+        updateDoseTimeButtons()
+        
+    }
+    
+    
+    @IBAction func sixthTimeButton(_ sender: UIButton) {
+        if(sixthChecked) {
+            sixthChecked = false
+        } else {
+            sixthChecked = true
+        }
+        updateDoseTimeButtons()
+        
+    }
+    
+    // MARK: updateDoseTimeButtons
+    func updateDoseTimeButtons() { // Changes the colors and text of the buttons depending on selected/checked value
+        
+        if(morningChecked) {
+            morningTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
+            morningTimeButtonOutlet.setTitle("Morning ✓", for: .normal)
+            
+        } else {
+            morningTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            morningTimeButtonOutlet.setTitle("Morning", for: .normal)
+        }
+        
+        if(afternoonChecked) {
+            afternoonTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
+            afternoonTimeButtonOutlet.setTitle("Afternoon ✓", for: .normal)
+            
+        } else {
+            afternoonTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            afternoonTimeButtonOutlet.setTitle("Afternoon", for: .normal)
+        }
+        
+        if(eveningChecked) {
+            eveningTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
+            eveningTimeButtonOutlet.setTitle("Evening ✓", for: .normal)
+            
+        } else {
+            eveningTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            eveningTimeButtonOutlet.setTitle("Evening", for: .normal)
+            
+        }
+        
+        if(fourthChecked) {
+            fourthTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
+            fourthTimeButtonOutlet.setTitle("Evening ✓", for: .normal)
+            
+        } else {
+            fourthTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            fourthTimeButtonOutlet.setTitle("Evening", for: .normal)
+            
+        }
+        
+        if(fifthChecked) {
+            fifthTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
+            fifthTimeButtonOutlet.setTitle("Evening ✓", for: .normal)
+            
+        } else {
+            fifthTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            fifthTimeButtonOutlet.setTitle("Evening", for: .normal)
+            
+        }
+        
+        if(sixthChecked) {
+            sixthTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
+            sixthTimeButtonOutlet.setTitle("Evening ✓", for: .normal)
+            
+        } else {
+            sixthTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            sixthTimeButtonOutlet.setTitle("Evening", for: .normal)
+            
+        }
+        
+    }
+    
+    // MARK: Notification View
     //remind me
     let remind = ["1 minute before","2 minutes before","3 minutes before","4 minutes before","5 minutes before","6 minutes before","7 minutes before","8 minutes before","9 minutes before","10 minutes before","11 minutes before","12 minutes before","13 minutes before","14 minutes before","15 minutes before",]
     
@@ -171,17 +346,46 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         remindTF.text = remind[row]
         remindTF.resignFirstResponder()
     }
+    
+    // MARK: Check Form
+    // Checks if form is valid and ready to be used as a Prescription object. Checks if required fields are empty or not.
+    func isFormValid() -> Bool {
+        if(nameTF.hasText && amountTF.hasText && startDateTF.hasText && endDateTF.hasText) {
+            return true
+        } else {
+            return false
+        }
+    }
     // latest push
 
     
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func nextButton(_ sender: UIBarButtonItem) {
+        if(isFormValid()) {
+            performSegue(withIdentifier: "verificationSegue", sender: self)
+        } else {
+            print("Nope")
+        }
+        
     }
-    */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "verificationSegue") {
+            let destinationVC = segue.destination as! VerifyBeforeAddingVC
+            
+            // Move data to the verification view in order to add it to the Prescriptions NS Context Object
+            destinationVC.name = nameTF.text ?? "Prescription"
+            //destinationVC.color =
+            destinationVC.isRepeats = isRepeats
+            //destinationVC.frequency =
+            //destinationVC.dosageTimes =
+            destinationVC.notes = noteTF.text ?? ""
+            //destinationVC.notificationType =
+            
+        }
+    }
+    
 
 }
