@@ -506,6 +506,20 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
+    func getSelectedColor() -> UIColor {
+        if(isYellow) {
+            return yellowBG.backgroundColor ?? UIColor.systemBlue
+        } else if (isRed) {
+            return redBG.backgroundColor ?? UIColor.systemBlue
+        } else if (isOrange) {
+            return orangeBG.backgroundColor ?? UIColor.systemBlue
+        } else if (isBlue) {
+            return blueBG.backgroundColor ?? UIColor.systemBlue
+        } else {
+            return greenBG.backgroundColor ?? UIColor.systemBlue
+        }
+    }
+    
     func isTimePicked() -> Bool {
         if(morningChecked || afternoonChecked || eveningChecked || fourthChecked || fifthChecked || sixthChecked) {
             return true
@@ -580,15 +594,25 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             newPrescription.dose = amountTF.text!
             newPrescription.notes = noteTF.text
             newPrescription.doseTimings = checkedDosageTimes
-            performSegue(withIdentifier: "verificationSegue", sender: self)
+            newPrescription.color = getSelectedColor()
+            prescriptionArray!.append(newPrescription)
+            // Save data
+            do {
+                try self.context.save()
+            }
+            catch {
+                // TODO: Handle error
+            }
+            
+            performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
         } else {
-            print("Nope")
+            print("Form is not complete")
         }
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "verificationSegue") {
+        if segue.identifier == "verificationSegue" {
             let destinationVC = segue.destination as! VerifyBeforeAddingVC
             
             // Move data to the verification view in order to add it to the Prescriptions NS Context Object
@@ -600,8 +624,15 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             destinationVC.notes = noteTF.text ?? ""
             //destinationVC.notificationType =
             
+        } else if segue.identifier == "backToPrescriptionsSegue" {
+            let destinationNavVC = segue.destination as! UINavigationController
+            let destinationVC = destinationNavVC.topViewController as! MyPrescriptionsVC
+            
+            destinationVC.myPrescriptions = prescriptionArray
+            
         }
     }
+    
     
 
 }

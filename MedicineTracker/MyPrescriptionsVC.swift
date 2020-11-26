@@ -106,28 +106,16 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
             // TODO: Handle Error Here
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "addDetailSegue") {
+            let destinationNavVC = segue.destination as! UINavigationController
+            let destinationVC = destinationNavVC.topViewController as! AddPrescriptionVC
+            destinationVC.prescriptionArray = myPrescriptions
+            
+        }
+    }
 
 
 }
-
-/* MARK: Not needed
-extension MyPrescriptionsVC: UICollectionViewDelegate {
-    
-    
-   
-    
-}
-
-extension MyPrescriptionsVC: UICollectionViewDataSource {
-    
-    
-    
-   
-    
-}
-
-
-extension MyPrescriptionsVC: UICollectionViewDelegateFlowLayout{
-    
-}*/
 

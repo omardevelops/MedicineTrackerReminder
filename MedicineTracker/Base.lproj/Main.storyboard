@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RZe-bp-PzR">
-                                <rect key="frame" x="15" y="98" width="384" height="715"/>
+                                <rect key="frame" x="15" y="98" width="384" height="764"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="15" minimumInteritemSpacing="10" id="dgf-Xm-yNz">
                                     <size key="itemSize" width="128" height="128"/>
@@ -591,6 +591,7 @@
                         <outlet property="yellowBG" destination="Oj2-sp-Wx6" id="vyl-QC-aNK"/>
                         <segue destination="xyG-ZB-c6x" kind="presentation" identifier="add2notification" id="Nvx-hO-LYB"/>
                         <segue destination="Mv7-vO-4hy" kind="presentation" identifier="verificationSegue" modalPresentationStyle="fullScreen" id="yeZ-31-VpV"/>
+                        <segue destination="K6N-Oa-8Bc" kind="presentation" identifier="backToPrescriptionsSegue" modalPresentationStyle="fullScreen" id="FQe-Zw-Evr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SoM-iE-FAf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -610,11 +611,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Verification" id="9dg-s9-Sp2">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Hrq-E2-xDB">
-                                            <connections>
-                                                <segue destination="Tif-yn-oOe" kind="presentation" modalPresentationStyle="fullScreen" id="GQP-VA-eJo"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Hrq-E2-xDB"/>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="ysB-LO-JCs"/>
                                     </navigationItem>
                                 </items>
@@ -839,7 +836,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GQP-VA-eJo"/>
+        <segue reference="FQe-Zw-Evr"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
