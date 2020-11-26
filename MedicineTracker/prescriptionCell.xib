@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,27 +18,14 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prescription" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fn-GE-48x">
-                        <rect key="frame" x="10" y="88" width="164" height="45"/>
+                        <rect key="frame" x="10" y="72" width="164" height="42"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="164" id="Ong-vQ-ON9"/>
-                            <constraint firstAttribute="height" constant="45" id="p7N-ro-NZE"/>
+                            <constraint firstAttribute="width" constant="164" id="hDd-24-jA9"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5EK-He-oTs">
-                        <rect key="frame" x="6" y="6" width="74" height="74"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="74" id="7dQ-NO-50I"/>
-                            <constraint firstAttribute="height" constant="74" id="EUb-Sz-j7U"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="6"/>
-                        <state key="normal">
-                            <imageReference key="image" image="Panadol" symbolScale="large" renderingMode="original"/>
-                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                        </state>
-                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deP-Hx-AHc">
                         <rect key="frame" x="146" y="10" width="28" height="28"/>
                         <constraints>
@@ -50,19 +36,35 @@
                             <imageReference key="image" image="ellipsis.circle" catalog="system" symbolScale="large" renderingMode="original"/>
                         </state>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dose" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RX0-0r-6yL">
+                        <rect key="frame" x="10" y="111" width="131" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="AzT-LX-wAT"/>
+                            <constraint firstAttribute="width" constant="131" id="hYE-HV-jnz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pill" id="XIM-SH-Zdq">
+                        <rect key="frame" x="6" y="7" width="65" height="57"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" systemColor="systemYellowColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="9Fn-GE-48x" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="AI6-Fs-w3F"/>
                 <constraint firstItem="deP-Hx-AHc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="OIs-V6-epc"/>
-                <constraint firstItem="5EK-He-oTs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="6" id="WD6-Tu-fQX"/>
-                <constraint firstAttribute="trailing" secondItem="9Fn-GE-48x" secondAttribute="trailing" constant="10" id="dR1-tO-twg"/>
-                <constraint firstItem="5EK-He-oTs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="idh-Ys-iUX"/>
+                <constraint firstAttribute="trailing" secondItem="RX0-0r-6yL" secondAttribute="trailing" constant="43" id="XVA-61-Ntb"/>
+                <constraint firstItem="RX0-0r-6yL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Yo6-TU-LQI"/>
+                <constraint firstAttribute="bottom" secondItem="9Fn-GE-48x" secondAttribute="bottom" constant="24" id="ZYz-IC-6Ag"/>
+                <constraint firstAttribute="trailing" secondItem="9Fn-GE-48x" secondAttribute="trailing" constant="10" id="h50-aZ-BJg"/>
+                <constraint firstItem="9Fn-GE-48x" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="hkM-Qp-iLb"/>
+                <constraint firstAttribute="bottom" secondItem="RX0-0r-6yL" secondAttribute="bottom" constant="3" id="igc-AV-v2v"/>
                 <constraint firstAttribute="trailing" secondItem="deP-Hx-AHc" secondAttribute="trailing" constant="10" id="j7I-Oq-Mb5"/>
-                <constraint firstItem="9Fn-GE-48x" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="88" id="oTE-as-Qpq"/>
-                <constraint firstAttribute="bottom" secondItem="9Fn-GE-48x" secondAttribute="bottom" constant="5" id="sgZ-EC-GUs"/>
+                <constraint firstItem="deP-Hx-AHc" firstAttribute="leading" secondItem="XIM-SH-Zdq" secondAttribute="trailing" constant="75" id="n4y-or-1xg"/>
+                <constraint firstItem="9Fn-GE-48x" firstAttribute="top" secondItem="XIM-SH-Zdq" secondAttribute="bottom" constant="8" symbolic="YES" id="nKg-cR-Hm0"/>
+                <constraint firstItem="9Fn-GE-48x" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="72" id="zg6-ac-1Pf"/>
             </constraints>
             <size key="customSize" width="184" height="138"/>
             <userDefinedRuntimeAttributes>
@@ -71,16 +73,14 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="editB" destination="deP-Hx-AHc" id="JVI-y1-zMo"/>
+                <outlet property="pDose" destination="RX0-0r-6yL" id="LvS-sX-nHI"/>
                 <outlet property="pLabel" destination="9Fn-GE-48x" id="icb-dT-ZfH"/>
             </connections>
-            <point key="canvasLocation" x="145" y="121"/>
+            <point key="canvasLocation" x="144.92753623188406" y="120.53571428571428"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="Panadol" width="400" height="294"/>
         <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="pill" width="649" height="648"/>
     </resources>
 </document>

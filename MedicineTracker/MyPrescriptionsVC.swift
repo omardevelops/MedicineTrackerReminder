@@ -88,7 +88,7 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
            cell.editB.addTarget(self, action: #selector(editCell), for: .touchUpInside)
         
         let prescription = myPrescriptions![indexPath.row]
-        cell.configure(with: prescription.name ?? "null")
+        cell.configure(with: prescription.name ?? "null",color: prescription.color ?? UIColor.white, dose: prescription.dose ?? " ")
         return cell
     }
     

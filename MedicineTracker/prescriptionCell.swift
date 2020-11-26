@@ -10,6 +10,7 @@ import UIKit
 
 class prescriptionCell: UICollectionViewCell {
 
+    @IBOutlet weak var pDose: UILabel!
     @IBOutlet weak var editB: UIButton!
     
     @objc func editCell(_ sender: UIButton) {
@@ -22,11 +23,12 @@ class prescriptionCell: UICollectionViewCell {
         // Initialization code
     }
     
-    public func configure(with name: String){
+    public func configure(with name: String,color: UIColor, dose: String){
         //TODO: Configure Image and Color
         
         pLabel.text = name
-        self.backgroundColor = UIColor.random
+        pDose.text = dose
+        self.backgroundColor = color
         
     }
     
