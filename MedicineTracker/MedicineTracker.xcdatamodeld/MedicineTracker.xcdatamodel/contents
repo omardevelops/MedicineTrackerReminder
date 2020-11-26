@@ -5,12 +5,13 @@
         <attribute name="dose" optional="YES" attributeType="String"/>
         <attribute name="doseTimings" optional="YES" attributeType="Transformable"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="frequency" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="notificationType" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="Prescription" positionX="-36" positionY="9" width="128" height="163"/>
+        <element name="Prescription" positionX="-36" positionY="9" width="128" height="178"/>
     </elements>
 </model>

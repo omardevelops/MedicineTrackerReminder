@@ -203,21 +203,21 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notes (Optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLR-fw-KgG">
-                                                <rect key="frame" x="52" y="1035" width="145" height="24"/>
+                                                <rect key="frame" x="52" y="1071" width="145" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KWg-65-zbs">
-                                                <rect key="frame" x="47" y="1061" width="319" height="34"/>
+                                                <rect key="frame" x="47" y="1097" width="319" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4u-Nv-u5d">
-                                                <rect key="frame" x="48" y="1103" width="140" height="30"/>
+                                                <rect key="frame" x="48" y="1139" width="140" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
@@ -343,8 +343,15 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 Doses Per Day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvV-0M-mUd">
+                                                <rect key="frame" x="44" y="706" width="310" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <color key="textColor" systemColor="systemIndigoColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="NRJ-ZI-AA5">
-                                                <rect key="frame" x="47" y="711" width="304" height="298"/>
+                                                <rect key="frame" x="47" y="744" width="304" height="298"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aM-hn-5tr">
                                                         <rect key="frame" x="0.0" y="0.0" width="304" height="33"/>
@@ -529,7 +536,7 @@
                                             <constraint firstItem="Mmr-Kx-9CZ" firstAttribute="top" secondItem="vbB-JH-T8k" secondAttribute="top" constant="577" id="9Le-NE-biJ"/>
                                             <constraint firstAttribute="trailing" secondItem="Mmr-Kx-9CZ" secondAttribute="trailing" constant="8" id="lQS-eE-NNB"/>
                                             <constraint firstAttribute="height" constant="1500" id="osl-8p-kqn"/>
-                                            <constraint firstAttribute="bottom" secondItem="NRJ-ZI-AA5" secondAttribute="bottom" constant="491" id="qJv-xK-uS5"/>
+                                            <constraint firstAttribute="bottom" secondItem="NRJ-ZI-AA5" secondAttribute="bottom" constant="458" id="qJv-xK-uS5"/>
                                             <constraint firstItem="Mmr-Kx-9CZ" firstAttribute="leading" secondItem="vbB-JH-T8k" secondAttribute="leading" constant="-8" id="sss-Qs-GUw"/>
                                         </constraints>
                                     </view>
@@ -572,6 +579,7 @@
                         <outlet property="afternoonTimeButtonOutlet" destination="ARv-Ar-Wtj" id="1vn-U0-9nC"/>
                         <outlet property="amountTF" destination="VHh-j3-b4P" id="LNw-mD-JH4"/>
                         <outlet property="blueBG" destination="Zk3-Ng-XUH" id="1G0-pT-8ei"/>
+                        <outlet property="dosesPerDayLabel" destination="VvV-0M-mUd" id="Jmz-g9-9dO"/>
                         <outlet property="endDateLabel" destination="8k2-Pz-Aoa" id="XDn-Sa-4HE"/>
                         <outlet property="endDatePickerOutlet" destination="1j1-eC-Td3" id="snz-fA-sZx"/>
                         <outlet property="eveningTimeButtonOutlet" destination="Tcu-vr-Mw4" id="XfX-Fl-rxi"/>
@@ -849,6 +857,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

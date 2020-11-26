@@ -73,11 +73,12 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var frequencyLabel: UILabel!
     @IBOutlet weak var frequencyInfoButton: UIButton!
     @IBOutlet weak var frequencyView: UIView! // WARNING: This is also connected to its child ScrollView, be warned when editing this
-    //@IBOutlet weak var categoryPillButton: UIButton!
-    //@IBOutlet weak var categoryDrugButton: UIButton!
     @IBOutlet weak var repeatDailyButton: UIButton!
     @IBOutlet weak var repeatWeeklyButton: UIButton!
     @IBOutlet weak var repeatMonthlyButton: UIButton!
+    
+    
+    @IBOutlet weak var dosesPerDayLabel: UILabel!
     @IBOutlet weak var morningTimeButtonOutlet: UIButton!
     @IBOutlet weak var afternoonTimeButtonOutlet: UIButton!
     @IBOutlet weak var eveningTimeButtonOutlet: UIButton!
@@ -107,6 +108,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var weeklyEnabled : Bool = false
     var monthlyEnabled : Bool = false
     var customEnabled : Bool = false
+    var dosesPerDayCounter : Int = 0
     var morningChecked : Bool = false
     var afternoonChecked : Bool = false
     var eveningChecked : Bool = false
@@ -378,8 +380,12 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBAction func morningTimeButton(_ sender: UIButton) {
         if(morningChecked) {
             morningChecked = false
+            dosesPerDayCounter -= 1
+            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         } else {
             morningChecked = true
+            dosesPerDayCounter += 1
+            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         }
         updateDoseTimeButtons()
     }
@@ -388,8 +394,12 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBAction func afternoonTimeButton(_ sender: UIButton) {
         if(afternoonChecked) {
             afternoonChecked = false
+            dosesPerDayCounter -= 1
+            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         } else {
             afternoonChecked = true
+            dosesPerDayCounter += 1
+            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         }
         updateDoseTimeButtons()
     }
@@ -398,8 +408,12 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBAction func eveningTimeButton(_ sender: UIButton) {
         if(eveningChecked) {
             eveningChecked = false
+            dosesPerDayCounter -= 1
+            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         } else {
             eveningChecked = true
+            dosesPerDayCounter += 1
+            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         }
         updateDoseTimeButtons()
     }
@@ -408,8 +422,12 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBAction func fourthTimeButton(_ sender: UIButton) {
         if(fourthChecked) {
             fourthChecked = false
+            dosesPerDayCounter -= 1
+            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         } else {
             fourthChecked = true
+            dosesPerDayCounter += 1
+            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         }
         updateDoseTimeButtons()
         
@@ -418,8 +436,12 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBAction func fifthTimeButton(_ sender: UIButton) {
         if(fifthChecked) {
             fifthChecked = false
+            dosesPerDayCounter -= 1
+            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         } else {
             fifthChecked = true
+            dosesPerDayCounter += 1
+            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         }
         updateDoseTimeButtons()
         
@@ -429,8 +451,12 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBAction func sixthTimeButton(_ sender: UIButton) {
         if(sixthChecked) {
             sixthChecked = false
+            dosesPerDayCounter -= 1
+            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         } else {
             sixthChecked = true
+            dosesPerDayCounter += 1
+            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         }
         updateDoseTimeButtons()
         
@@ -629,8 +655,11 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             newPrescription.doseTimings = checkedDosageTimes
             newPrescription.color = getSelectedColor()
             newPrescription.startDate = startDatePickerOutlet.date
+            newPrescription.notificationType = false // Not alarm
+            
             if(repeatsSwitch.isOn) {
                 newPrescription.endDate = endDatePickerOutlet.date
+                newPrescription.frequency = getSelectedFrequency()
             }
             
             prescriptionArray!.append(newPrescription)
