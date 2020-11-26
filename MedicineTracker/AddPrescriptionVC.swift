@@ -36,6 +36,32 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     var prescriptionArray : [Prescription]?
     
+    
+    
+    var allDosageTimes : [Date] = []
+    var checkedDosageTimes : [Date] = [] // What is checked will be added to the prescription array
+    
+    func initializeDates() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        let dateTime1 = Date(timeIntervalSinceReferenceDate: 28800.0) // 8AM
+        let dateTime2 = Date(timeIntervalSinceReferenceDate: 43200.0) // 12PM
+        let dateTime3 = Date(timeIntervalSinceReferenceDate: 64800.0) // 6PM
+        let dateTime4 = Date(timeIntervalSinceReferenceDate: 75600.0) // 9PM
+        let dateTime5 = Date(timeIntervalSinceReferenceDate: 86400.0) // 12AM
+        let dateTime6 = Date(timeIntervalSinceReferenceDate: 10800.0) // 3AM
+        
+        allDosageTimes.append(dateTime1)
+        allDosageTimes.append(dateTime2)
+        allDosageTimes.append(dateTime3)
+        allDosageTimes.append(dateTime4)
+        allDosageTimes.append(dateTime5)
+        allDosageTimes.append(dateTime6)
+        
+        print(allDosageTimes)
+        
+    }
+    
 
     // MARK: Outlets
     @IBOutlet weak var nameTF: UITextField!
@@ -98,6 +124,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         //start date
+        initializeDates()
+        
         startDatePicker = UIDatePicker()
         startDatePicker?.datePickerMode = .date
         startDatePicker?.addTarget(self, action: #selector(AddPrescriptionVC.startDateChanged(datePicker:)), for: .valueChanged)
@@ -392,9 +420,11 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             morningTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
             morningTimeButtonOutlet.setTitle("Morning ✓", for: .normal)
             
+            
         } else {
             morningTimeButtonOutlet.backgroundColor = UIColor.customBlue
             morningTimeButtonOutlet.setTitle("Morning", for: .normal)
+            
         }
         
         if(afternoonChecked) {
@@ -468,19 +498,38 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         remindTF.resignFirstResponder()
     }
     
+    func isColorPicked() -> Bool {
+        if(isYellow || isOrange || isRed || isBlue || isGreen) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func isTimePicked() -> Bool {
+        if(morningChecked || afternoonChecked || eveningChecked || fourthChecked || fifthChecked || sixthChecked) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     // MARK: Check Form
     // Checks if form is valid and ready to be used as a Prescription object. Checks if required fields are empty or not.
     func isFormValid() -> Bool {
         let startDate : Date = startDatePickerOutlet.date
         let endDate : Date
         let interval : TimeInterval
-        if(nameTF.hasText && amountTF.hasText) {
+        if(nameTF.hasText && amountTF.hasText && isColorPicked() && isTimePicked()) {
             if(endDatePickerOutlet.isEnabled) {
                 endDate = endDatePickerOutlet.date
                 interval = endDate.timeIntervalSince(startDate)
                 if(interval > 1) {
+                    //TODO: Put alert to tell user that end date is before start date or same day
+                    
                     return true
                 } else {
+                    print("End date invalid")
                     return false
                 }
             } else {
@@ -493,17 +542,44 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     // latest push
 
-    
+    func addDoseTimesToArray() {
+        if(morningChecked) {
+            checkedDosageTimes.append(allDosageTimes[0])
+        }
+        
+        if(afternoonChecked) {
+            checkedDosageTimes.append(allDosageTimes[1])
+        }
+        
+        if(eveningChecked) {
+            checkedDosageTimes.append(allDosageTimes[2])
+        }
+        
+        if(fourthChecked) {
+            checkedDosageTimes.append(allDosageTimes[3])
+        }
+        
+        if(fifthChecked) {
+            checkedDosageTimes.append(allDosageTimes[4])
+        }
+        
+        if(sixthChecked) {
+            checkedDosageTimes.append(allDosageTimes[5])
+        }
+    }
     
     // MARK: - Navigation
     
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
         if(isFormValid()) {
             // Add Prescription to Core Data
-            //let newPrescription = Prescription(context: self.context)
-            //newPrescription.name = nameTF.text
-            //newPrescription.dose = amountTF.text!
-            //newPrescription.notes = noteTF.text
+            let newPrescription = Prescription(context: self.context)
+            addDoseTimesToArray() // Adds what is checked to checkedDosageTimes
+            print(checkedDosageTimes)
+            newPrescription.name = nameTF.text
+            newPrescription.dose = amountTF.text!
+            newPrescription.notes = noteTF.text
+            newPrescription.doseTimings = checkedDosageTimes
             performSegue(withIdentifier: "verificationSegue", sender: self)
         } else {
             print("Nope")
