@@ -149,29 +149,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbB-JH-T8k">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deK-hr-D3V">
-                                                <rect key="frame" x="54" y="32" width="52" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wyv-UX-Efv">
-                                                <rect key="frame" x="48" y="64" width="319" height="34"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uw-S4-LGb">
-                                                <rect key="frame" x="54" y="115" width="81" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoQ-s9-CME">
-                                                <rect key="frame" x="54" y="153" width="106" height="40"/>
+                                                <rect key="frame" x="48" y="8" width="106" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" systemColor="linkColor"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
@@ -188,7 +167,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yz-wW-o4X">
-                                                <rect key="frame" x="182" y="153" width="106" height="40"/>
+                                                <rect key="frame" x="176" y="8" width="106" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" systemColor="linkColor"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
@@ -204,71 +183,117 @@
                                                     <action selector="categoryDrugButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="zfJ-WM-3w9"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deK-hr-D3V">
+                                                <rect key="frame" x="48" y="56" width="52" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Medicine Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wyv-UX-Efv">
+                                                <rect key="frame" x="48" y="88" width="319" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPG-7M-Di9">
+                                                <rect key="frame" x="48" y="138" width="46" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. 4 pills" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VHh-j3-b4P" userLabel="DoseTF">
+                                                <rect key="frame" x="48" y="178" width="319" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Repeats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUS-Xh-Kag">
+                                                <rect key="frame" x="48" y="235" width="72" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="axz-ty-0xi">
+                                                <rect key="frame" x="140" y="232" width="49" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="pressRepeatsSwitch:" destination="lTY-yc-D7m" eventType="valueChanged" id="vi1-qd-uYM"/>
+                                                </connections>
+                                            </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XL7-nj-TFt">
-                                                <rect key="frame" x="54" y="212" width="89" height="24"/>
+                                                <rect key="frame" x="48" y="282" width="89" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8k2-Pz-Aoa">
-                                                <rect key="frame" x="218" y="212" width="80" height="24"/>
+                                                <rect key="frame" x="215" y="282" width="80" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="DD/MM/YYYY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gnr-4k-bmY">
-                                                <rect key="frame" x="48" y="244" width="145" height="34"/>
+                                                <rect key="frame" x="49" y="316" width="145" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="DD/MM/YYYY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BJK-sL-dgI">
-                                                <rect key="frame" x="217" y="244" width="145" height="34"/>
+                                                <rect key="frame" x="214" y="316" width="145" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Frequency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUS-Xh-Kag">
-                                                <rect key="frame" x="54" y="295" width="93" height="24"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Frequency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiq-E5-Aa1">
+                                                <rect key="frame" x="49" y="357" width="93" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPG-7M-Di9">
-                                                <rect key="frame" x="54" y="637" width="70" height="24"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notes (Optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLR-fw-KgG">
+                                                <rect key="frame" x="60" y="847" width="145" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VHh-j3-b4P">
-                                                <rect key="frame" x="54" y="669" width="319" height="34"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLR-fw-KgG">
-                                                <rect key="frame" x="59" y="721" width="43" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KWg-65-zbs">
-                                                <rect key="frame" x="54" y="747" width="319" height="34"/>
+                                                <rect key="frame" x="55" y="873" width="319" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4u-Nv-u5d">
+                                                <rect key="frame" x="56" y="915" width="140" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Notification Settings">
+                                                            <attributes>
+                                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                                <integer key="NSUnderline" value="1"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </state>
+                                                <connections>
+                                                    <action selector="notificationButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="GE5-fw-Rdl"/>
+                                                </connections>
+                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mmr-Kx-9CZ">
-                                                <rect key="frame" x="0.0" y="327" width="414" height="55"/>
+                                                <rect key="frame" x="0.0" y="389" width="414" height="55"/>
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GIg-yE-enD">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
@@ -361,7 +386,6 @@
                                                         </constraints>
                                                     </scrollView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="414" id="31A-ft-MOp"/>
                                                     <constraint firstAttribute="trailing" secondItem="GIg-yE-enD" secondAttribute="trailing" id="34W-TH-OL7"/>
@@ -371,20 +395,21 @@
                                                     <constraint firstItem="GIg-yE-enD" firstAttribute="top" secondItem="Mmr-Kx-9CZ" secondAttribute="top" id="vv8-4n-fiy"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dose Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNG-VU-bJy">
-                                                <rect key="frame" x="55" y="396" width="304" height="24"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dosage Times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNG-VU-bJy">
+                                                <rect key="frame" x="48" y="474" width="126" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="NRJ-ZI-AA5">
-                                                <rect key="frame" x="55" y="430" width="304" height="192"/>
+                                                <rect key="frame" x="55" y="523" width="304" height="298"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aM-hn-5tr">
                                                         <rect key="frame" x="0.0" y="0.0" width="304" height="33"/>
                                                         <color key="backgroundColor" systemColor="linkColor"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                        <state key="normal" title="Morning">
+                                                        <state key="normal" title="Preset 1">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
@@ -400,7 +425,7 @@
                                                         <rect key="frame" x="0.0" y="53" width="304" height="33"/>
                                                         <color key="backgroundColor" systemColor="linkColor"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                        <state key="normal" title="Afternoon">
+                                                        <state key="normal" title="Preset 2">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
@@ -416,7 +441,7 @@
                                                         <rect key="frame" x="0.0" y="106" width="304" height="33"/>
                                                         <color key="backgroundColor" systemColor="linkColor"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                        <state key="normal" title="Evening">
+                                                        <state key="normal" title="Preset 3">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
@@ -432,7 +457,7 @@
                                                         <rect key="frame" x="0.0" y="159" width="304" height="33"/>
                                                         <color key="backgroundColor" systemColor="linkColor"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                        <state key="normal" title="More &gt;">
+                                                        <state key="normal" title="Preset 4">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
@@ -441,42 +466,62 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="moreDoseTimeButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="36h-SP-B9G"/>
+                                                            <action selector="fourthTimeButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="Jq3-Yd-I4q"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhA-6a-SiJ">
+                                                        <rect key="frame" x="0.0" y="212" width="304" height="33"/>
+                                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                        <state key="normal" title="Preset 5">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="fifthTimeButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="g7z-WC-3Ae"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BfC-BV-cPI">
+                                                        <rect key="frame" x="0.0" y="265" width="304" height="33"/>
+                                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                        <state key="normal" title="Preset 6">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="sixthTimeButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="Vn7-8u-GOQ"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4u-Nv-u5d">
-                                                <rect key="frame" x="55" y="789" width="140" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jF1-nj-Zy0" userLabel="FrequencyInfoButton">
+                                                <rect key="frame" x="150" y="358" width="25" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Notification Settings">
-                                                            <attributes>
-                                                                <font key="NSFont" metaFont="system" size="15"/>
-                                                                <integer key="NSUnderline" value="1"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </state>
-                                                <connections>
-                                                    <action selector="notificationButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="GE5-fw-Rdl"/>
-                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QA4-s9-HRf" userLabel="ReminderTimesInfo">
+                                                <rect key="frame" x="181" y="474" width="25" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.87058823529411766" green="0.90980392156862744" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="GNG-VU-bJy" secondAttribute="trailing" constant="55" id="1xa-QW-QE4"/>
-                                            <constraint firstItem="Mmr-Kx-9CZ" firstAttribute="top" secondItem="vbB-JH-T8k" secondAttribute="top" constant="327" id="9Le-NE-biJ"/>
-                                            <constraint firstItem="GNG-VU-bJy" firstAttribute="leading" secondItem="vbB-JH-T8k" secondAttribute="leading" constant="55" id="Htq-f1-qkY"/>
-                                            <constraint firstItem="NRJ-ZI-AA5" firstAttribute="centerX" secondItem="vbB-JH-T8k" secondAttribute="centerX" id="YUE-2R-3a4"/>
+                                            <constraint firstItem="NRJ-ZI-AA5" firstAttribute="centerX" secondItem="vbB-JH-T8k" secondAttribute="centerX" id="1tC-EK-Lbz"/>
+                                            <constraint firstAttribute="trailing" secondItem="NRJ-ZI-AA5" secondAttribute="trailing" constant="55" id="4Uc-ki-RXb"/>
+                                            <constraint firstItem="NRJ-ZI-AA5" firstAttribute="leading" secondItem="vbB-JH-T8k" secondAttribute="leading" constant="55" id="8ox-2x-ekS"/>
+                                            <constraint firstItem="Mmr-Kx-9CZ" firstAttribute="top" secondItem="vbB-JH-T8k" secondAttribute="top" constant="389" id="9Le-NE-biJ"/>
                                             <constraint firstAttribute="trailing" secondItem="Mmr-Kx-9CZ" secondAttribute="trailing" id="lQS-eE-NNB"/>
                                             <constraint firstAttribute="height" constant="1500" id="osl-8p-kqn"/>
+                                            <constraint firstAttribute="bottom" secondItem="NRJ-ZI-AA5" secondAttribute="bottom" constant="679" id="qJv-xK-uS5"/>
                                             <constraint firstItem="Mmr-Kx-9CZ" firstAttribute="leading" secondItem="vbB-JH-T8k" secondAttribute="leading" id="sss-Qs-GUw"/>
-                                            <constraint firstAttribute="trailing" secondItem="NRJ-ZI-AA5" secondAttribute="trailing" constant="55" id="uJi-ga-6Kv"/>
-                                            <constraint firstItem="GNG-VU-bJy" firstAttribute="top" secondItem="Mmr-Kx-9CZ" secondAttribute="bottom" constant="14" id="uZZ-Wj-EiS"/>
-                                            <constraint firstItem="NRJ-ZI-AA5" firstAttribute="leading" secondItem="vbB-JH-T8k" secondAttribute="leading" constant="55" id="udi-yO-i0l"/>
-                                            <constraint firstItem="NRJ-ZI-AA5" firstAttribute="top" secondItem="GNG-VU-bJy" secondAttribute="bottom" constant="10" id="zkN-s6-lo9"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4br-os-3dD">
@@ -515,8 +560,14 @@
                         <outlet property="amountTF" destination="VHh-j3-b4P" id="LNw-mD-JH4"/>
                         <outlet property="categoryDrugButton" destination="3Yz-wW-o4X" id="0g8-rZ-clT"/>
                         <outlet property="categoryPillButton" destination="eoQ-s9-CME" id="1Ki-6D-z5P"/>
+                        <outlet property="endDateLabel" destination="8k2-Pz-Aoa" id="XDn-Sa-4HE"/>
                         <outlet property="endDateTF" destination="BJK-sL-dgI" id="jcm-jR-zQc"/>
                         <outlet property="eveningTimeButtonOutlet" destination="Tcu-vr-Mw4" id="XfX-Fl-rxi"/>
+                        <outlet property="fifthTimeButtonOutlet" destination="qhA-6a-SiJ" id="Ofe-t8-pyx"/>
+                        <outlet property="fourthTimeButtonOutlet" destination="NB0-1l-fSV" id="MA7-h0-Yk8"/>
+                        <outlet property="frequencyInfoButton" destination="jF1-nj-Zy0" id="5Cq-Kh-9V9"/>
+                        <outlet property="frequencyLabel" destination="jiq-E5-Aa1" id="v8f-OQ-MUl"/>
+                        <outlet property="frequencyView" destination="GIg-yE-enD" id="jYo-5B-0t5"/>
                         <outlet property="morningTimeButtonOutlet" destination="3aM-hn-5tr" id="VPr-7P-pEL"/>
                         <outlet property="nameTF" destination="Wyv-UX-Efv" id="s5F-kd-bIl"/>
                         <outlet property="noteTF" destination="KWg-65-zbs" id="0lz-cG-VZ6"/>
@@ -524,6 +575,8 @@
                         <outlet property="repeatDailyButton" destination="gJP-ed-VCA" id="0Z2-Vb-HC3"/>
                         <outlet property="repeatMonthlyButton" destination="KUe-Je-Zdq" id="ZyD-N1-Ztv"/>
                         <outlet property="repeatWeeklyButton" destination="L6h-9L-Vlf" id="ah3-iB-f5P"/>
+                        <outlet property="repeatsSwitch" destination="axz-ty-0xi" id="ngE-xk-XBO"/>
+                        <outlet property="sixthTimeButtonOutlet" destination="BfC-BV-cPI" id="gzS-Kk-O3h"/>
                         <outlet property="startDateTF" destination="Gnr-4k-bmY" id="H4u-IR-gms"/>
                         <segue destination="sq1-hN-vcE" kind="presentation" id="5gs-Um-gYw"/>
                         <segue destination="xyG-ZB-c6x" kind="presentation" identifier="add2notification" id="Nvx-hO-LYB"/>
