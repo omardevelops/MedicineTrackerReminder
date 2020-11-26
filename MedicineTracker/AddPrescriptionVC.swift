@@ -31,12 +31,19 @@ extension UIColor {
 
 class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    // MARK: Core Data Context
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var prescriptionArray : [Prescription]?
+    
 
     // MARK: Outlets
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var startDateTF: UITextField!
     @IBOutlet weak var endDateTF: UITextField!
     @IBOutlet weak var endDateLabel: UILabel!
+    @IBOutlet weak var endDatePickerOutlet: UIDatePicker!
+    @IBOutlet weak var startDatePickerOutlet: UIDatePicker!
     @IBOutlet weak var frequencyLabel: UILabel!
     @IBOutlet weak var frequencyInfoButton: UIButton!
     @IBOutlet weak var frequencyView: UIView! // WARNING: This is also connected to its child ScrollView, be warned when editing this
@@ -74,8 +81,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var fourthChecked : Bool = false
     var fifthChecked : Bool = false
     var sixthChecked : Bool = false
-    var prescriptionArray : [Prescription]?
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     
     var pickerView = UIPickerView()
     
@@ -131,21 +137,19 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     @IBAction func pressRepeatsSwitch(_ sender: UISwitch) {
         if(sender.isOn) {
-            endDateTF.isHidden = false
-            endDateLabel.isHidden = false
-            frequencyLabel.isHidden = false
-            frequencyInfoButton.isHidden = false
-            frequencyView.isHidden = false
+            endDatePickerOutlet.isEnabled = true
+            endDateLabel.isEnabled = true
+            frequencyLabel.isEnabled = true
+            frequencyInfoButton.isEnabled = true
             frequencyView.isUserInteractionEnabled = true
             
             isRepeats = true
             
         } else {
-            endDateTF.isHidden = true
-            endDateLabel.isHidden = true
-            frequencyLabel.isHidden = true
-            frequencyInfoButton.isHidden = true
-            frequencyView.isHidden = true
+            endDatePickerOutlet.isEnabled = false
+            endDateLabel.isEnabled = false
+            frequencyLabel.isEnabled = false
+            frequencyInfoButton.isEnabled = false
             frequencyView.isUserInteractionEnabled = false
             
             isRepeats = false
@@ -352,11 +356,25 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     // MARK: Check Form
     // Checks if form is valid and ready to be used as a Prescription object. Checks if required fields are empty or not.
     func isFormValid() -> Bool {
-        if(nameTF.hasText && amountTF.hasText && startDateTF.hasText && endDateTF.hasText) {
-            return true
+        let startDate : Date = startDatePickerOutlet.date
+        let endDate : Date
+        let interval : TimeInterval
+        if(nameTF.hasText && amountTF.hasText) {
+            if(endDatePickerOutlet.isEnabled) {
+                endDate = endDatePickerOutlet.date
+                interval = endDate.timeIntervalSince(startDate)
+                if(interval > 1) {
+                    return true
+                } else {
+                    return false
+                }
+            } else {
+                return true
+            }
         } else {
             return false
         }
+        
     }
     // latest push
 
@@ -367,10 +385,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
         if(isFormValid()) {
             // Add Prescription to Core Data
-            let newPrescription = Prescription(context: self.context)
-            newPrescription.name = nameTF.text
-            newPrescription.quantity = Int64(amountTF.text!)!
-            newPrescription.notes = noteTF.text
+            //let newPrescription = Prescription(context: self.context)
+            //newPrescription.name = nameTF.text
+            //newPrescription.dose = amountTF.text!
+            //newPrescription.notes = noteTF.text
             performSegue(withIdentifier: "verificationSegue", sender: self)
         } else {
             print("Nope")

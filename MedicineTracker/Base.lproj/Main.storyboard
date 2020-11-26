@@ -537,6 +537,7 @@
                         <outlet property="afternoonTimeButtonOutlet" destination="ARv-Ar-Wtj" id="1vn-U0-9nC"/>
                         <outlet property="amountTF" destination="VHh-j3-b4P" id="LNw-mD-JH4"/>
                         <outlet property="endDateLabel" destination="8k2-Pz-Aoa" id="XDn-Sa-4HE"/>
+                        <outlet property="endDatePickerOutlet" destination="1j1-eC-Td3" id="snz-fA-sZx"/>
                         <outlet property="eveningTimeButtonOutlet" destination="Tcu-vr-Mw4" id="XfX-Fl-rxi"/>
                         <outlet property="fifthTimeButtonOutlet" destination="qhA-6a-SiJ" id="Ofe-t8-pyx"/>
                         <outlet property="fourthTimeButtonOutlet" destination="NB0-1l-fSV" id="MA7-h0-Yk8"/>
@@ -552,6 +553,7 @@
                         <outlet property="repeatWeeklyButton" destination="L6h-9L-Vlf" id="ah3-iB-f5P"/>
                         <outlet property="repeatsSwitch" destination="axz-ty-0xi" id="ngE-xk-XBO"/>
                         <outlet property="sixthTimeButtonOutlet" destination="BfC-BV-cPI" id="gzS-Kk-O3h"/>
+                        <outlet property="startDatePickerOutlet" destination="szm-fP-V8O" id="ATl-m0-jIA"/>
                         <segue destination="xyG-ZB-c6x" kind="presentation" identifier="add2notification" id="Nvx-hO-LYB"/>
                         <segue destination="Mv7-vO-4hy" kind="presentation" identifier="verificationSegue" modalPresentationStyle="fullScreen" id="yeZ-31-VpV"/>
                     </connections>
