@@ -125,7 +125,16 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         super.viewDidLoad()
         //start date
         initializeDates()
+        isYellow = true;
+        updateColorButtons() // Initialize the color
+        endDatePickerOutlet.date = (startDatePickerOutlet.date).advanced(by: 604800.0) // End date starts as advanced by a week from start date
         
+        dailyEnabled = true // Initialize the repeating
+        updateFrequencyButtons()
+        
+        
+        /* TODO: Remove the below
+         
         startDatePicker = UIDatePicker()
         startDatePicker?.datePickerMode = .date
         startDatePicker?.addTarget(self, action: #selector(AddPrescriptionVC.startDateChanged(datePicker:)), for: .valueChanged)
@@ -142,7 +151,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
         if endDateTF != nil {
             endDateTF.inputView = endDatePicker
-        }
+        } */
+        
         //remind me
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -175,7 +185,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     @IBAction func yellowBG(_ sender: UIButton) {
         if isYellow {
-            isYellow = false
+            //isYellow = false
         } else {
             isYellow = true
             isOrange = false
@@ -188,7 +198,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     @IBAction func orangeBG(_ sender: UIButton) {
         if isOrange {
-            isOrange = false
+            //isOrange = false
         } else {
             isOrange = true
             isYellow = false
@@ -203,7 +213,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     @IBAction func redBG(_ sender: UIButton) {
         if(isRed) {
-            isRed = false
+            //isRed = false
         } else {
             isRed = true
             isOrange = false
@@ -216,7 +226,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     @IBAction func blueBG(_ sender: UIButton) {
         if(isBlue) {
-            isBlue = false
+            //isBlue = false
         } else {
             isBlue = true
             isOrange = false
@@ -229,7 +239,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     @IBAction func greenBG(_ sender: UIButton) {
         if(isGreen) {
-            isGreen = false
+            //isGreen = false
         } else {
             isGreen = true
             isOrange = false
@@ -276,13 +286,15 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
+    // MARK: Repeats Switch
     @IBAction func pressRepeatsSwitch(_ sender: UISwitch) {
         if(sender.isOn) {
             endDatePickerOutlet.isEnabled = true
             endDateLabel.isEnabled = true
             frequencyLabel.isEnabled = true
             frequencyInfoButton.isEnabled = true
-            repeatDailyButton.backgroundColor = UIColor.systemBlue
+            dailyEnabled = true
+            updateFrequencyButtons()
             repeatWeeklyButton.backgroundColor = UIColor.systemBlue
             repeatMonthlyButton.backgroundColor = UIColor.systemBlue
             frequencyView.isUserInteractionEnabled = true
@@ -293,9 +305,14 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             endDateLabel.isEnabled = false
             frequencyLabel.isEnabled = false
             frequencyInfoButton.isEnabled = false
+            dailyEnabled = false
+            weeklyEnabled = false
+            monthlyEnabled = false
+            updateFrequencyButtons()
             repeatDailyButton.backgroundColor = UIColor.systemGray
             repeatWeeklyButton.backgroundColor = UIColor.systemGray
             repeatMonthlyButton.backgroundColor = UIColor.systemGray
+            
             frequencyView.isUserInteractionEnabled = false
             isRepeats = false
             
@@ -306,54 +323,56 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         self.performSegue(withIdentifier: "add2notification", sender: self)
     }
     
-    /*
-    @IBAction func categoryPillButton(_ sender: UIButton) {
-        if pillEnabled == false{
-            categoryPillButton.backgroundColor = UIColor.customLightBlue
-            categoryPillButton.setTitle("Pill", for: .normal)
-            pillEnabled = true
-            categoryDrugButton.backgroundColor = UIColor.customBlue
-            categoryDrugButton.setTitle("Drug ✓", for: .normal)
-            drugEnabled = false
-        }else {
-            categoryPillButton.backgroundColor = UIColor.customBlue
-            categoryPillButton.setTitle("Pill ✓", for: .normal)
-            pillEnabled = false
-            categoryDrugButton.backgroundColor = UIColor.customLightBlue
-            categoryDrugButton.setTitle("Drug", for: .normal)
-            drugEnabled = true
-        }
-    }
-    
-    @IBAction func categoryDrugButton(_ sender: UIButton) {
-        if drugEnabled == false {
-            categoryDrugButton.backgroundColor = UIColor.customLightBlue
-            categoryDrugButton.setTitle("Drug", for: .normal)
-            drugEnabled = true
-            categoryPillButton.backgroundColor = UIColor.customBlue
-            categoryPillButton.setTitle("Pill ✓", for: .normal)
-            pillEnabled = false
-        }else {
-            categoryDrugButton.backgroundColor = UIColor.customBlue
-            categoryDrugButton.setTitle("Drug ✓", for: .normal)
-            drugEnabled = false
-            categoryPillButton.backgroundColor = UIColor.customLightBlue
-            categoryPillButton.setTitle("Pill", for: .normal)
-            pillEnabled = true
-        }
-    }*/
-    //repeat
     
     @IBAction func repeatDailyButton(_ sender: UIButton) {
-        if dailyEnabled == false {
-            repeatDailyButton.backgroundColor = UIColor.customLightBlue
-            repeatDailyButton.setTitle("Daily", for: .normal)
+        if !dailyEnabled {
             dailyEnabled = true
+            weeklyEnabled = false
+            monthlyEnabled = false
         }
+        updateFrequencyButtons()
     }
     @IBAction func repeatWeeklyButton(_ sender: UIButton) {
+        if !weeklyEnabled {
+            weeklyEnabled = true
+            dailyEnabled = false
+            monthlyEnabled = false
+        }
+        updateFrequencyButtons()
     }
     @IBAction func repeatMonthlyButton(_ sender: UIButton) {
+        if !monthlyEnabled {
+            monthlyEnabled = true
+            dailyEnabled = false
+            weeklyEnabled = false
+        }
+        updateFrequencyButtons()
+    }
+    
+    func updateFrequencyButtons() {
+        if dailyEnabled {
+            repeatDailyButton.backgroundColor = UIColor.customLightBlue
+            repeatDailyButton.setTitle("Daily ✓", for: .normal)
+        } else {
+            repeatDailyButton.backgroundColor = UIColor.systemBlue
+            repeatDailyButton.setTitle("Daily", for: .normal)
+        }
+        
+        if weeklyEnabled {
+            repeatWeeklyButton.backgroundColor = UIColor.customLightBlue
+            repeatWeeklyButton.setTitle("Weekly ✓", for: .normal)
+        } else {
+            repeatWeeklyButton.backgroundColor = UIColor.systemBlue
+            repeatWeeklyButton.setTitle("Weekly", for: .normal)
+        }
+        
+        if monthlyEnabled {
+            repeatMonthlyButton.backgroundColor = UIColor.customLightBlue
+            repeatMonthlyButton.setTitle("Monthly ✓", for: .normal)
+        } else {
+            repeatMonthlyButton.backgroundColor = UIColor.systemBlue
+            repeatMonthlyButton.setTitle("Monthly", for: .normal)
+        }
     }
     
     @IBAction func morningTimeButton(_ sender: UIButton) {
@@ -426,7 +445,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             
             
         } else {
-            morningTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            morningTimeButtonOutlet.backgroundColor = UIColor.systemBlue
             morningTimeButtonOutlet.setTitle("Morning", for: .normal)
             
         }
@@ -436,7 +455,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             afternoonTimeButtonOutlet.setTitle("Afternoon ✓", for: .normal)
             
         } else {
-            afternoonTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            afternoonTimeButtonOutlet.backgroundColor = UIColor.systemBlue
             afternoonTimeButtonOutlet.setTitle("Afternoon", for: .normal)
         }
         
@@ -445,7 +464,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             eveningTimeButtonOutlet.setTitle("Evening ✓", for: .normal)
             
         } else {
-            eveningTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            eveningTimeButtonOutlet.backgroundColor = UIColor.systemBlue
             eveningTimeButtonOutlet.setTitle("Evening", for: .normal)
             
         }
@@ -455,7 +474,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             fourthTimeButtonOutlet.setTitle("Evening ✓", for: .normal)
             
         } else {
-            fourthTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            fourthTimeButtonOutlet.backgroundColor = UIColor.systemBlue
             fourthTimeButtonOutlet.setTitle("Evening", for: .normal)
             
         }
@@ -465,7 +484,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             fifthTimeButtonOutlet.setTitle("Evening ✓", for: .normal)
             
         } else {
-            fifthTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            fifthTimeButtonOutlet.backgroundColor = UIColor.systemBlue
             fifthTimeButtonOutlet.setTitle("Evening", for: .normal)
             
         }
@@ -475,7 +494,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             sixthTimeButtonOutlet.setTitle("Evening ✓", for: .normal)
             
         } else {
-            sixthTimeButtonOutlet.backgroundColor = UIColor.customBlue
+            sixthTimeButtonOutlet.backgroundColor = UIColor.systemBlue
             sixthTimeButtonOutlet.setTitle("Evening", for: .normal)
             
         }
@@ -521,6 +540,16 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             return blueBG.backgroundColor ?? UIColor.systemBlue
         } else {
             return greenBG.backgroundColor ?? UIColor.systemBlue
+        }
+    }
+    
+    func getSelectedFrequency() -> String {
+        if dailyEnabled {
+            return "Daily"
+        } else if weeklyEnabled {
+            return "Weekly"
+        } else {
+            return "Monthly"
         }
     }
     
@@ -622,7 +651,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     // MARK: Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "verificationSegue" {
+        if segue.identifier == "verificationSegue" { //TODO: Remove this?
             let destinationVC = segue.destination as! VerifyBeforeAddingVC
             
             // Move data to the verification view in order to add it to the Prescriptions NS Context Object
