@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -456,6 +456,9 @@
                                                 <rect key="frame" x="48" y="267" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="yellowBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="f8W-j9-eg2"/>
                                                 </connections>
@@ -463,7 +466,10 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vnc-Lb-3Lf" userLabel="Color1">
                                                 <rect key="frame" x="124" y="267" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.9536189437" green="0.43998652700000002" blue="0.13296234609999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.98493020304568524" green="0.53516122134899791" blue="0.1056561122496571" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="orangeBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="EoH-rb-ppV"/>
                                                 </connections>
@@ -471,7 +477,10 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkb-hH-wHc" userLabel="Color1">
                                                 <rect key="frame" x="198" y="267" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.8050006032" green="0.1232071891" blue="0.3002869487" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="1" green="0.26395109632266145" blue="0.35261358126312781" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="redBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="x0L-tQ-aoj"/>
                                                 </connections>
@@ -479,7 +488,10 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zk3-Ng-XUH" userLabel="Color1">
                                                 <rect key="frame" x="272" y="267" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.53767621519999997" blue="0.82047778370000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.25208545520779546" green="0.65529173082951497" blue="0.98493020304568524" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="blueBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="bPV-lv-sC9"/>
                                                 </connections>
@@ -488,6 +500,9 @@
                                                 <rect key="frame" x="342" y="267" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.0422229435039988" green="0.69484609369999994" blue="0.29771341933853329" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="greenBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="WXK-JR-lAm"/>
                                                 </connections>

@@ -146,48 +146,106 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     // MARK: Buttons Actions
     
     @IBAction func yellowBG(_ sender: UIButton) {
-        if isYellow == false {
-            yellowBG.setTitle("✓", for: .normal)
-            isYellow = true
-            orangeBG.setTitle("", for: .normal)
-            isOrange = false
-            redBG.setTitle("", for: .normal)
-            isRed = false
-            blueBG.setTitle("", for: .normal)
-            isBlue = false
-            greenBG.setTitle("", for: .normal)
-            isGreen = false
-        } else {
-            yellowBG.setTitle("", for: .normal)
+        if isYellow {
             isYellow = false
+        } else {
+            isYellow = true
+            isOrange = false
+            isRed = false
+            isBlue = false
+            isGreen = false
         }
+        updateColorButtons()
     }
     
     @IBAction func orangeBG(_ sender: UIButton) {
-        if isYellow == false {
-            yellowBG.setTitle("✓", for: .normal)
-            isYellow = true
-            orangeBG.setTitle("", for: .normal)
+        if isOrange {
             isOrange = false
-            redBG.setTitle("", for: .normal)
-            isRed = false
-            blueBG.setTitle("", for: .normal)
-            isBlue = false
-            greenBG.setTitle("", for: .normal)
-            isGreen = false
         } else {
-            yellowBG.setTitle("", for: .normal)
+            isOrange = true
             isYellow = false
+            isRed = false
+            isBlue = false
+            isGreen = false
         }
+        updateColorButtons()
     }
     
+    
+    
     @IBAction func redBG(_ sender: UIButton) {
+        if(isRed) {
+            isRed = false
+        } else {
+            isRed = true
+            isOrange = false
+            isYellow = false
+            isBlue = false
+            isGreen = false
+        }
+        updateColorButtons()
     }
     
     @IBAction func blueBG(_ sender: UIButton) {
+        if(isBlue) {
+            isBlue = false
+        } else {
+            isBlue = true
+            isOrange = false
+            isRed = false
+            isYellow = false
+            isGreen = false
+        }
+        updateColorButtons()
     }
     
     @IBAction func greenBG(_ sender: UIButton) {
+        if(isGreen) {
+            isGreen = false
+        } else {
+            isGreen = true
+            isOrange = false
+            isRed = false
+            isBlue = false
+            isYellow = false
+        }
+        updateColorButtons()
+    }
+    
+    func updateColorButtons() {
+        if isYellow {
+            yellowBG.setTitle("✓", for: .normal)
+        } else {
+            yellowBG.setTitle("", for: .normal)
+            
+        }
+        
+        if isOrange {
+            orangeBG.setTitle("✓", for: .normal)
+        } else {
+            orangeBG.setTitle("", for: .normal)
+        }
+        
+        if isRed {
+            redBG.setTitle("✓", for: .normal)
+        } else {
+            redBG.setTitle("", for: .normal)
+        }
+        
+        if isBlue {
+            blueBG.setTitle("✓", for: .normal)
+        } else {
+            blueBG.setTitle("", for: .normal)
+        }
+        
+        if isGreen {
+            greenBG.setTitle("✓", for: .normal)
+            
+            
+        } else {
+            greenBG.setTitle("", for: .normal)
+            
+        }
     }
     
     @IBAction func pressRepeatsSwitch(_ sender: UISwitch) {
@@ -389,6 +447,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
         
     }
+    
+    
     
     // MARK: Notification View
     //remind me
