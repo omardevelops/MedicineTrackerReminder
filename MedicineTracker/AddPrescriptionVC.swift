@@ -74,6 +74,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var fourthChecked : Bool = false
     var fifthChecked : Bool = false
     var sixthChecked : Bool = false
+    var prescriptionArray : [Prescription]?
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var pickerView = UIPickerView()
     
@@ -364,6 +366,11 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
         if(isFormValid()) {
+            // Add Prescription to Core Data
+            let newPrescription = Prescription(context: self.context)
+            newPrescription.name = nameTF.text
+            newPrescription.quantity = Int64(amountTF.text!)!
+            newPrescription.notes = noteTF.text
             performSegue(withIdentifier: "verificationSegue", sender: self)
         } else {
             print("Nope")
