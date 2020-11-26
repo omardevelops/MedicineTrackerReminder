@@ -599,6 +599,11 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             newPrescription.notes = noteTF.text
             newPrescription.doseTimings = checkedDosageTimes
             newPrescription.color = getSelectedColor()
+            newPrescription.startDate = startDatePickerOutlet.date
+            if(repeatsSwitch.isOn) {
+                newPrescription.endDate = endDatePickerOutlet.date
+            }
+            
             prescriptionArray!.append(newPrescription)
             // Save data
             do {
@@ -615,6 +620,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
     }
     
+    // MARK: Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "verificationSegue" {
             let destinationVC = segue.destination as! VerifyBeforeAddingVC
@@ -629,8 +635,9 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             //destinationVC.notificationType =
             
         } else if segue.identifier == "backToPrescriptionsSegue" {
-            let destinationNavVC = segue.destination as! UINavigationController
-            let destinationVC = destinationNavVC.topViewController as! MyPrescriptionsVC
+            let destTabVC = segue.destination as! UITabBarController
+            let destNavVC = destTabVC.viewControllers![0] as! UINavigationController
+            let destinationVC = destNavVC.topViewController as! MyPrescriptionsVC
             
             destinationVC.myPrescriptions = prescriptionArray
             

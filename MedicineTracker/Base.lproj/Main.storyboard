@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RZe-bp-PzR">
-                                <rect key="frame" x="15" y="98" width="384" height="764"/>
+                                <rect key="frame" x="15" y="98" width="384" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="15" minimumInteritemSpacing="10" id="dgf-Xm-yNz">
                                     <size key="itemSize" width="128" height="128"/>
@@ -596,7 +596,7 @@
                         <outlet property="yellowBG" destination="Oj2-sp-Wx6" id="vyl-QC-aNK"/>
                         <segue destination="xyG-ZB-c6x" kind="presentation" identifier="add2notification" id="Nvx-hO-LYB"/>
                         <segue destination="Mv7-vO-4hy" kind="presentation" identifier="verificationSegue" modalPresentationStyle="fullScreen" id="yeZ-31-VpV"/>
-                        <segue destination="K6N-Oa-8Bc" kind="presentation" identifier="backToPrescriptionsSegue" modalPresentationStyle="fullScreen" id="FQe-Zw-Evr"/>
+                        <segue destination="49e-Tb-3d3" kind="presentation" identifier="backToPrescriptionsSegue" modalPresentationStyle="fullScreen" id="Gpl-ux-aDZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SoM-iE-FAf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -840,9 +840,6 @@
             <point key="canvasLocation" x="749.27536231884062" y="359.59821428571428"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="FQe-Zw-Evr"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="gear" catalog="system" width="128" height="119"/>
