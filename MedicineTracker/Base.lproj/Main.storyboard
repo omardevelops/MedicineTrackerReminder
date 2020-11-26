@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -456,26 +456,41 @@
                                                 <rect key="frame" x="48" y="267" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                <connections>
+                                                    <action selector="yellowBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="f8W-j9-eg2"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vnc-Lb-3Lf" userLabel="Color1">
                                                 <rect key="frame" x="124" y="267" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.9536189437" green="0.43998652700000002" blue="0.13296234609999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="orangeBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="EoH-rb-ppV"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkb-hH-wHc" userLabel="Color1">
                                                 <rect key="frame" x="198" y="267" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.8050006032" green="0.1232071891" blue="0.3002869487" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="redBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="x0L-tQ-aoj"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zk3-Ng-XUH" userLabel="Color1">
                                                 <rect key="frame" x="272" y="267" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.0" green="0.53767621519999997" blue="0.82047778370000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="blueBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="bPV-lv-sC9"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZcA-kk-5oY" userLabel="Color1">
                                                 <rect key="frame" x="342" y="267" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.0422229435039988" green="0.69484609369999994" blue="0.29771341933853329" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="greenBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="WXK-JR-lAm"/>
+                                                </connections>
                                             </button>
                                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="szm-fP-V8O">
                                                 <rect key="frame" x="40" y="444" width="134" height="69"/>
@@ -536,6 +551,7 @@
                     <connections>
                         <outlet property="afternoonTimeButtonOutlet" destination="ARv-Ar-Wtj" id="1vn-U0-9nC"/>
                         <outlet property="amountTF" destination="VHh-j3-b4P" id="LNw-mD-JH4"/>
+                        <outlet property="blueBG" destination="Zk3-Ng-XUH" id="1G0-pT-8ei"/>
                         <outlet property="endDateLabel" destination="8k2-Pz-Aoa" id="XDn-Sa-4HE"/>
                         <outlet property="endDatePickerOutlet" destination="1j1-eC-Td3" id="snz-fA-sZx"/>
                         <outlet property="eveningTimeButtonOutlet" destination="Tcu-vr-Mw4" id="XfX-Fl-rxi"/>
@@ -544,16 +560,20 @@
                         <outlet property="frequencyInfoButton" destination="jF1-nj-Zy0" id="5Cq-Kh-9V9"/>
                         <outlet property="frequencyLabel" destination="jiq-E5-Aa1" id="v8f-OQ-MUl"/>
                         <outlet property="frequencyView" destination="GIg-yE-enD" id="jYo-5B-0t5"/>
+                        <outlet property="greenBG" destination="ZcA-kk-5oY" id="SXq-My-e80"/>
                         <outlet property="morningTimeButtonOutlet" destination="3aM-hn-5tr" id="VPr-7P-pEL"/>
                         <outlet property="nameTF" destination="Wyv-UX-Efv" id="s5F-kd-bIl"/>
                         <outlet property="noteTF" destination="KWg-65-zbs" id="0lz-cG-VZ6"/>
                         <outlet property="notificationButton" destination="l4u-Nv-u5d" id="Vhl-eq-T3F"/>
+                        <outlet property="orangeBG" destination="Vnc-Lb-3Lf" id="f1w-iJ-fGL"/>
+                        <outlet property="redBG" destination="nkb-hH-wHc" id="vpT-oQ-3H4"/>
                         <outlet property="repeatDailyButton" destination="gJP-ed-VCA" id="0Z2-Vb-HC3"/>
                         <outlet property="repeatMonthlyButton" destination="KUe-Je-Zdq" id="ZyD-N1-Ztv"/>
                         <outlet property="repeatWeeklyButton" destination="L6h-9L-Vlf" id="ah3-iB-f5P"/>
                         <outlet property="repeatsSwitch" destination="axz-ty-0xi" id="ngE-xk-XBO"/>
                         <outlet property="sixthTimeButtonOutlet" destination="BfC-BV-cPI" id="gzS-Kk-O3h"/>
                         <outlet property="startDatePickerOutlet" destination="szm-fP-V8O" id="ATl-m0-jIA"/>
+                        <outlet property="yellowBG" destination="Oj2-sp-Wx6" id="vyl-QC-aNK"/>
                         <segue destination="xyG-ZB-c6x" kind="presentation" identifier="add2notification" id="Nvx-hO-LYB"/>
                         <segue destination="Mv7-vO-4hy" kind="presentation" identifier="verificationSegue" modalPresentationStyle="fullScreen" id="yeZ-31-VpV"/>
                     </connections>

@@ -65,6 +65,12 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var notificationButton: UIButton!
     @IBOutlet weak var remindTF: UITextField!
     
+    @IBOutlet weak var yellowBG: UIButton!
+    @IBOutlet weak var blueBG: UIButton!
+    @IBOutlet weak var greenBG: UIButton!
+    @IBOutlet weak var redBG: UIButton!
+    @IBOutlet weak var orangeBG: UIButton!
+    
     // MARK: View Variables
     private var startDatePicker : UIDatePicker?
     private var endDatePicker : UIDatePicker?
@@ -81,7 +87,11 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var fourthChecked : Bool = false
     var fifthChecked : Bool = false
     var sixthChecked : Bool = false
-    
+    var isYellow : Bool = false
+    var isOrange : Bool = false
+    var isRed : Bool = false
+    var isBlue : Bool = false
+    var isGreen : Bool = false
     
     var pickerView = UIPickerView()
     
@@ -134,6 +144,51 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     // MARK: Buttons Actions
+    
+    @IBAction func yellowBG(_ sender: UIButton) {
+        if isYellow == false {
+            yellowBG.setTitle("✓", for: .normal)
+            isYellow = true
+            orangeBG.setTitle("", for: .normal)
+            isOrange = false
+            redBG.setTitle("", for: .normal)
+            isRed = false
+            blueBG.setTitle("", for: .normal)
+            isBlue = false
+            greenBG.setTitle("", for: .normal)
+            isGreen = false
+        } else {
+            yellowBG.setTitle("", for: .normal)
+            isYellow = false
+        }
+    }
+    
+    @IBAction func orangeBG(_ sender: UIButton) {
+        if isYellow == false {
+            yellowBG.setTitle("✓", for: .normal)
+            isYellow = true
+            orangeBG.setTitle("", for: .normal)
+            isOrange = false
+            redBG.setTitle("", for: .normal)
+            isRed = false
+            blueBG.setTitle("", for: .normal)
+            isBlue = false
+            greenBG.setTitle("", for: .normal)
+            isGreen = false
+        } else {
+            yellowBG.setTitle("", for: .normal)
+            isYellow = false
+        }
+    }
+    
+    @IBAction func redBG(_ sender: UIButton) {
+    }
+    
+    @IBAction func blueBG(_ sender: UIButton) {
+    }
+    
+    @IBAction func greenBG(_ sender: UIButton) {
+    }
     
     @IBAction func pressRepeatsSwitch(_ sender: UISwitch) {
         if(sender.isOn) {
