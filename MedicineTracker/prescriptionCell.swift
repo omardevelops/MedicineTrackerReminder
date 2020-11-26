@@ -10,8 +10,10 @@ import UIKit
 
 class prescriptionCell: UICollectionViewCell {
 
-    @IBAction func edit(_ sender: Any) {
-          
+    @IBOutlet weak var editB: UIButton!
+    
+    @objc func editCell(_ sender: UIButton) {
+        print("edit")
      /*   MyPrescriptionsVC.performSegueWithIdentifier("showActionPreview", sender: nil)*/
     }
     @IBOutlet weak var pLabel: UILabel!
@@ -24,6 +26,7 @@ class prescriptionCell: UICollectionViewCell {
         //TODO: Configure Image and Color
         
         pLabel.text = name
+        self.backgroundColor = UIColor.random
         
     }
     
@@ -31,4 +34,9 @@ class prescriptionCell: UICollectionViewCell {
         return UINib(nibName: "prescriptionCell", bundle: nil)
     }
 
+}
+extension UIColor {
+    class var random: UIColor {
+        return UIColor(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1.0)
+    }
 }
