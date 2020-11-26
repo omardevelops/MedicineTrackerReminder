@@ -282,8 +282,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             endDateLabel.isEnabled = true
             frequencyLabel.isEnabled = true
             frequencyInfoButton.isEnabled = true
+            repeatDailyButton.backgroundColor = UIColor.systemBlue
+            repeatWeeklyButton.backgroundColor = UIColor.systemBlue
+            repeatMonthlyButton.backgroundColor = UIColor.systemBlue
             frequencyView.isUserInteractionEnabled = true
-            
             isRepeats = true
             
         } else {
@@ -291,8 +293,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             endDateLabel.isEnabled = false
             frequencyLabel.isEnabled = false
             frequencyInfoButton.isEnabled = false
+            repeatDailyButton.backgroundColor = UIColor.systemGray
+            repeatWeeklyButton.backgroundColor = UIColor.systemGray
+            repeatMonthlyButton.backgroundColor = UIColor.systemGray
             frequencyView.isUserInteractionEnabled = false
-            
             isRepeats = false
             
         }
