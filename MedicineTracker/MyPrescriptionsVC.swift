@@ -14,8 +14,7 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var myPrescriptions : [Prescription]?
-    static var cellCount = 11 // TODO: Remove this
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     //go to edit view func

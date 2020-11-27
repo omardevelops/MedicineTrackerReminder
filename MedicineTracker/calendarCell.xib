@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="calendarCell" rowHeight="228" id="KGk-i7-Jjw" customClass="calendarCell" customModule="MedicineTracker" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="412" height="228"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="412" height="228"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tommorow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6J-Zj-o5t">
+                        <rect key="frame" x="8" y="4" width="264" height="52"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="52" id="ExV-kR-vrM"/>
+                            <constraint firstAttribute="width" constant="264" id="d6h-qB-okp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ed4-wx-u66">
+                        <rect key="frame" x="0.0" y="57" width="412" height="165"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="165" id="BHz-q3-j8M"/>
+                            <constraint firstAttribute="width" constant="412" id="Syt-aL-jVL"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="x40-7Z-Ouy">
+                            <size key="itemSize" width="184" height="138"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="S6J-Zj-o5t" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="4H8-AK-hqm"/>
+                    <constraint firstAttribute="trailing" secondItem="Ed4-wx-u66" secondAttribute="trailing" id="Bqm-xj-kQV"/>
+                    <constraint firstAttribute="trailing" secondItem="S6J-Zj-o5t" secondAttribute="trailing" constant="140" id="KXv-uC-QDK"/>
+                    <constraint firstItem="S6J-Zj-o5t" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="Psf-gW-apf"/>
+                    <constraint firstItem="Ed4-wx-u66" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="QOe-wV-P52"/>
+                    <constraint firstItem="S6J-Zj-o5t" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="e6n-gM-gNC"/>
+                    <constraint firstAttribute="bottom" secondItem="S6J-Zj-o5t" secondAttribute="bottom" constant="188" id="jxq-Os-faA"/>
+                    <constraint firstAttribute="bottom" secondItem="Ed4-wx-u66" secondAttribute="bottom" id="mtQ-1B-m8N"/>
+                    <constraint firstItem="Ed4-wx-u66" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="57" id="vmY-uX-znA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="pCalendarCollectionView" destination="Ed4-wx-u66" id="O13-Iz-IYA"/>
+            </connections>
+            <point key="canvasLocation" x="-40.579710144927539" y="115.17857142857142"/>
+        </tableViewCell>
+    </objects>
+</document>
