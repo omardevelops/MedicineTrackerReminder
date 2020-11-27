@@ -15,6 +15,7 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
 
     var myPrescriptions : [Prescription]?
     static var cellCount = 11 // TODO: Remove this
+    var prescriptionIndex = 0
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -69,11 +70,13 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         
         //DELETE CELL
-        let ps = myPrescriptions![indexPath.row]
+       /* let ps = myPrescriptions![indexPath.row]
         context.delete(ps)
         self.fetchPrescriptions()
         
-        print("Tapped Cell #", indexPath.row)
+        print("Tapped Cell #", indexPath.row)*/
+        prescriptionIndex = indexPath.row
+        performSegue(withIdentifier: "viewPrescriptionSegue", sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection: Int) -> Int {
@@ -112,6 +115,11 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
             let destinationNavVC = segue.destination as! UINavigationController
             let destinationVC = destinationNavVC.topViewController as! AddPrescriptionVC
             destinationVC.prescriptionArray = myPrescriptions
+            
+        } else if segue.identifier == "viewPrescriptionSegue" {
+            let destinationVC = segue.destination as! ViewPrescriptionVC
+            destinationVC.prescriptionIndex = self.prescriptionIndex
+            destinationVC.myPrescriptions = self.myPrescriptions
             
         }
     }
