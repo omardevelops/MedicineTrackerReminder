@@ -32,6 +32,7 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
         // No need for this as we can use a prototype cell instead
         collectionView.register(prescriptionCell.nib(), forCellWithReuseIdentifier: "prescriptionCell")
         fetchPrescriptions()
+        requestNotificationAuthorization()
         
     }
     
@@ -122,6 +123,21 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
             destinationVC.myPrescriptions = self.myPrescriptions
             
         }
+    }
+    
+    func requestNotificationAuthorization() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {success, error in
+            if success {
+                // schedule notifications
+                print("Success notification auth")
+            } else if error != nil {
+                print("Notification auth ERROR")
+                
+            } else {
+                print("Notifications not authorized")
+                
+            }
+        })
     }
 
 

@@ -36,7 +36,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     var prescriptionArray : [Prescription]?
     
-    
+    var newPrescription : Prescription?
     
     var allDosageTimes : [Date] = []
     var checkedDosageTimes : [Date] = [] // What is checked will be added to the prescription array
@@ -137,11 +137,14 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var receivingStartDate : Date = Date()
     var receivingEndDate : Date = Date()
     
+    var isNotificationsSet : Bool = false
+    
     var pickerView = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //start date
+        
         initializeDates()
         updateColorButtons() // Initialize the color
         repeatsSwitch.isOn = isRepeats
@@ -608,6 +611,58 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         remindTF.resignFirstResponder()
     }
     
+    // MARK: Set Notifications
+    // This function fires off the notifications based on the date and dosage times, and enddate and frequency if it is a repeating reminder
+    func setNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {success, error in
+            if success {
+                // schedule notifications
+                print("Success notification auth")
+                self.scheduleNotifications()
+            } else if error != nil {
+                print("Notification auth ERROR")
+                
+            } else {
+                print("Notifications not authorized")
+                
+            }
+        })
+        
+        
+    }
+    
+    func scheduleNotifications() {
+        print("I am in scheduleNotifications()")
+        let content = UNMutableNotificationContent()
+        content.title = "Prescription: "+newPrescription!.name!
+        content.sound = .default
+        content.body = "Time to take your medication!"
+        
+        let targetDate = Date().addingTimeInterval(20)
+        
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.second], from: targetDate), repeats: true)
+        
+        let request = UNNotificationRequest(identifier: "notif", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: {error in
+            if error != nil {
+                print("Adding notification error")
+                self.isNotificationsSet = false
+            }
+        })
+        
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["notif"])
+        
+        
+        
+        
+    }
+    // Sets notification content depending on startDate and Dosage Times as well as if repeating, it will either repeat daily, weekly, or monthly, or custom?
+    func setNotificationContent() {
+        
+    }
+    
     func isColorPicked() -> Bool {
         if(isYellow || isOrange || isRed || isBlue || isGreen) {
             return true
@@ -707,32 +762,35 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
         if(isFormValid()) {
             // Add Prescription to Core Data
-            let newPrescription = Prescription(context: self.context)
+            newPrescription = Prescription(context: self.context)
             addDoseTimesToArray() // Adds what is checked to checkedDosageTimes
             print(checkedDosageTimes)
-            newPrescription.name = nameTF.text
-            newPrescription.dose = amountTF.text!
-            newPrescription.notes = noteTF.text
-            newPrescription.doseTimings = checkedDosageTimes
-            newPrescription.color = getSelectedColor()
-            newPrescription.startDate = startDatePickerOutlet.date
-            newPrescription.notificationType = false // Not alarm
+            newPrescription!.name = nameTF.text
+            newPrescription!.dose = amountTF.text!
+            newPrescription!.notes = noteTF.text
+            newPrescription!.doseTimings = checkedDosageTimes
+            newPrescription!.color = getSelectedColor()
+            newPrescription!.startDate = startDatePickerOutlet.date
+            newPrescription!.notificationType = false // Not alarm
             
             if(repeatsSwitch.isOn) {
-                newPrescription.endDate = endDatePickerOutlet.date
-                newPrescription.frequency = getSelectedFrequency()
+                newPrescription!.endDate = endDatePickerOutlet.date
+                newPrescription!.frequency = getSelectedFrequency()
             }
+            setNotifications()
             
-            prescriptionArray!.append(newPrescription)
-            // Save data
-            do {
-                try self.context.save()
-            }
-            catch {
-                // TODO: Handle error
-            }
+                
+                prescriptionArray!.append(newPrescription!)
+                // Save data
+                do {
+                    try self.context.save()
+                }
+                catch {
+                    // TODO: Handle error
+                }
             
-            performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
+                performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
+            
         } else {
             print("Form is not complete")
         }
@@ -765,6 +823,9 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             destinationVC.receivingDate = sentDate
             destinationVC.receivingIndex = sentIndex
             
+            
+            
+            //Saving the already set values
             destinationVC.nameTF = nameTF.text ?? ""
             destinationVC.doseTF = amountTF.text ?? ""
             destinationVC.isRepeats = isRepeats
