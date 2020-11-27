@@ -113,7 +113,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var pillEnabled : Bool = false
     var drugEnabled : Bool = false
     var isRepeats : Bool = true
-    var dailyEnabled : Bool = false
+    var dailyEnabled : Bool = true
     var weeklyEnabled : Bool = false
     var monthlyEnabled : Bool = false
     var customEnabled : Bool = false
@@ -124,11 +124,18 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var fourthChecked : Bool = false
     var fifthChecked : Bool = false
     var sixthChecked : Bool = false
-    var isYellow : Bool = false
+    var isYellow : Bool = true
     var isOrange : Bool = false
     var isRed : Bool = false
     var isBlue : Bool = false
     var isGreen : Bool = false
+    
+    var sentDate : Date? = nil
+    var sentIndex : Int = 0
+    var receivingName : String = ""
+    var receivingDose : String = ""
+    var receivingStartDate : Date = Date()
+    var receivingEndDate : Date = Date()
     
     var pickerView = UIPickerView()
     
@@ -136,12 +143,16 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         super.viewDidLoad()
         //start date
         initializeDates()
-        isYellow = true;
         updateColorButtons() // Initialize the color
-        endDatePickerOutlet.date = (startDatePickerOutlet.date).advanced(by: 604800.0) // End date starts as advanced by a week from start date
+        repeatsSwitch.isOn = isRepeats
+        nameTF.text = receivingName
+        amountTF.text = receivingDose
+        startDatePickerOutlet.date = receivingStartDate
+        endDatePickerOutlet.date = receivingEndDate
+
         
-        dailyEnabled = true // Initialize the repeating
-        updateFrequencyButtons()
+        updateRepeatsSwitchComponents()
+        updateDoseTimeButtons()
         
         
         /* TODO: Remove the below
@@ -297,6 +308,38 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
+    func updateRepeatsSwitchComponents() {
+        if(repeatsSwitch.isOn) {
+            endDatePickerOutlet.isEnabled = true
+            endDateLabel.isEnabled = true
+            frequencyLabel.isEnabled = true
+            frequencyInfoButton.isEnabled = true
+            dailyEnabled = true
+            updateFrequencyButtons()
+            repeatWeeklyButton.backgroundColor = UIColor.systemBlue
+            repeatMonthlyButton.backgroundColor = UIColor.systemBlue
+            frequencyView.isUserInteractionEnabled = true
+            isRepeats = true
+            
+        } else {
+            endDatePickerOutlet.isEnabled = false
+            endDateLabel.isEnabled = false
+            frequencyLabel.isEnabled = false
+            frequencyInfoButton.isEnabled = false
+            dailyEnabled = false
+            weeklyEnabled = false
+            monthlyEnabled = false
+            updateFrequencyButtons()
+            repeatDailyButton.backgroundColor = UIColor.systemGray
+            repeatWeeklyButton.backgroundColor = UIColor.systemGray
+            repeatMonthlyButton.backgroundColor = UIColor.systemGray
+            
+            frequencyView.isUserInteractionEnabled = false
+            isRepeats = false
+            
+        }
+    }
+    
     // MARK: Repeats Switch
     @IBAction func pressRepeatsSwitch(_ sender: UISwitch) {
         if(sender.isOn) {
@@ -390,11 +433,9 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         if(morningChecked) {
             morningChecked = false
             dosesPerDayCounter -= 1
-            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         } else {
             morningChecked = true
             dosesPerDayCounter += 1
-            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         }
         updateDoseTimeButtons()
     }
@@ -404,11 +445,9 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         if(afternoonChecked) {
             afternoonChecked = false
             dosesPerDayCounter -= 1
-            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         } else {
             afternoonChecked = true
             dosesPerDayCounter += 1
-            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         }
         updateDoseTimeButtons()
     }
@@ -418,11 +457,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         if(eveningChecked) {
             eveningChecked = false
             dosesPerDayCounter -= 1
-            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         } else {
             eveningChecked = true
             dosesPerDayCounter += 1
-            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
+            
         }
         updateDoseTimeButtons()
     }
@@ -432,11 +470,9 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         if(fourthChecked) {
             fourthChecked = false
             dosesPerDayCounter -= 1
-            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         } else {
             fourthChecked = true
             dosesPerDayCounter += 1
-            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         }
         updateDoseTimeButtons()
         
@@ -446,11 +482,9 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         if(fifthChecked) {
             fifthChecked = false
             dosesPerDayCounter -= 1
-            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         } else {
             fifthChecked = true
             dosesPerDayCounter += 1
-            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         }
         updateDoseTimeButtons()
         
@@ -461,11 +495,9 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         if(sixthChecked) {
             sixthChecked = false
             dosesPerDayCounter -= 1
-            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         } else {
             sixthChecked = true
             dosesPerDayCounter += 1
-            dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
         }
         updateDoseTimeButtons()
         
@@ -543,6 +575,17 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             
         }
         
+        dosesPerDayLabel.text = String(dosesPerDayCounter) + " Doses per Day"
+        
+    }
+    
+    // MARK: Long Press Gestures
+    @IBAction func firstLongPress(_ sender: UILongPressGestureRecognizer) {
+        if(sender.state == .began) {
+            sentIndex = 0
+            sentDate = allDosageTimes[sentIndex]
+            performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
+        }
     }
     
     
@@ -717,6 +760,32 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             
             destinationVC.myPrescriptions = prescriptionArray
             
+        } else if segue.identifier == "customDosageTimeSegue" {
+            let destinationVC = segue.destination as! customDosageTimeVC
+            destinationVC.receivingDate = sentDate
+            destinationVC.receivingIndex = sentIndex
+            
+            destinationVC.nameTF = nameTF.text ?? ""
+            destinationVC.doseTF = amountTF.text ?? ""
+            destinationVC.isRepeats = isRepeats
+            destinationVC.startDate = startDatePickerOutlet.date
+            destinationVC.endDate = endDatePickerOutlet.date
+            destinationVC.dailyEnabled = dailyEnabled
+            destinationVC.weeklyEnabled = weeklyEnabled
+            destinationVC.monthlyEnabled = monthlyEnabled
+            destinationVC.customEnabled = customEnabled
+            destinationVC.dosesPerDayCounter = dosesPerDayCounter
+            destinationVC.morningChecked = morningChecked
+            destinationVC.afternoonChecked = afternoonChecked
+            destinationVC.eveningChecked = eveningChecked
+            destinationVC.fourthChecked = fourthChecked
+            destinationVC.fifthChecked = fifthChecked
+            destinationVC.sixthChecked = sixthChecked
+            destinationVC.isYellow = isYellow
+            destinationVC.isOrange = isOrange
+            destinationVC.isRed = isRed
+            destinationVC.isBlue = isBlue
+            destinationVC.isGreen = isGreen
         }
     }
     
