@@ -593,11 +593,48 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     // MARK: Long Press Gestures
     @IBAction func firstLongPress(_ sender: UILongPressGestureRecognizer) {
-        if(sender.state == .began) {
+        if sender.state == .began {
             sentIndex = 0
             sentDate = allDosageTimes[sentIndex]
             performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
         }
+    }
+    
+    @IBAction func secondLongPress(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            sentIndex = 1
+            sentDate = allDosageTimes[sentIndex]
+            performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
+        }
+    }
+    
+    @IBAction func thirdLongPress(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            sentIndex = 2
+            sentDate = allDosageTimes[sentIndex]
+            performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
+        }
+    }
+    
+    @IBAction func fourthLongPress(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            sentIndex = 3
+            sentDate = allDosageTimes[sentIndex]
+            performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
+        }
+    }
+    
+    @IBAction func fifthLongPress(_ sender: UILongPressGestureRecognizer) {
+        sentIndex = 4
+        sentDate = allDosageTimes[sentIndex]
+        performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
+    }
+    
+    
+    @IBAction func sixthLongPress(_ sender: UILongPressGestureRecognizer) {
+        sentIndex = 5
+        sentDate = allDosageTimes[sentIndex]
+        performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
     }
     
     
@@ -643,44 +680,121 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     func scheduleNotifications() {
+        // Initialize identifiers array
+        newPrescription!.identifier = []
+        let frequency = newPrescription!.frequency
+        
         let key = "notificationIdentifierCounter"
         notificationCount = UserDefaults.standard.integer(forKey: key)
-        let identifier = String(notificationCount!)
+        var identifier = String(notificationCount!)
         
-        newPrescription!.identifier = identifier
-        
-        // TODO: Save to Prescription in here
-        // Increment by 1 for next prescription
         print("I am in scheduleNotifications()")
         let content = UNMutableNotificationContent()
         content.title = "Prescription: "+newPrescription!.name!
         content.sound = .default
         content.body = identifier
         
-        let targetDate = Date().addingTimeInterval(20)
+        //let targetDate = Date().addingTimeInterval(20)
         
-        let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.second], from: targetDate), repeats: true)
+        if frequency == "Daily" {
+            for dosageTime in checkedDosageTimes {
+                let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.hour, .minute], from: dosageTime), repeats: true)
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: {error in
+                    if error != nil {
+                        print("Adding notification error")
+                        self.isNotificationsSet = false
+                    }
+                })
+                
+                content.body = identifier
+                
+                newPrescription!.identifier!.append(identifier)
+                
+                notificationCount! += 1
+                identifier = String(notificationCount!)
+                
+                
+            } // End of loop
+            
+        } else if frequency == "Weekly" {
+            for dosageTime in checkedDosageTimes {
+                let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.weekday, .hour, .minute], from: dosageTime), repeats: true)
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: {error in
+                    if error != nil {
+                        print("Adding notification error")
+                        self.isNotificationsSet = false
+                    }
+                })
+                
+                content.body = identifier
+                
+                newPrescription!.identifier!.append(identifier)
+                
+                notificationCount! += 1
+                identifier = String(notificationCount!)
+                
+
+            } // End of loop
+            
+        } else if frequency == "Monthly" {
+            for dosageTime in checkedDosageTimes {
+                let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.day, .hour, .minute], from: dosageTime), repeats: true)
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: {error in
+                    if error != nil {
+                        print("Adding notification error")
+                        self.isNotificationsSet = false
+                    }
+                })
+                
+                content.body = identifier
+                
+                newPrescription!.identifier!.append(identifier)
+                
+                notificationCount! += 1
+                identifier = String(notificationCount!)
+                
+
+            } // End of loop
+            
+        } else if (!isRepeats) {
+            for dosageTime in checkedDosageTimes {
+                let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: dosageTime), repeats: false)
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: {error in
+                    if error != nil {
+                        print("Adding notification error")
+                        self.isNotificationsSet = false
+                    }
+                })
+                
+                content.body = identifier
+                
+                newPrescription!.identifier!.append(identifier)
+                
+                notificationCount! += 1
+                identifier = String(notificationCount!)
+        }
+        }
         
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        // Sets the new notificationCount for the next prescription to have unique identifiers
+        UserDefaults.standard.setValue(notificationCount!, forKey: key)
         
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: {error in
-            if error != nil {
-                print("Adding notification error")
-                self.isNotificationsSet = false
-            }
-        })
+        // Prints out pending notification requests
+        UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: { requests in
+        for request in requests {
+            print(request)
+        }
+    })
         
-        // Increment the notification counter
-        UserDefaults.standard.setValue(notificationCount! + 1, forKey: key)
         
+    
         //UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["notif"])
         
         
         
-        
-    }
-    // Sets notification content depending on startDate and Dosage Times as well as if repeating, it will either repeat daily, weekly, or monthly, or custom?
-    func setNotificationContent() {
         
     }
     
@@ -728,23 +842,16 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     // Checks if form is valid and ready to be used as a Prescription object. Checks if required fields are empty or not.
     func isFormValid() -> Bool {
         let startDate : Date = startDatePickerOutlet.date
-        let endDate : Date
         let interval : TimeInterval
         if(nameTF.hasText && amountTF.hasText && isColorPicked() && isTimePicked()) {
-            if(endDatePickerOutlet.isEnabled) {
-                endDate = endDatePickerOutlet.date
-                interval = endDate.timeIntervalSince(startDate)
+                interval = startDate.timeIntervalSince(Date())
                 if(interval > 1) {
-                    //TODO: Put alert to tell user that end date is before start date or same day
-                    
                     return true
                 } else {
-                    print("End date invalid")
-                    return false
+                    //TODO: Add alert that tells user that startdate cannot be in the past
+                    print("Start date cannot be in the past!")
+                    return true
                 }
-            } else {
-                return true
-            }
         } else {
             return false
         }
@@ -815,9 +922,6 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             
             print(checkedDosageTimes)
             
-            setNotifications()
-            
-                
                 prescriptionArray!.append(newPrescription!)
                 // Save data
                 do {
@@ -827,7 +931,9 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                     // TODO: Handle error
                 }
             
-                performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
+            setNotifications()
+            
+                //performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
             
         } else {
             print("Form is not complete")

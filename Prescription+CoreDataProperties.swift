@@ -22,7 +22,7 @@ extension Prescription {
     @NSManaged public var doseTimings: [Date]?
     @NSManaged public var endDate: Date?
     @NSManaged public var frequency: String?
-    @NSManaged public var identifier: String?
+    @NSManaged public var identifier: [String]?
     @NSManaged public var name: String?
     @NSManaged public var notes: String?
     @NSManaged public var notificationType: Bool

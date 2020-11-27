@@ -375,6 +375,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ARv-Ar-Wtj">
                                                         <rect key="frame" x="0.0" y="53" width="304" height="33"/>
                                                         <color key="backgroundColor" systemColor="linkColor"/>
+                                                        <gestureRecognizers/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                         <state key="normal" title="Preset 2">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -386,11 +387,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="afternoonTimeButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="GZ3-hq-wah"/>
+                                                            <outletCollection property="gestureRecognizers" destination="wYf-x7-xW9" appends="YES" id="tnk-UY-bfw"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tcu-vr-Mw4">
                                                         <rect key="frame" x="0.0" y="106" width="304" height="33"/>
                                                         <color key="backgroundColor" systemColor="linkColor"/>
+                                                        <gestureRecognizers/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                         <state key="normal" title="Preset 3">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -402,11 +405,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="eveningTimeButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="fNc-6V-0Ro"/>
+                                                            <outletCollection property="gestureRecognizers" destination="rHz-BV-hgP" appends="YES" id="J9K-RP-VRu"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NB0-1l-fSV">
                                                         <rect key="frame" x="0.0" y="159" width="304" height="33"/>
                                                         <color key="backgroundColor" systemColor="linkColor"/>
+                                                        <gestureRecognizers/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                         <state key="normal" title="Preset 4">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -418,11 +423,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="fourthTimeButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="Jq3-Yd-I4q"/>
+                                                            <outletCollection property="gestureRecognizers" destination="ZOT-J9-7To" appends="YES" id="Xal-qg-XdX"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhA-6a-SiJ">
                                                         <rect key="frame" x="0.0" y="212" width="304" height="33"/>
                                                         <color key="backgroundColor" systemColor="linkColor"/>
+                                                        <gestureRecognizers/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                         <state key="normal" title="Preset 5">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -434,11 +441,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="fifthTimeButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="g7z-WC-3Ae"/>
+                                                            <outletCollection property="gestureRecognizers" destination="s33-Jx-xJC" appends="YES" id="2Qe-H7-74P"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BfC-BV-cPI">
                                                         <rect key="frame" x="0.0" y="265" width="304" height="33"/>
                                                         <color key="backgroundColor" systemColor="linkColor"/>
+                                                        <gestureRecognizers/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                         <state key="normal" title="Preset 6">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -450,6 +459,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="sixthTimeButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="Vn7-8u-GOQ"/>
+                                                            <outletCollection property="gestureRecognizers" destination="Q2Z-r2-W5z" appends="YES" id="EEF-So-eSI"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -615,6 +625,31 @@
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="F5c-k6-IH6">
                     <connections>
                         <action selector="firstLongPress:" destination="lTY-yc-D7m" id="bJB-tG-tgP"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="wYf-x7-xW9">
+                    <connections>
+                        <action selector="secondLongPress:" destination="lTY-yc-D7m" id="dfb-3b-Ami"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="rHz-BV-hgP">
+                    <connections>
+                        <action selector="thirdLongPress:" destination="lTY-yc-D7m" id="ALW-EL-gy4"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ZOT-J9-7To">
+                    <connections>
+                        <action selector="fourthLongPress:" destination="lTY-yc-D7m" id="ffv-fm-Tto"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="s33-Jx-xJC">
+                    <connections>
+                        <action selector="fifthLongPress:" destination="lTY-yc-D7m" id="Uhy-iz-dMS"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Q2Z-r2-W5z">
+                    <connections>
+                        <action selector="sixthLongPress:" destination="lTY-yc-D7m" id="gK6-QD-7y9"/>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
