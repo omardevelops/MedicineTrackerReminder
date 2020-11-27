@@ -42,8 +42,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var checkedDosageTimes : [Date] = [] // What is checked will be added to the prescription array
     
     func initializeDates() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        // TIME ZONE IS GMT FOR THIS
         let dateTime1 = Date(timeIntervalSinceReferenceDate: 28800.0) // 8AM
         let dateTime2 = Date(timeIntervalSinceReferenceDate: 43200.0) // 12PM
         let dateTime3 = Date(timeIntervalSinceReferenceDate: 64800.0) // 6PM
@@ -58,8 +57,18 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         allDosageTimes.append(dateTime5)
         allDosageTimes.append(dateTime6)
         
-        print(allDosageTimes)
         
+    }
+    
+    // MARK: Get Time As String
+    func getTimeAsStringAMPM(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:mm a"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        let hourString = formatter.string(from: date)
+        
+        return hourString
+        // For example, 12:00 PM
     }
     
 
@@ -464,64 +473,73 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     // MARK: updateDoseTimeButtons
     func updateDoseTimeButtons() { // Changes the colors and text of the buttons depending on selected/checked value
+        let times : [String] = [
+            getTimeAsStringAMPM(date: allDosageTimes[0]),
+            getTimeAsStringAMPM(date: allDosageTimes[1]),
+            getTimeAsStringAMPM(date: allDosageTimes[2]),
+            getTimeAsStringAMPM(date: allDosageTimes[3]),
+            getTimeAsStringAMPM(date: allDosageTimes[4]),
+            getTimeAsStringAMPM(date: allDosageTimes[5]),
+        
+        ]
         
         if(morningChecked) {
             morningTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
-            morningTimeButtonOutlet.setTitle("Morning ✓", for: .normal)
+            morningTimeButtonOutlet.setTitle(times[0]+" ✓", for: .normal)
             
             
         } else {
             morningTimeButtonOutlet.backgroundColor = UIColor.systemBlue
-            morningTimeButtonOutlet.setTitle("Morning", for: .normal)
+            morningTimeButtonOutlet.setTitle(times[0], for: .normal)
             
         }
         
         if(afternoonChecked) {
             afternoonTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
-            afternoonTimeButtonOutlet.setTitle("Afternoon ✓", for: .normal)
+            afternoonTimeButtonOutlet.setTitle(times[1]+" ✓", for: .normal)
             
         } else {
             afternoonTimeButtonOutlet.backgroundColor = UIColor.systemBlue
-            afternoonTimeButtonOutlet.setTitle("Afternoon", for: .normal)
+            afternoonTimeButtonOutlet.setTitle(times[1], for: .normal)
         }
         
         if(eveningChecked) {
             eveningTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
-            eveningTimeButtonOutlet.setTitle("Evening ✓", for: .normal)
+            eveningTimeButtonOutlet.setTitle(times[2]+" ✓", for: .normal)
             
         } else {
             eveningTimeButtonOutlet.backgroundColor = UIColor.systemBlue
-            eveningTimeButtonOutlet.setTitle("Evening", for: .normal)
+            eveningTimeButtonOutlet.setTitle(times[2], for: .normal)
             
         }
         
         if(fourthChecked) {
             fourthTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
-            fourthTimeButtonOutlet.setTitle("Evening ✓", for: .normal)
+            fourthTimeButtonOutlet.setTitle(times[3]+" ✓", for: .normal)
             
         } else {
             fourthTimeButtonOutlet.backgroundColor = UIColor.systemBlue
-            fourthTimeButtonOutlet.setTitle("Evening", for: .normal)
+            fourthTimeButtonOutlet.setTitle(times[3], for: .normal)
             
         }
         
         if(fifthChecked) {
             fifthTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
-            fifthTimeButtonOutlet.setTitle("Evening ✓", for: .normal)
+            fifthTimeButtonOutlet.setTitle(times[4]+" ✓", for: .normal)
             
         } else {
             fifthTimeButtonOutlet.backgroundColor = UIColor.systemBlue
-            fifthTimeButtonOutlet.setTitle("Evening", for: .normal)
+            fifthTimeButtonOutlet.setTitle(times[4], for: .normal)
             
         }
         
         if(sixthChecked) {
             sixthTimeButtonOutlet.backgroundColor = UIColor.customLightBlue
-            sixthTimeButtonOutlet.setTitle("Evening ✓", for: .normal)
+            sixthTimeButtonOutlet.setTitle(times[5]+" ✓", for: .normal)
             
         } else {
             sixthTimeButtonOutlet.backgroundColor = UIColor.systemBlue
-            sixthTimeButtonOutlet.setTitle("Evening", for: .normal)
+            sixthTimeButtonOutlet.setTitle(times[5], for: .normal)
             
         }
         
