@@ -2,7 +2,7 @@
 //  Prescription+CoreDataClass.swift
 //  MedicineTracker
 //
-//  Created by Omar Ahmed on 11/26/20.
+//  Created by Omar Ahmed on 11/27/20.
 //  Copyright © 2020 Omar Ahmad. All rights reserved.
 //
 //

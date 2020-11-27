@@ -29,7 +29,17 @@ extension UIColor {
     }
 }
 
-class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, customTimeDelegate {
+    
+    
+    // For customTime delegate
+    func setCustomTime(time: Date) {
+        allDosageTimes[sentIndex] = time
+        initializeDates()
+        updateDoseTimeButtons()
+        print("here in mainView")
+    }
+    
     
     // MARK: Core Data Context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -38,25 +48,43 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     var newPrescription : Prescription?
     
+    var notificationCount : Int?
+    
     var allDosageTimes : [Date] = []
     var checkedDosageTimes : [Date] = [] // What is checked will be added to the prescription array
     
+    let initialTimings = ["8:00 AM", "12:00 PM", "06:00 PM", "09:00 PM", "12:00 AM", "03:00 AM"]
+    
+    
     func initializeDates() {
         // TIME ZONE IS GMT FOR THIS
-        let dateTime1 = Date(timeIntervalSinceReferenceDate: 28800.0) // 8AM
-        let dateTime2 = Date(timeIntervalSinceReferenceDate: 43200.0) // 12PM
-        let dateTime3 = Date(timeIntervalSinceReferenceDate: 64800.0) // 6PM
-        let dateTime4 = Date(timeIntervalSinceReferenceDate: 75600.0) // 9PM
-        let dateTime5 = Date(timeIntervalSinceReferenceDate: 86400.0) // 12AM
-        let dateTime6 = Date(timeIntervalSinceReferenceDate: 10800.0) // 3AM
         
-        allDosageTimes.append(dateTime1)
-        allDosageTimes.append(dateTime2)
-        allDosageTimes.append(dateTime3)
-        allDosageTimes.append(dateTime4)
-        allDosageTimes.append(dateTime5)
-        allDosageTimes.append(dateTime6)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MM y"
+        let todayDateAsString = formatter.string(from: Date())
+        formatter.dateFormat = "hh:mm a, dd MM y"
         
+        let dateTime1 = formatter.date(from: initialTimings[0]+", "+todayDateAsString)
+        let dateTime2 = formatter.date(from: initialTimings[1]+", "+todayDateAsString)
+        let dateTime3 = formatter.date(from: initialTimings[2]+", "+todayDateAsString)
+        let dateTime4 = formatter.date(from: initialTimings[3]+", "+todayDateAsString)
+        let dateTime5 = formatter.date(from: initialTimings[4]+", "+todayDateAsString)
+        let dateTime6 = formatter.date(from: initialTimings[5]+", "+todayDateAsString)
+        /*let dateTime1 = Date(timeIntervalSinceNow: 28800.0) // 8AM
+        let dateTime2 = Date(timeIntervalSinceNow: 43200.0) // 12PM
+        let dateTime3 = Date(timeIntervalSinceNow: 64800.0) // 6PM
+        let dateTime4 = Date(timeIntervalSinceNow: 75600.0) // 9PM
+        let dateTime5 = Date(timeIntervalSinceNow: 86400.0) // 12AM
+        let dateTime6 = Date(timeIntervalSinceNow: 10800.0) // 3AM*/
+        
+        allDosageTimes.append(dateTime1!)
+        allDosageTimes.append(dateTime2!)
+        allDosageTimes.append(dateTime3!)
+        allDosageTimes.append(dateTime4!)
+        allDosageTimes.append(dateTime5!)
+        allDosageTimes.append(dateTime6!)
+        
+        print(allDosageTimes)
         
     }
     
@@ -157,27 +185,6 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         updateRepeatsSwitchComponents()
         updateDoseTimeButtons()
         
-        
-        /* TODO: Remove the below
-         
-        startDatePicker = UIDatePicker()
-        startDatePicker?.datePickerMode = .date
-        startDatePicker?.addTarget(self, action: #selector(AddPrescriptionVC.startDateChanged(datePicker:)), for: .valueChanged)
-        //end date
-        endDatePicker = UIDatePicker()
-        endDatePicker?.datePickerMode = .date
-        endDatePicker?.addTarget(self, action: #selector(AddPrescriptionVC.endDateChanged(datePicker:)), for: .valueChanged)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddPrescriptionVC.viewTapped(gestureRecognizer:)))
-        view.addGestureRecognizer(tapGesture)
-        
-        
-        if startDateTF != nil {
-           startDateTF.inputView = startDatePicker
-        }
-        if endDateTF != nil {
-            endDateTF.inputView = endDatePicker
-        } */
-        
         //remind me
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -188,6 +195,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             remindTF.placeholder = "X minutes before"
         }
     }
+    
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
         view.endEditing(true)
@@ -582,6 +590,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
     }
     
+    
     // MARK: Long Press Gestures
     @IBAction func firstLongPress(_ sender: UILongPressGestureRecognizer) {
         if(sender.state == .began) {
@@ -611,6 +620,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         remindTF.resignFirstResponder()
     }
     
+    
+    
     // MARK: Set Notifications
     // This function fires off the notifications based on the date and dosage times, and enddate and frequency if it is a repeating reminder
     func setNotifications() {
@@ -632,18 +643,25 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     func scheduleNotifications() {
+        let key = "notificationIdentifierCounter"
+        notificationCount = UserDefaults.standard.integer(forKey: key)
+        let identifier = String(notificationCount!)
+        
+        newPrescription!.identifier = identifier
+        
+        // TODO: Save to Prescription in here
+        // Increment by 1 for next prescription
         print("I am in scheduleNotifications()")
         let content = UNMutableNotificationContent()
         content.title = "Prescription: "+newPrescription!.name!
         content.sound = .default
-        content.body = "Time to take your medication!"
+        content.body = identifier
         
         let targetDate = Date().addingTimeInterval(20)
         
-        
         let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.second], from: targetDate), repeats: true)
         
-        let request = UNNotificationRequest(identifier: "notif", content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request, withCompletionHandler: {error in
             if error != nil {
@@ -652,7 +670,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             }
         })
         
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["notif"])
+        // Increment the notification counter
+        UserDefaults.standard.setValue(notificationCount! + 1, forKey: key)
+        
+        //UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["notif"])
         
         
         
@@ -777,6 +798,23 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 newPrescription!.endDate = endDatePickerOutlet.date
                 newPrescription!.frequency = getSelectedFrequency()
             }
+            
+            // Adds startDate to the doseTimings array in the prescription
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd MM y"
+            let startDateAsString = formatter.string(from: startDatePickerOutlet.date)
+            
+            for i in 0 ..< checkedDosageTimes.count {
+                formatter.dateFormat = "hh:mm a"
+                let doseTimingAsString = formatter.string(from: checkedDosageTimes[i])
+                formatter.dateFormat = "hh:mm a, dd MM y"
+                
+                checkedDosageTimes[i] = formatter.date(from: doseTimingAsString+", "+startDateAsString)!
+            }
+            
+            
+            print(checkedDosageTimes)
+            
             setNotifications()
             
                 
@@ -799,19 +837,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     // MARK: Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "verificationSegue" { //TODO: Remove this?
-            let destinationVC = segue.destination as! VerifyBeforeAddingVC
-            
-            // Move data to the verification view in order to add it to the Prescriptions NS Context Object
-            destinationVC.name = nameTF.text ?? "Prescription"
-            //destinationVC.color =
-            destinationVC.isRepeats = isRepeats
-            //destinationVC.frequency =
-            //destinationVC.dosageTimes =
-            destinationVC.notes = noteTF.text ?? ""
-            //destinationVC.notificationType =
-            
-        } else if segue.identifier == "backToPrescriptionsSegue" {
+        if segue.identifier == "backToPrescriptionsSegue" {
             let destTabVC = segue.destination as! UITabBarController
             let destNavVC = destTabVC.viewControllers![0] as! UINavigationController
             let destinationVC = destNavVC.topViewController as! MyPrescriptionsVC
@@ -822,10 +848,12 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             let destinationVC = segue.destination as! customDosageTimeVC
             destinationVC.receivingDate = sentDate
             destinationVC.receivingIndex = sentIndex
+            destinationVC.startDate = startDatePickerOutlet.date
+            
+            destinationVC.delegate = self // To use customTime protocol to pass values between views
             
             
-            
-            //Saving the already set values
+            /*Saving the already set values
             destinationVC.nameTF = nameTF.text ?? ""
             destinationVC.doseTF = amountTF.text ?? ""
             destinationVC.isRepeats = isRepeats
@@ -846,7 +874,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             destinationVC.isOrange = isOrange
             destinationVC.isRed = isRed
             destinationVC.isBlue = isBlue
-            destinationVC.isGreen = isGreen
+            destinationVC.isGreen = isGreen*/
+            
         }
     }
     

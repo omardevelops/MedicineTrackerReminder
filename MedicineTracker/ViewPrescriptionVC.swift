@@ -31,7 +31,7 @@ class ViewPrescriptionVC: UIViewController {
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMd")
         //dateFormatter.dateFormat = "MM/dd"
         startDateLabel.text = dateFormatter.string(from: myPrescriptions![prescriptionIndex].startDate!)
-        endDateLabel.text = dateFormatter.string(from: myPrescriptions![prescriptionIndex].endDate!)
+        endDateLabel.text = dateFormatter.string(from: myPrescriptions![prescriptionIndex].endDate ?? myPrescriptions![prescriptionIndex].startDate!)
         // Do any additional setup after loading the view.
     }
     

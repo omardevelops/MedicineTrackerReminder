@@ -8,14 +8,20 @@
 
 import UIKit
 
-class customDosageTimeVC: UIViewController {
+class customDosageTimeVC: UIViewController{
     var receivingDate : Date? = nil
     var receivingIndex : Int = 0
+    var startDate : Date = Date()
     
+    
+    weak var delegate : customTimeDelegate?
+    
+    
+    /*
     var nameTF : String = ""
     var doseTF : String = ""
     var isRepeats : Bool = true
-    var startDate : Date = Date()
+    
     var endDate : Date = Date()
     var dailyEnabled : Bool = false
     var weeklyEnabled : Bool = false
@@ -35,11 +41,25 @@ class customDosageTimeVC: UIViewController {
     var isGreen : Bool = false
     
     var isCanceled : Bool = false
+ */
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         doseLabel.text = getDoseNumberString()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MM y"
+        let startDateString = formatter.string(from: startDate)
+        formatter.dateFormat = "hh:mm a"
+        let receivingDateTimeOnly = formatter.string(from: receivingDate!)
+        
+        let receivingDateFinal = receivingDateTimeOnly + ", " + startDateString
+        print(receivingDateFinal)
+        formatter.dateFormat = "hh:mm a, dd MM y"
+        receivingDate = formatter.date(from: receivingDateFinal)
+        
+        
         customTimeOutlet.setDate(receivingDate!, animated: true)
         // Do any additional setup after loading the view.
     }
@@ -64,23 +84,29 @@ class customDosageTimeVC: UIViewController {
         }
     }
     @IBAction func setCustomTime(_ sender: UIButton) {
-        performSegue(withIdentifier: "backFromSettingDoseSegue", sender: self)
+        
+        delegate?.setCustomTime(time: customTimeOutlet.date)
+        
+        // return to previous viewcontroller
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+        print("im here")
     }
     
     @IBAction func cancelButton(_ sender: UIButton) {
         
         performSegue(withIdentifier: "backFromSettingDoseSegue", sender: self)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destNavVC = segue.destination as! UINavigationController
         let destinationVC = destNavVC.topViewController as! AddPrescriptionVC
         destinationVC.initializeDates()
-        if(!isCanceled) {
-            destinationVC.allDosageTimes[receivingIndex] = customTimeOutlet.date
-        }
+        destinationVC.allDosageTimes[receivingIndex] = customTimeOutlet.date
         
         
         // Re-set all previous values
+        /*
         destinationVC.receivingName = nameTF
         destinationVC.receivingDose = doseTF
         destinationVC.isRepeats = isRepeats
@@ -102,6 +128,11 @@ class customDosageTimeVC: UIViewController {
         destinationVC.isRed = isRed
         destinationVC.isBlue = isBlue
         destinationVC.isGreen = isGreen
-    }
+        */
+ }
 
+}
+
+protocol customTimeDelegate : class {
+    func setCustomTime(time: Date)
 }
