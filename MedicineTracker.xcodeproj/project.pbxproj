@@ -18,9 +18,11 @@
 		29563ED3255D2FF70017667D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29563ED2255D2FF70017667D /* SettingsVC.swift */; };
 		29563ED7255D43650017667D /* AddPrescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29563ED6255D43650017667D /* AddPrescriptionVC.swift */; };
 		297B9F9A256F332D0038AF24 /* VerifyBeforeAddingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297B9F99256F332D0038AF24 /* VerifyBeforeAddingVC.swift */; };
-		297B9FBB257064CF0038AF24 /* Prescription+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297B9FB9257064CF0038AF24 /* Prescription+CoreDataClass.swift */; };
-		297B9FBC257064CF0038AF24 /* Prescription+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297B9FBA257064CF0038AF24 /* Prescription+CoreDataProperties.swift */; };
 		297B9FC225707B890038AF24 /* customDosageTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297B9FC125707B890038AF24 /* customDosageTimeVC.swift */; };
+		297BA0012571A6A00038AF24 /* Prescription+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297B9FFF2571A6A00038AF24 /* Prescription+CoreDataClass.swift */; };
+		297BA0022571A6A00038AF24 /* Prescription+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BA0002571A6A00038AF24 /* Prescription+CoreDataProperties.swift */; };
+		7AC679172570FFCD0093BF2D /* ViewPrescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC679162570FFCD0093BF2D /* ViewPrescriptionVC.swift */; };
+		7AC6791A257108E50093BF2D /* EditPrescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC67919257108E50093BF2D /* EditPrescriptionVC.swift */; };
 		F4DC7D762565FC9700086AF7 /* prescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DC7D742565FC9700086AF7 /* prescriptionCell.swift */; };
 		F4DC7D772565FC9700086AF7 /* prescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4DC7D752565FC9700086AF7 /* prescriptionCell.xib */; };
 		F4E6A19B2570FF9B00A79DC1 /* calendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6A1992570FF9B00A79DC1 /* calendarCell.swift */; };
@@ -43,9 +45,11 @@
 		29563ED2255D2FF70017667D /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		29563ED6255D43650017667D /* AddPrescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPrescriptionVC.swift; sourceTree = "<group>"; };
 		297B9F99256F332D0038AF24 /* VerifyBeforeAddingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyBeforeAddingVC.swift; sourceTree = "<group>"; };
-		297B9FB9257064CF0038AF24 /* Prescription+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Prescription+CoreDataClass.swift"; sourceTree = "<group>"; };
-		297B9FBA257064CF0038AF24 /* Prescription+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Prescription+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		297B9FC125707B890038AF24 /* customDosageTimeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customDosageTimeVC.swift; sourceTree = "<group>"; };
+		297B9FFF2571A6A00038AF24 /* Prescription+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Prescription+CoreDataClass.swift"; sourceTree = "<group>"; };
+		297BA0002571A6A00038AF24 /* Prescription+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Prescription+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7AC679162570FFCD0093BF2D /* ViewPrescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPrescriptionVC.swift; sourceTree = "<group>"; };
+		7AC67919257108E50093BF2D /* EditPrescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPrescriptionVC.swift; sourceTree = "<group>"; };
 		F4DC7D742565FC9700086AF7 /* prescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = prescriptionCell.swift; sourceTree = "<group>"; };
 		F4DC7D752565FC9700086AF7 /* prescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = prescriptionCell.xib; sourceTree = "<group>"; };
 		F4E6A1992570FF9B00A79DC1 /* calendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarCell.swift; sourceTree = "<group>"; };
@@ -68,8 +72,8 @@
 		29563EAD255D2F5C0017667D = {
 			isa = PBXGroup;
 			children = (
-				297B9FB9257064CF0038AF24 /* Prescription+CoreDataClass.swift */,
-				297B9FBA257064CF0038AF24 /* Prescription+CoreDataProperties.swift */,
+				297B9FFF2571A6A00038AF24 /* Prescription+CoreDataClass.swift */,
+				297BA0002571A6A00038AF24 /* Prescription+CoreDataProperties.swift */,
 				29563EB8255D2F5C0017667D /* MedicineTracker */,
 				29563EB7255D2F5C0017667D /* Products */,
 			);
@@ -106,6 +110,8 @@
 				29563EC9255D2F5E0017667D /* LaunchScreen.storyboard */,
 				29563ECC255D2F5E0017667D /* Info.plist */,
 				29563EC4255D2F5C0017667D /* MedicineTracker.xcdatamodeld */,
+				7AC679162570FFCD0093BF2D /* ViewPrescriptionVC.swift */,
+				7AC67919257108E50093BF2D /* EditPrescriptionVC.swift */,
 			);
 			path = MedicineTracker;
 			sourceTree = "<group>";
@@ -198,13 +204,15 @@
 				29563EBE255D2F5C0017667D /* MyPrescriptionsVC.swift in Sources */,
 				29563EBA255D2F5C0017667D /* AppDelegate.swift in Sources */,
 				297B9F9A256F332D0038AF24 /* VerifyBeforeAddingVC.swift in Sources */,
+				7AC6791A257108E50093BF2D /* EditPrescriptionVC.swift in Sources */,
+				7AC679172570FFCD0093BF2D /* ViewPrescriptionVC.swift in Sources */,
 				29563EBC255D2F5C0017667D /* SceneDelegate.swift in Sources */,
-				297B9FBB257064CF0038AF24 /* Prescription+CoreDataClass.swift in Sources */,
 				29563EC6255D2F5C0017667D /* MedicineTracker.xcdatamodeld in Sources */,
 				29563ED7255D43650017667D /* AddPrescriptionVC.swift in Sources */,
 				29563ED3255D2FF70017667D /* SettingsVC.swift in Sources */,
 				F4E6A19B2570FF9B00A79DC1 /* calendarCell.swift in Sources */,
 				F4DC7D762565FC9700086AF7 /* prescriptionCell.swift in Sources */,
+				297BA0012571A6A00038AF24 /* Prescription+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

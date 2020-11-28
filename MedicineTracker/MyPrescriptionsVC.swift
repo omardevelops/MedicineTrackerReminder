@@ -30,6 +30,7 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
         // No need for this as we can use a prototype cell instead
         collectionView.register(prescriptionCell.nib(), forCellWithReuseIdentifier: "prescriptionCell")
         fetchPrescriptions()
+        requestNotificationAuthorization()
         
     }
     
@@ -68,11 +69,13 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         
         //DELETE CELL
-        let ps = myPrescriptions![indexPath.row]
+       /* let ps = myPrescriptions![indexPath.row]
         context.delete(ps)
         self.fetchPrescriptions()
         
-        print("Tapped Cell #", indexPath.row)
+        print("Tapped Cell #", indexPath.row)*/
+        prescriptionIndex = indexPath.row
+        performSegue(withIdentifier: "viewPrescriptionSegue", sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection: Int) -> Int {
@@ -114,7 +117,27 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
             let destinationVC = destinationNavVC.topViewController as! AddPrescriptionVC
             destinationVC.prescriptionArray = myPrescriptions
             
+        } else if segue.identifier == "viewPrescriptionSegue" {
+            let destinationVC = segue.destination as! ViewPrescriptionVC
+            destinationVC.prescriptionIndex = self.prescriptionIndex
+            destinationVC.myPrescriptions = self.myPrescriptions
+            
         }
+    }
+    
+    func requestNotificationAuthorization() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {success, error in
+            if success {
+                // schedule notifications
+                print("Success notification auth")
+            } else if error != nil {
+                print("Notification auth ERROR")
+                
+            } else {
+                print("Notifications not authorized")
+                
+            }
+        })
     }
 
 

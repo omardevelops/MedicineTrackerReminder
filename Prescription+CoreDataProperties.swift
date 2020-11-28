@@ -2,7 +2,7 @@
 //  Prescription+CoreDataProperties.swift
 //  MedicineTracker
 //
-//  Created by Omar Ahmed on 11/26/20.
+//  Created by Omar Ahmed on 11/27/20.
 //  Copyright © 2020 Omar Ahmad. All rights reserved.
 //
 //
@@ -21,11 +21,12 @@ extension Prescription {
     @NSManaged public var dose: String?
     @NSManaged public var doseTimings: [Date]?
     @NSManaged public var endDate: Date?
+    @NSManaged public var frequency: String?
+    @NSManaged public var identifier: [String]?
     @NSManaged public var name: String?
     @NSManaged public var notes: String?
     @NSManaged public var notificationType: Bool
     @NSManaged public var startDate: Date?
-    @NSManaged public var frequency: String?
     @NSManaged public var whatDay: Int16
 
 }

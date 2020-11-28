@@ -6,6 +6,7 @@
         <attribute name="doseTimings" optional="YES" attributeType="Transformable"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="frequency" optional="YES" attributeType="String"/>
+        <attribute name="identifier" optional="YES" attributeType="Transformable"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="notificationType" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>

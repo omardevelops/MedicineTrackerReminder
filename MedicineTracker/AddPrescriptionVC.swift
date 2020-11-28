@@ -29,34 +29,64 @@ extension UIColor {
     }
 }
 
-class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, customTimeDelegate {
+    
+    
+    // For customTime delegate
+    func setCustomTime(time: Date) {
+        allDosageTimes[sentIndex] = time
+        initializeDates()
+        updateDoseTimeButtons()
+        print("here in mainView")
+    }
+    
     
     // MARK: Core Data Context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var prescriptionArray : [Prescription]?
     
+    var newPrescription : Prescription?
     
+    var notificationCount : Int?
     
     var allDosageTimes : [Date] = []
     var checkedDosageTimes : [Date] = [] // What is checked will be added to the prescription array
     
+    let initialTimings = ["8:00 AM", "12:00 PM", "06:00 PM", "09:00 PM", "12:00 AM", "03:00 AM"]
+    
+    var initialDate : Date?
+    
+    
     func initializeDates() {
         // TIME ZONE IS GMT FOR THIS
-        let dateTime1 = Date(timeIntervalSinceReferenceDate: 28800.0) // 8AM
-        let dateTime2 = Date(timeIntervalSinceReferenceDate: 43200.0) // 12PM
-        let dateTime3 = Date(timeIntervalSinceReferenceDate: 64800.0) // 6PM
-        let dateTime4 = Date(timeIntervalSinceReferenceDate: 75600.0) // 9PM
-        let dateTime5 = Date(timeIntervalSinceReferenceDate: 86400.0) // 12AM
-        let dateTime6 = Date(timeIntervalSinceReferenceDate: 10800.0) // 3AM
         
-        allDosageTimes.append(dateTime1)
-        allDosageTimes.append(dateTime2)
-        allDosageTimes.append(dateTime3)
-        allDosageTimes.append(dateTime4)
-        allDosageTimes.append(dateTime5)
-        allDosageTimes.append(dateTime6)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MM y"
+        let todayDateAsString = formatter.string(from: Date())
+        formatter.dateFormat = "hh:mm a, dd MM y"
         
+        let dateTime1 = formatter.date(from: initialTimings[0]+", "+todayDateAsString)
+        let dateTime2 = formatter.date(from: initialTimings[1]+", "+todayDateAsString)
+        let dateTime3 = formatter.date(from: initialTimings[2]+", "+todayDateAsString)
+        let dateTime4 = formatter.date(from: initialTimings[3]+", "+todayDateAsString)
+        let dateTime5 = formatter.date(from: initialTimings[4]+", "+todayDateAsString)
+        let dateTime6 = formatter.date(from: initialTimings[5]+", "+todayDateAsString)
+        /*let dateTime1 = Date(timeIntervalSinceNow: 28800.0) // 8AM
+        let dateTime2 = Date(timeIntervalSinceNow: 43200.0) // 12PM
+        let dateTime3 = Date(timeIntervalSinceNow: 64800.0) // 6PM
+        let dateTime4 = Date(timeIntervalSinceNow: 75600.0) // 9PM
+        let dateTime5 = Date(timeIntervalSinceNow: 86400.0) // 12AM
+        let dateTime6 = Date(timeIntervalSinceNow: 10800.0) // 3AM*/
+        
+        allDosageTimes.append(dateTime1!)
+        allDosageTimes.append(dateTime2!)
+        allDosageTimes.append(dateTime3!)
+        allDosageTimes.append(dateTime4!)
+        allDosageTimes.append(dateTime5!)
+        allDosageTimes.append(dateTime6!)
+        
+        print(allDosageTimes)
         
     }
     
@@ -137,11 +167,14 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var receivingStartDate : Date = Date()
     var receivingEndDate : Date = Date()
     
+    var isNotificationsSet : Bool = false
+    
     var pickerView = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //start date
+        initialDate = startDatePickerOutlet.date
         initializeDates()
         updateColorButtons() // Initialize the color
         repeatsSwitch.isOn = isRepeats
@@ -154,27 +187,6 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         updateRepeatsSwitchComponents()
         updateDoseTimeButtons()
         
-        
-        /* TODO: Remove the below
-         
-        startDatePicker = UIDatePicker()
-        startDatePicker?.datePickerMode = .date
-        startDatePicker?.addTarget(self, action: #selector(AddPrescriptionVC.startDateChanged(datePicker:)), for: .valueChanged)
-        //end date
-        endDatePicker = UIDatePicker()
-        endDatePicker?.datePickerMode = .date
-        endDatePicker?.addTarget(self, action: #selector(AddPrescriptionVC.endDateChanged(datePicker:)), for: .valueChanged)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddPrescriptionVC.viewTapped(gestureRecognizer:)))
-        view.addGestureRecognizer(tapGesture)
-        
-        
-        if startDateTF != nil {
-           startDateTF.inputView = startDatePicker
-        }
-        if endDateTF != nil {
-            endDateTF.inputView = endDatePicker
-        } */
-        
         //remind me
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -185,6 +197,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             remindTF.placeholder = "X minutes before"
         }
     }
+    
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
         view.endEditing(true)
@@ -579,10 +592,53 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
     }
     
+    
     // MARK: Long Press Gestures
     @IBAction func firstLongPress(_ sender: UILongPressGestureRecognizer) {
-        if(sender.state == .began) {
+        if sender.state == .began {
             sentIndex = 0
+            sentDate = allDosageTimes[sentIndex]
+            performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
+        }
+    }
+    
+    @IBAction func secondLongPress(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            sentIndex = 1
+            sentDate = allDosageTimes[sentIndex]
+            performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
+        }
+    }
+    
+    @IBAction func thirdLongPress(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            sentIndex = 2
+            sentDate = allDosageTimes[sentIndex]
+            performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
+        }
+    }
+    
+    @IBAction func fourthLongPress(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            sentIndex = 3
+            sentDate = allDosageTimes[sentIndex]
+            performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
+        }
+    }
+    
+    @IBAction func fifthLongPress(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            sentIndex = 4
+            sentDate = allDosageTimes[sentIndex]
+            performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
+        }
+        
+    }
+    
+    
+    @IBAction func sixthLongPress(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            sentIndex = 5
             sentDate = allDosageTimes[sentIndex]
             performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
         }
@@ -606,6 +662,147 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         remindTF.text = remind[row]
         remindTF.resignFirstResponder()
+    }
+    
+    
+    
+    // MARK: Set Notifications
+    // This function fires off the notifications based on the date and dosage times, and enddate and frequency if it is a repeating reminder
+    func setNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {success, error in
+            if success {
+                // schedule notifications
+                print("Success notification auth")
+                self.scheduleNotifications()
+            } else if error != nil {
+                print("Notification auth ERROR")
+                
+            } else {
+                print("Notifications not authorized")
+                
+            }
+        })
+        
+        
+    }
+    
+    func scheduleNotifications() {
+        // Initialize identifiers array
+        newPrescription!.identifier = []
+        let frequency = newPrescription!.frequency
+        
+        let key = "notificationIdentifierCounter"
+        notificationCount = UserDefaults.standard.integer(forKey: key)
+        var identifier = String(notificationCount!)
+        
+        print("I am in scheduleNotifications()")
+        let content = UNMutableNotificationContent()
+        content.title = "Prescription: "+newPrescription!.name!
+        content.sound = .default
+        content.body = identifier
+        
+        //let targetDate = Date().addingTimeInterval(20)
+        
+        if frequency == "Daily" {
+            for dosageTime in checkedDosageTimes {
+                let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.hour, .minute], from: dosageTime), repeats: true)
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: {error in
+                    if error != nil {
+                        print("Adding notification error")
+                        self.isNotificationsSet = false
+                    }
+                })
+                
+                content.body = identifier
+                
+                newPrescription!.identifier!.append(identifier)
+                
+                notificationCount! += 1
+                identifier = String(notificationCount!)
+                
+                
+            } // End of loop
+            
+        } else if frequency == "Weekly" {
+            for dosageTime in checkedDosageTimes {
+                let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.weekday, .hour, .minute], from: dosageTime), repeats: true)
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: {error in
+                    if error != nil {
+                        print("Adding notification error")
+                        self.isNotificationsSet = false
+                    }
+                })
+                
+                content.body = identifier
+                
+                newPrescription!.identifier!.append(identifier)
+                
+                notificationCount! += 1
+                identifier = String(notificationCount!)
+                
+
+            } // End of loop
+            
+        } else if frequency == "Monthly" {
+            for dosageTime in checkedDosageTimes {
+                let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.day, .hour, .minute], from: dosageTime), repeats: true)
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: {error in
+                    if error != nil {
+                        print("Adding notification error")
+                        self.isNotificationsSet = false
+                    }
+                })
+                
+                content.body = identifier
+                
+                newPrescription!.identifier!.append(identifier)
+                
+                notificationCount! += 1
+                identifier = String(notificationCount!)
+                
+
+            } // End of loop
+            
+        } else if (!isRepeats) {
+            for dosageTime in checkedDosageTimes {
+                let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: dosageTime), repeats: false)
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: {error in
+                    if error != nil {
+                        print("Adding notification error")
+                        self.isNotificationsSet = false
+                    }
+                })
+                
+                content.body = identifier
+                
+                newPrescription!.identifier!.append(identifier)
+                
+                notificationCount! += 1
+                identifier = String(notificationCount!)
+        }
+        }
+        
+        // Sets the new notificationCount for the next prescription to have unique identifiers
+        UserDefaults.standard.setValue(notificationCount!, forKey: key)
+        
+        // Prints out pending notification requests
+        UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: { requests in
+        for request in requests {
+            print(request)
+        }
+    })
+        
+        
+    
+        //UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["notif"])
+        
+        
+        
+        
     }
     
     func isColorPicked() -> Bool {
@@ -652,24 +849,22 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     // Checks if form is valid and ready to be used as a Prescription object. Checks if required fields are empty or not.
     func isFormValid() -> Bool {
         let startDate : Date = startDatePickerOutlet.date
-        let endDate : Date
         let interval : TimeInterval
         if(nameTF.hasText && amountTF.hasText && isColorPicked() && isTimePicked()) {
-            if(endDatePickerOutlet.isEnabled) {
-                endDate = endDatePickerOutlet.date
-                interval = endDate.timeIntervalSince(startDate)
-                if(interval > 1) {
-                    //TODO: Put alert to tell user that end date is before start date or same day
-                    
+            interval = startDate.timeIntervalSince(initialDate!)
+            
+            if(interval > -80000) {
                     return true
                 } else {
-                    print("End date invalid")
+                    let alert = UIAlertController(title: String("Date Error"), message: String("Start Date cannot be in the past!"), preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
                     return false
                 }
-            } else {
-                return true
-            }
         } else {
+            let alert = UIAlertController(title: String("Incomplete Form"), message: String("Please check for missing information. Example: Make sure you have at least one dosage time selected."), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
             return false
         }
         
@@ -707,16 +902,16 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
         if(isFormValid()) {
             // Add Prescription to Core Data
-            let newPrescription = Prescription(context: self.context)
+            newPrescription = Prescription(context: self.context)
             addDoseTimesToArray() // Adds what is checked to checkedDosageTimes
             print(checkedDosageTimes)
-            newPrescription.name = nameTF.text
-            newPrescription.dose = amountTF.text!
-            newPrescription.notes = noteTF.text
-            newPrescription.doseTimings = checkedDosageTimes
-            newPrescription.color = getSelectedColor()
-            newPrescription.startDate = startDatePickerOutlet.date
-            newPrescription.notificationType = false // Not alarm
+            newPrescription!.name = nameTF.text
+            newPrescription!.dose = amountTF.text!
+            newPrescription!.notes = noteTF.text
+            newPrescription!.doseTimings = checkedDosageTimes
+            newPrescription!.color = getSelectedColor()
+            newPrescription!.startDate = startDatePickerOutlet.date
+            newPrescription!.notificationType = false // Not alarm
             
             let calendar = Calendar.current
             let date = Date()
@@ -738,20 +933,42 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             }
             
             if(repeatsSwitch.isOn) {
-                newPrescription.endDate = endDatePickerOutlet.date
-                newPrescription.frequency = getSelectedFrequency()
+                newPrescription!.endDate = endDatePickerOutlet.date
+                newPrescription!.frequency = getSelectedFrequency()
             }
             
-            prescriptionArray!.append(newPrescription)
-            // Save data
-            do {
-                try self.context.save()
-            }
-            catch {
-                // TODO: Handle error
+            // Adds startDate to the doseTimings array in the prescription
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd MM y"
+            let startDateAsString = formatter.string(from: startDatePickerOutlet.date)
+            
+            for i in 0 ..< checkedDosageTimes.count {
+                formatter.dateFormat = "hh:mm a"
+                let doseTimingAsString = formatter.string(from: checkedDosageTimes[i])
+                formatter.dateFormat = "hh:mm a, dd MM y"
+                
+                checkedDosageTimes[i] = formatter.date(from: doseTimingAsString+", "+startDateAsString)!
             }
             
-            performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
+            
+            print(checkedDosageTimes)
+            
+                prescriptionArray!.append(newPrescription!)
+                // Save data
+                do {
+                    try self.context.save()
+                }
+                catch {
+                    // TODO: Handle error
+                }
+            
+            setNotifications()
+            
+            
+            
+                performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
+            
+            
         } else {
             print("Form is not complete")
         }
@@ -760,19 +977,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     // MARK: Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "verificationSegue" { //TODO: Remove this?
-            let destinationVC = segue.destination as! VerifyBeforeAddingVC
-            
-            // Move data to the verification view in order to add it to the Prescriptions NS Context Object
-            destinationVC.name = nameTF.text ?? "Prescription"
-            //destinationVC.color =
-            destinationVC.isRepeats = isRepeats
-            //destinationVC.frequency =
-            //destinationVC.dosageTimes =
-            destinationVC.notes = noteTF.text ?? ""
-            //destinationVC.notificationType =
-            
-        } else if segue.identifier == "backToPrescriptionsSegue" {
+        if segue.identifier == "backToPrescriptionsSegue" {
             let destTabVC = segue.destination as! UITabBarController
             let destNavVC = destTabVC.viewControllers![0] as! UINavigationController
             let destinationVC = destNavVC.topViewController as! MyPrescriptionsVC
@@ -783,7 +988,12 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             let destinationVC = segue.destination as! customDosageTimeVC
             destinationVC.receivingDate = sentDate
             destinationVC.receivingIndex = sentIndex
+            destinationVC.startDate = startDatePickerOutlet.date
             
+            destinationVC.delegate = self // To use customTime protocol to pass values between views
+            
+            
+            /*Saving the already set values
             destinationVC.nameTF = nameTF.text ?? ""
             destinationVC.doseTF = amountTF.text ?? ""
             destinationVC.isRepeats = isRepeats
@@ -804,7 +1014,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             destinationVC.isOrange = isOrange
             destinationVC.isRed = isRed
             destinationVC.isBlue = isBlue
-            destinationVC.isGreen = isGreen
+            destinationVC.isGreen = isGreen*/
+            
         }
     }
     
