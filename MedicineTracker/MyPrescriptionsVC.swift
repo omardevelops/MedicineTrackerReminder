@@ -14,9 +14,7 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var myPrescriptions : [Prescription]?
-    static var cellCount = 11 // TODO: Remove this
-    var prescriptionIndex = 0
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     //go to edit view func
@@ -81,6 +79,8 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection: Int) -> Int {
+        
+        CalendarVC.count.CountForReal =  myPrescriptions?.count ?? 0
         return myPrescriptions?.count ?? 0
         //return MyPrescriptionsVC.cellCount
     }
