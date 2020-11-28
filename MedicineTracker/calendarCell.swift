@@ -11,10 +11,24 @@ import UIKit
 class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
     var myPrescriptions : [Prescription]?
+    
 
+    
+    
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var pCalendarCollectionView: UICollectionView!
+    
+
+    
+    public func configure(datalabel: String){
+        //TODO: Configure Image and Color
+        
+        dateLabel.text = datalabel
+        
+    }
+    
+    
     /*edit Cell
      
  @objc func editCell() {

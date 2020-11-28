@@ -26,6 +26,7 @@ extension Prescription {
     @NSManaged public var notificationType: Bool
     @NSManaged public var startDate: Date?
     @NSManaged public var frequency: String?
+    @NSManaged public var whatDay: Int16
 
 }
 

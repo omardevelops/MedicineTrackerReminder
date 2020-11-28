@@ -76,6 +76,8 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection: Int) -> Int {
+        
+        CalendarVC.count.CountForReal =  myPrescriptions?.count ?? 0
         return myPrescriptions?.count ?? 0
         //return MyPrescriptionsVC.cellCount
     }
