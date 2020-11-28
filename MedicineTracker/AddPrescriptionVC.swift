@@ -47,7 +47,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var prescriptionArray : [Prescription]?
     
     var newPrescription : Prescription?
-    
+    var myPrescriptions : [Prescription]?
+    var prescriptionIndex = 0
     var notificationCount : Int?
     
     var allDosageTimes : [Date] = []
@@ -137,6 +138,9 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var redBG: UIButton!
     @IBOutlet weak var orangeBG: UIButton!
     
+    @IBOutlet weak var navigatorBar: UINavigationItem!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
+    
     // MARK: View Variables
     private var startDatePicker : UIDatePicker?
     private var endDatePicker : UIDatePicker?
@@ -159,6 +163,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var isRed : Bool = false
     var isBlue : Bool = false
     var isGreen : Bool = false
+    var isEditPage : Bool = false
     
     var sentDate : Date? = nil
     var sentIndex : Int = 0
@@ -173,31 +178,52 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //start date
-        initialDate = startDatePickerOutlet.date
-        initializeDates()
-        updateColorButtons() // Initialize the color
-        repeatsSwitch.isOn = isRepeats
-        nameTF.text = receivingName
-        amountTF.text = receivingDose
-        startDatePickerOutlet.date = receivingStartDate
-        endDatePickerOutlet.date = receivingEndDate
-
-        
-        updateRepeatsSwitchComponents()
-        updateDoseTimeButtons()
-        
-        //remind me
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        
-        if remindTF != nil {
-            remindTF.inputView = pickerView
-            remindTF.textAlignment = .center
-            remindTF.placeholder = "X minutes before"
-        }
+        itsEditPage()
     }
     
+    func itsEditPage() {
+        if isEditPage {
+            navigatorBar.title = "Edit Prescription"
+            navigatorBar.rightBarButtonItem?.title = "Edit"
+            nameTF.text = myPrescriptions![prescriptionIndex].name
+            amountTF.text = myPrescriptions![prescriptionIndex].dose
+            displayColorButtons()
+            updateColorButtons()
+            if myPrescriptions![prescriptionIndex].endDate == nil {
+                repeatsSwitch.setOn(false, animated: true)
+            } else {
+                repeatsSwitch.setOn(true, animated: true)
+            }
+            //TODO: set start date and end date from core data
+            displayFrequency()
+            updateFrequencyButtons()
+        } else {
+            navigatorBar.title = "Add Prescription"
+            navigatorBar.rightBarButtonItem?.title = "Next"
+            initialDate = startDatePickerOutlet.date
+            initializeDates()
+            updateColorButtons() // Initialize the color
+            repeatsSwitch.isOn = isRepeats
+            nameTF.text = receivingName
+            amountTF.text = receivingDose
+            startDatePickerOutlet.date = receivingStartDate
+            endDatePickerOutlet.date = receivingEndDate
+
+            
+            updateRepeatsSwitchComponents()
+            updateDoseTimeButtons()
+            
+            //remind me
+            pickerView.delegate = self
+            pickerView.dataSource = self
+            
+            if remindTF != nil {
+                remindTF.inputView = pickerView
+                remindTF.textAlignment = .center
+                remindTF.placeholder = "X minutes before"
+            }
+        }
+    }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
         view.endEditing(true)
@@ -350,6 +376,32 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             frequencyView.isUserInteractionEnabled = false
             isRepeats = false
             
+        }
+    }
+    
+    func displayFrequency() {
+        dailyEnabled = false
+        if myPrescriptions![prescriptionIndex].frequency == "Daily" {
+            dailyEnabled = true
+        } else if myPrescriptions![prescriptionIndex].frequency == "Weekly" {
+            weeklyEnabled = true
+        } else if myPrescriptions![prescriptionIndex].frequency == "Monthly" {
+            monthlyEnabled = true
+        }
+    }
+    
+    func displayColorButtons(){
+        isYellow = false
+        if myPrescriptions![prescriptionIndex].color == yellowBG.backgroundColor ?? UIColor.systemBlue {
+            isYellow = true
+        } else if myPrescriptions![prescriptionIndex].color == orangeBG.backgroundColor ?? UIColor.systemBlue {
+            isOrange = true
+        } else if myPrescriptions![prescriptionIndex].color == redBG.backgroundColor ?? UIColor.systemBlue {
+            isRed = true
+        } else if myPrescriptions![prescriptionIndex].color == blueBG.backgroundColor ?? UIColor.systemBlue {
+            isBlue = true
+        } else if myPrescriptions![prescriptionIndex].color == greenBG.backgroundColor ?? UIColor.systemBlue {
+            isGreen = true
         }
     }
     
@@ -900,6 +952,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     // MARK: - Navigation
     
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
+        if isEditPage {
+            //TODO: Edit stuff here
+            performSegue(withIdentifier: "editToViewSegue", sender: true)
+        } else {
         if(isFormValid()) {
             // Add Prescription to Core Data
             newPrescription = Prescription(context: self.context)
@@ -946,14 +1002,21 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             setNotifications()
             
             
-            
                 performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
             
             
         } else {
             print("Form is not complete")
         }
-        
+        }
+    }
+    
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
+        if isEditPage {
+            performSegue(withIdentifier: "editToViewSegue", sender: self)
+        } else {
+            performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
+        }
     }
     
     // MARK: Prepare for segue
@@ -997,6 +1060,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             destinationVC.isBlue = isBlue
             destinationVC.isGreen = isGreen*/
             
+        } else if segue.identifier == "editToViewSegue" {
+            let destinationVC = segue.destination as! ViewPrescriptionVC
+            destinationVC.prescriptionIndex = self.prescriptionIndex
+            destinationVC.myPrescriptions = self.myPrescriptions
         }
     }
     

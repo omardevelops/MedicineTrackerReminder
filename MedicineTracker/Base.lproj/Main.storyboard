@@ -581,7 +581,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Prescription" largeTitleDisplayMode="always" id="L1I-wI-1CX">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7k0-Da-oa3"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7k0-Da-oa3">
+                            <connections>
+                                <action selector="cancelButton:" destination="lTY-yc-D7m" id="UYy-1K-tbm"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Mkn-Bs-cqc">
                             <connections>
                                 <action selector="nextButton:" destination="lTY-yc-D7m" id="ddb-DX-pJI"/>
@@ -604,6 +608,8 @@
                         <outlet property="greenBG" destination="ZcA-kk-5oY" id="SXq-My-e80"/>
                         <outlet property="morningTimeButtonOutlet" destination="3aM-hn-5tr" id="VPr-7P-pEL"/>
                         <outlet property="nameTF" destination="Wyv-UX-Efv" id="s5F-kd-bIl"/>
+                        <outlet property="navigatorBar" destination="L1I-wI-1CX" id="GAm-9y-euv"/>
+                        <outlet property="nextButton" destination="Mkn-Bs-cqc" id="b6b-yE-Ovb"/>
                         <outlet property="noteTF" destination="KWg-65-zbs" id="0lz-cG-VZ6"/>
                         <outlet property="notificationButton" destination="l4u-Nv-u5d" id="Vhl-eq-T3F"/>
                         <outlet property="orangeBG" destination="Vnc-Lb-3Lf" id="f1w-iJ-fGL"/>
@@ -879,11 +885,11 @@
             <objects>
                 <viewController id="NT3-8J-jdz" customClass="EditPrescriptionVC" customModule="MedicineTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9L5-AO-qcw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6v-jJ-gcB">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
                                     <navigationItem title="Edit Prescription" id="NK7-6k-exx">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="PHX-U0-dMZ">
@@ -901,7 +907,7 @@
                                 </items>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHV-gm-AVW">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t5w-Qo-Ci0">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
@@ -960,6 +966,7 @@
                                                 <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="pressRepeatsSwitch:" destination="lTY-yc-D7m" eventType="valueChanged" id="4Sq-17-rpJ"/>
+                                                    <action selector="repeatSwitch:" destination="NT3-8J-jdz" eventType="valueChanged" id="3ck-2B-SUv"/>
                                                 </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EhA-90-ce2">
@@ -1034,6 +1041,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                         <connections>
                                                                             <action selector="repeatDailyButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="DnV-8u-GIf"/>
+                                                                            <action selector="repeatDailyButton:" destination="NT3-8J-jdz" eventType="touchUpInside" id="naj-Hl-o2U"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YmD-py-xe5">
@@ -1072,6 +1080,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                         <connections>
                                                                             <action selector="repeatWeeklyButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="W1y-PL-rKu"/>
+                                                                            <action selector="repeatWeeklyButton:" destination="NT3-8J-jdz" eventType="touchUpInside" id="qrt-fs-MVL"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -1107,6 +1116,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="repeatMonthlyButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="OMq-UW-isJ"/>
+                                                                    <action selector="repeatMonthlyButton:" destination="NT3-8J-jdz" eventType="touchUpInside" id="OoJ-z7-qlx"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -1269,6 +1279,7 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="yellowBG:" destination="NT3-8J-jdz" eventType="touchUpInside" id="9hg-x7-GFc"/>
                                                     <action selector="yellowBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="cIF-82-Vsc"/>
                                                 </connections>
                                             </button>
@@ -1280,6 +1291,7 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="orangeBG:" destination="NT3-8J-jdz" eventType="touchUpInside" id="Go9-lg-hGy"/>
                                                     <action selector="orangeBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="ooB-8o-kNt"/>
                                                 </connections>
                                             </button>
@@ -1295,6 +1307,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="redBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="D23-t0-iHm"/>
+                                                    <action selector="redBG:" destination="NT3-8J-jdz" eventType="touchUpInside" id="IhF-dG-oq0"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fn-ex-043" userLabel="Color1">
@@ -1309,6 +1322,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="blueBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="LUn-JB-sxj"/>
+                                                    <action selector="blueBG:" destination="NT3-8J-jdz" eventType="touchUpInside" id="nzR-fX-N8s"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHp-DD-p5R" userLabel="Color1">
@@ -1319,6 +1333,7 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="greenBG:" destination="NT3-8J-jdz" eventType="touchUpInside" id="9YC-CA-fxX"/>
                                                     <action selector="greenBG:" destination="lTY-yc-D7m" eventType="touchUpInside" id="KgB-TI-k0v"/>
                                                 </connections>
                                             </button>
@@ -1459,12 +1474,31 @@
                     </view>
                     <connections>
                         <outlet property="blueBG" destination="0fn-ex-043" id="NeK-Pn-Ggh"/>
+                        <outlet property="dosePerDayLabel" destination="Hi7-oo-hbs" id="QpN-FS-v5l"/>
                         <outlet property="doseTF" destination="ceD-Tj-5zF" id="ikg-k8-VRL"/>
+                        <outlet property="endDate" destination="CBE-PU-tN7" id="Y6w-ca-DDx"/>
+                        <outlet property="endDateLabel" destination="PnH-kA-Bey" id="yUo-m8-jXl"/>
+                        <outlet property="frequencyInfoButton" destination="wfm-8a-xWs" id="wcT-qY-PJM"/>
+                        <outlet property="frequencyLabel" destination="VYW-kf-qif" id="kRS-fp-sXw"/>
+                        <outlet property="frequencyView" destination="Egm-rE-IkP" id="HXJ-LQ-4TE"/>
+                        <outlet property="greenBG" destination="XHp-DD-p5R" id="hL4-tK-ZDt"/>
                         <outlet property="nameTF" destination="P2i-oV-HNx" id="3cN-Zh-Tcd"/>
+                        <outlet property="notesTF" destination="VUH-eJ-dkt" id="SAH-1o-yZ6"/>
+                        <outlet property="notificationsButton" destination="oH2-7u-0tv" id="h0M-07-0xx"/>
                         <outlet property="orangeBG" destination="arn-oF-MWz" id="HeX-ce-VA5"/>
+                        <outlet property="preset1Button" destination="0Qr-GI-udN" id="sV7-eA-dIN"/>
+                        <outlet property="preset2Button" destination="lcf-oC-7pS" id="dCr-2j-bZX"/>
+                        <outlet property="preset3Button" destination="d1m-Nd-h60" id="Qg7-Aw-9Gd"/>
+                        <outlet property="preset4Button" destination="YAZ-sA-Kkh" id="pnV-uc-hfU"/>
+                        <outlet property="preset5Button" destination="EoV-Lm-lzn" id="tAe-Ca-g20"/>
+                        <outlet property="preset6Button" destination="5GN-bZ-eyk" id="Qax-5G-2Ru"/>
                         <outlet property="redBG" destination="v02-nT-Epl" id="F4U-Xc-8JE"/>
+                        <outlet property="repeatDailyButton" destination="5hn-0Q-rUd" id="Ink-Os-fvs"/>
+                        <outlet property="repeatMonthlyButton" destination="SkA-rp-Ffc" id="NMV-fd-TAt"/>
+                        <outlet property="repeatSwitch" destination="sHa-MF-9X2" id="ivm-d3-nL4"/>
+                        <outlet property="repeatWeeklyButton" destination="8Vx-Vm-OwD" id="HVa-Ry-MHe"/>
+                        <outlet property="startDate" destination="m45-fg-Qjf" id="8uN-jG-b2f"/>
                         <outlet property="yellowBG" destination="ADf-qJ-50m" id="ErI-Hg-htH"/>
-                        <segue destination="YF3-4J-4hH" kind="presentation" identifier="editToViewSegue" modalPresentationStyle="fullScreen" id="PyP-zd-ysc"/>
                         <segue destination="K6N-Oa-8Bc" kind="presentation" identifier="editToPrescriptionsSegue" modalPresentationStyle="fullScreen" id="qER-9M-Yvm"/>
                     </connections>
                 </viewController>
@@ -1612,7 +1646,7 @@
                         <outlet property="noteLabel" destination="IE1-ZP-ODF" id="woe-49-Qou"/>
                         <outlet property="startDateLabel" destination="hkA-PV-7dz" id="emt-U2-nSp"/>
                         <segue destination="K6N-Oa-8Bc" kind="presentation" identifier="viewToPrescriptionsSegue" modalPresentationStyle="fullScreen" id="ojc-T4-Jb5"/>
-                        <segue destination="NT3-8J-jdz" kind="presentation" identifier="viewToEditSegue" modalPresentationStyle="fullScreen" id="o3w-Ft-zWp"/>
+                        <segue destination="Tif-yn-oOe" kind="presentation" identifier="viewToEditSegue" modalPresentationStyle="fullScreen" id="11l-Vj-FmI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEN-V4-JfK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1640,9 +1674,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PyP-zd-ysc"/>
-        <segue reference="o3w-Ft-zWp"/>
-        <segue reference="qER-9M-Yvm"/>
+        <segue reference="11l-Vj-FmI"/>
+        <segue reference="ojc-T4-Jb5"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
