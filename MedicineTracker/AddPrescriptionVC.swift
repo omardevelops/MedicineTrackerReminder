@@ -917,18 +917,18 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             let date = Date()
             let tmrw = date.addingTimeInterval(86400)
             let week = date.addingTimeInterval(604800)
-            if (calendar.component(.day, from: date) == (calendar.component(.day, from: newPrescription.startDate!))){
+            if (calendar.component(.day, from: date) == (calendar.component(.day, from: newPrescription!.startDate!))){
                 // is today
-                newPrescription.whatDay = 0
-            }else if(calendar.component(.day, from: newPrescription.startDate!) == (calendar.component(.day, from: tmrw))){
+                newPrescription!.whatDay = 0
+            }else if(calendar.component(.day, from: newPrescription!.startDate!) == (calendar.component(.day, from: tmrw))){
                     //is tmrw
-                    newPrescription.whatDay = 1
-            }else if(calendar.component(.day, from: newPrescription.startDate!)) < (calendar.component(.day, from: week)){
+                newPrescription!.whatDay = 1
+            }else if(calendar.component(.day, from: newPrescription!.startDate!)) < (calendar.component(.day, from: week)){
                     // is later this week
-                        newPrescription.whatDay = 2
+                newPrescription!.whatDay = 2
             }else{
                 // LATER
-                        newPrescription.whatDay = 3
+                newPrescription!.whatDay = 3
         
             }
             

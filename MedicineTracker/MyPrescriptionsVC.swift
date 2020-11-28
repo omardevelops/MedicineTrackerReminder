@@ -15,6 +15,8 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
 
     var myPrescriptions : [Prescription]?
     
+    var prescriptionIndex = 0
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     //go to edit view func
@@ -27,7 +29,6 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        // No need for this as we can use a prototype cell instead
         collectionView.register(prescriptionCell.nib(), forCellWithReuseIdentifier: "prescriptionCell")
         fetchPrescriptions()
         requestNotificationAuthorization()
