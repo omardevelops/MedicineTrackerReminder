@@ -55,6 +55,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     let initialTimings = ["8:00 AM", "12:00 PM", "06:00 PM", "09:00 PM", "12:00 AM", "03:00 AM"]
     
+    var initialDate : Date?
+    
     
     func initializeDates() {
         // TIME ZONE IS GMT FOR THIS
@@ -172,7 +174,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         //start date
-        
+        initialDate = startDatePickerOutlet.date
         initializeDates()
         updateColorButtons() // Initialize the color
         repeatsSwitch.isOn = isRepeats
@@ -625,16 +627,21 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     @IBAction func fifthLongPress(_ sender: UILongPressGestureRecognizer) {
-        sentIndex = 4
-        sentDate = allDosageTimes[sentIndex]
-        performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
+        if sender.state == .began {
+            sentIndex = 4
+            sentDate = allDosageTimes[sentIndex]
+            performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
+        }
+        
     }
     
     
     @IBAction func sixthLongPress(_ sender: UILongPressGestureRecognizer) {
-        sentIndex = 5
-        sentDate = allDosageTimes[sentIndex]
-        performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
+        if sender.state == .began {
+            sentIndex = 5
+            sentDate = allDosageTimes[sentIndex]
+            performSegue(withIdentifier: "customDosageTimeSegue", sender: self)
+        }
     }
     
     
@@ -844,15 +851,20 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         let startDate : Date = startDatePickerOutlet.date
         let interval : TimeInterval
         if(nameTF.hasText && amountTF.hasText && isColorPicked() && isTimePicked()) {
-                interval = startDate.timeIntervalSince(Date())
-                if(interval > 1) {
+            interval = startDate.timeIntervalSince(initialDate!)
+            
+            if(interval > -80000) {
                     return true
                 } else {
-                    //TODO: Add alert that tells user that startdate cannot be in the past
-                    print("Start date cannot be in the past!")
-                    return true
+                    let alert = UIAlertController(title: String("Date Error"), message: String("Start Date cannot be in the past!"), preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                    return false
                 }
         } else {
+            let alert = UIAlertController(title: String("Incomplete Form"), message: String("Please check for missing information. Example: Make sure you have at least one dosage time selected."), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
             return false
         }
         
@@ -933,7 +945,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             
             setNotifications()
             
-                //performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
+            
+            
+                performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
+            
             
         } else {
             print("Form is not complete")

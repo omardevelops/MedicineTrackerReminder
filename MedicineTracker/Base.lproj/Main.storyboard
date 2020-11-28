@@ -441,7 +441,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="fifthTimeButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="g7z-WC-3Ae"/>
-                                                            <outletCollection property="gestureRecognizers" destination="s33-Jx-xJC" appends="YES" id="2Qe-H7-74P"/>
+                                                            <outletCollection property="gestureRecognizers" destination="P2m-z5-7nZ" appends="YES" id="5jx-Ym-cyN"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BfC-BV-cPI">
@@ -459,7 +459,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="sixthTimeButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="Vn7-8u-GOQ"/>
-                                                            <outletCollection property="gestureRecognizers" destination="Q2Z-r2-W5z" appends="YES" id="EEF-So-eSI"/>
+                                                            <outletCollection property="gestureRecognizers" destination="WYx-tN-hT2" appends="YES" id="2Rt-1x-PdF"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -642,14 +642,14 @@
                         <action selector="fourthLongPress:" destination="lTY-yc-D7m" id="ffv-fm-Tto"/>
                     </connections>
                 </pongPressGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="s33-Jx-xJC">
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="P2m-z5-7nZ">
                     <connections>
-                        <action selector="fifthLongPress:" destination="lTY-yc-D7m" id="Uhy-iz-dMS"/>
+                        <action selector="fifthLongPress:" destination="lTY-yc-D7m" id="ZP5-6h-ark"/>
                     </connections>
                 </pongPressGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Q2Z-r2-W5z">
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="WYx-tN-hT2">
                     <connections>
-                        <action selector="sixthLongPress:" destination="lTY-yc-D7m" id="gK6-QD-7y9"/>
+                        <action selector="sixthLongPress:" destination="lTY-yc-D7m" id="Qhp-Yg-9Qx"/>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
@@ -807,7 +807,7 @@
             </objects>
             <point key="canvasLocation" x="3652.1739130434785" y="-1635.2678571428571"/>
         </scene>
-        <!--Custom Dosage TimeVC-->
+        <!--Set Custom Time-->
         <scene sceneID="1id-Bi-OPY">
             <objects>
                 <viewController id="rlA-Wf-Byf" customClass="customDosageTimeVC" customModule="MedicineTracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -826,8 +826,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Dose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxk-FH-l0B">
-                                <rect key="frame" x="128" y="171" width="159" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Dose" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxk-FH-l0B">
+                                <rect key="frame" x="35" y="171" width="345" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <nil key="textColor"/>
@@ -842,20 +842,11 @@
                                     <action selector="setCustomTime:" destination="rlA-Wf-Byf" eventType="touchUpInside" id="JqS-RV-bY6"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEq-u4-0mZ">
-                                <rect key="frame" x="160" y="538" width="97" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <action selector="cancelButton:" destination="rlA-Wf-Byf" eventType="touchUpInside" id="Tpo-Z7-al0"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ajz-b8-Osq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="mR3-CZ-Beo"/>
+                    <navigationItem key="navigationItem" title="Set Custom Time" id="mR3-CZ-Beo"/>
                     <connections>
                         <outlet property="customTimeOutlet" destination="Rn1-Rp-rCF" id="F4C-ks-cSg"/>
                         <outlet property="doseLabel" destination="Qxk-FH-l0B" id="lrR-HE-qrP"/>
@@ -863,7 +854,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPJ-Yi-qYD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1423" y="-1658"/>
+            <point key="canvasLocation" x="1421.7391304347827" y="-1658.0357142857142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dJP-lf-fDa">

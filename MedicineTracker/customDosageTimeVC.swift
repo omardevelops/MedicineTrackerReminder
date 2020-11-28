@@ -90,12 +90,7 @@ class customDosageTimeVC: UIViewController{
         // return to previous viewcontroller
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
-        print("im here")
-    }
-    
-    @IBAction func cancelButton(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: "backFromSettingDoseSegue", sender: self)
+        print("just returned")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
