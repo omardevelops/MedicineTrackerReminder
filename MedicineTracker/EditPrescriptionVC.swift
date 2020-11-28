@@ -9,12 +9,20 @@
 import UIKit
 
 class EditPrescriptionVC: UIViewController {
+    @IBOutlet weak var nameTF: UITextField!    
+    @IBOutlet weak var doseTF: UITextField!
+    @IBOutlet weak var yellowBG: UIButton!
+    @IBOutlet weak var orangeBG: UIButton!
+    
+    @IBOutlet weak var redBG: UIButton!
+    @IBOutlet weak var blueBG: UIButton!
+    
     var myPrescriptions : [Prescription]?
     var prescriptionIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     

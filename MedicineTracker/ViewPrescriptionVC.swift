@@ -52,7 +52,6 @@ class ViewPrescriptionVC: UIViewController {
             let destinationVC = segue.destination as! EditPrescriptionVC
             destinationVC.prescriptionIndex = self.prescriptionIndex
             destinationVC.myPrescriptions = self.myPrescriptions
-            
         }
     }
 }
