@@ -39,7 +39,7 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
        
         if myPrescriptions?.count != nil {
             
-        for index in 0...myPrescriptions!.count{
+        for index in 0 ..< myPrescriptions!.count{
             if (today == false) && (myPrescriptions![index].whatDay == 0){
                 today = true
             }
