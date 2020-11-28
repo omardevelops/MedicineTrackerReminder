@@ -13,80 +13,145 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         static var CountForReal:Int = 0
     }
     
-    
+    var eachPreCell: [Prescription] = []
     var testCount = 4
-    var today = false
-    var tmrw = false
+    var today:Bool = false
+    var tmrw:Bool = false
     var tableViewLabels:[String] = []
-
+    var labelDatesStartIndex:Int = 0
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
     var myPrescriptions : [Prescription]?
     var startDatesUnsorted: [Date] = []
-    var sortedIndexOfDates:[Int] = []
+    var sortedDates:[Date] = []
+    struct cellA{
+        static var cellArray = [[Prescription]]()
+    }
 
     
     @IBOutlet weak var tableView: UITableView!
     
     
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
         fetchPrescriptions()
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.register(calendarCell.nib(), forCellReuseIdentifier: "calendarCell")
-       
+        
+        startDatesUnsorted.removeAll()
+        tableViewLabels.removeAll()
+        labelDatesStartIndex = 0
+        sortedDates.removeAll()
+        today = false
+        tmrw = false
         if myPrescriptions?.count != nil {
             
-        for index in 0 ..< myPrescriptions!.count{
-            if (today == false) && (myPrescriptions![index].whatDay == 0){
-                today = true
-            }
-            if (tmrw == false) && (myPrescriptions![index].whatDay == 1){
-                tmrw = true
-            }
-            
-        }
-            print(today.description)
-            print(tmrw.description)
-
-            if (today) && (tmrw) {
-                tableViewLabels.append("Today")
-                tableViewLabels.append("Tommorow")
-            }else if !(today) && (tmrw){
-                tableViewLabels.append("Tommorow")
-            }else if (today) && !(tmrw){
-                tableViewLabels.append("Today")
-            }
+        
             
             //let dates:[Date] = []
+            if myPrescriptions!.count > 0 {
+                
+                let calendar = Calendar.current
+                let date = Date()
+                let tomrw = date.addingTimeInterval(86400)
+                let week = date.addingTimeInterval(604800)
+                
+                for i in 0...myPrescriptions!.count-1 {
+                
+                if (calendar.component(.day, from: date) == (calendar.component(.day, from: myPrescriptions![i].startDate!))){
+                    // is today
+                    myPrescriptions![i].whatDay = 0
+                }else if(calendar.component(.day, from: myPrescriptions![i].startDate!) == (calendar.component(.day, from: tomrw))){
+                        //is tmrw
+                    myPrescriptions![i].whatDay = 1
+                }else if(calendar.component(.day, from: myPrescriptions![i].startDate!)) < (calendar.component(.day, from: week)){
+                        // is later this week
+                    myPrescriptions![i].whatDay = 2
+                }else{
+                    // LATER
+                    myPrescriptions![i].whatDay = 3
             
-            for i in 1...(myPrescriptions!.count-1) {
+                }
+                }
+                for index in 0 ..< myPrescriptions!.count{
+                    if (today == false) && (myPrescriptions![index].whatDay == 0){
+                        today = true
+                    }
+                    if (tmrw == false) && (myPrescriptions![index].whatDay == 1){
+                        tmrw = true
+                    }
+                    
+                }
+                    print(today.description)
+                    print(tmrw.description)
+
+                    if (today) && (tmrw) {
+                        tableViewLabels.append("Today")
+                        tableViewLabels.append("Tommorow")
+                        labelDatesStartIndex = 2
+                    }else if !(today) && (tmrw){
+                        tableViewLabels.append("Tommorow")
+                        labelDatesStartIndex = 1
+                    }else if (today) && !(tmrw){
+                        tableViewLabels.append("Today")
+                        labelDatesStartIndex = 1
+                    }else{
+                        labelDatesStartIndex = 0
+                    }
+               
+            for i in 0...(myPrescriptions!.count-1) {
                 
                 startDatesUnsorted.append(myPrescriptions![i].startDate!)
                 
             }
-            
-            for i in 1...(startDatesUnsorted.count-1){
-                var smallest:Date = startDatesUnsorted[i]
+                startDatesUnsorted.sort()
+                /*
+                 
+                for i in 0...(myPrescriptions!.count-1){
+                    var small:Int = i
+                    var x = i
+                    for y in x...myPrescriptions!.count-1{
+                        if (startDatesUnsorted[y] < startDatesUnsorted[small]){
+                           small = y
+                        }
+                    }
+                    startDatesUnsorted[i] = startDatesUnsorted[small]
+                    startDatesUnsorted[small] = startDatesUnsorted[i]
+                }
+                sortedDates = startDatesUnsorted
+            */
+            for i in labelDatesStartIndex...(startDatesUnsorted.count-1){
+                /*var smallest:Date = startDatesUnsorted[i]
                 for y in i...startDatesUnsorted.count-1{
                     if (startDatesUnsorted[y] < smallest){
                     smallest = startDatesUnsorted[y]
                     }
-                }
-                let dateA = smallest
+                }*/
+                let dateA = startDatesUnsorted[i]
                 let dateF = DateFormatter()
                 dateF.dateFormat = "MMM d, yyyy"
+                //print((calendar.component(.day, from: smallest)))
+                //if ((calendar.component(.day, from: smallest)) != calendar.component(.day, from: date)) && ((calendar.component(.day, from: smallest)) != calendar.component(.day, from: tomrw)) {
+                if !(i == 0) && !(labelDatesStartIndex == 0){
                 
+                    
+                    if ((tableViewLabels[tableViewLabels.count-1]) != (dateF.string(from: dateA))) {
+                        //&& ((calendar.component(.day, from: smallest)) != calendar.component(.day, from: date)) && ((calendar.component(.day, from: smallest)) != calendar.component(.day, from: tmrw))
                 
-                if (tableViewLabels.last) != (dateF.string(from: dateA)){
                     tableViewLabels.append(dateF.string(from: dateA))
+                }
+                }else{
+                    tableViewLabels.append(dateF.string(from: dateA))
+
                 }
                 
                 
             }
-            print(tableViewLabels)
+            
+            }
             /*
             
             let pre:Int = myPrescriptions!.count
@@ -140,7 +205,7 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         
         
-        cell.configure(datalabel: tableViewLabels[indexPath.row])
+        cell.configure(datalabel: tableViewLabels[indexPath.row], indexOfTableCell: indexPath.row)
         //cell.textLabel?.text = name[indexPath.row]
         return cell
     }
