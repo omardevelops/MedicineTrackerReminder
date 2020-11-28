@@ -141,6 +141,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var navigatorBar: UINavigationItem!
     @IBOutlet weak var nextButton: UIBarButtonItem!
     
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
     // MARK: View Variables
     private var startDatePicker : UIDatePicker?
     private var endDatePicker : UIDatePicker?
@@ -185,6 +186,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         if isEditPage {
             navigatorBar.title = "Edit Prescription"
             navigatorBar.rightBarButtonItem?.title = "Edit"
+            navigatorBar.rightBarButtonItems = [nextButton, deleteButton]
+            deleteButton.isEnabled = true
+            deleteButton.tintColor = UIColor.red
+            //navigatorBar.rightBarButtonItem?.title
             nameTF.text = myPrescriptions![prescriptionIndex].name
             amountTF.text = myPrescriptions![prescriptionIndex].dose
             displayColorButtons()
@@ -194,12 +199,17 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             } else {
                 repeatsSwitch.setOn(true, animated: true)
             }
-            //TODO: set start date and end date from core data
+            startDatePickerOutlet.date = myPrescriptions![prescriptionIndex].startDate!
+            endDatePickerOutlet.date = myPrescriptions![prescriptionIndex].endDate!
             displayFrequency()
             updateFrequencyButtons()
+            //TODO: Choose dosage times from core data
         } else {
             navigatorBar.title = "Add Prescription"
             navigatorBar.rightBarButtonItem?.title = "Next"
+            navigatorBar.rightBarButtonItems = [nextButton, deleteButton]
+            deleteButton.isEnabled = false
+            deleteButton.tintColor = UIColor.clear
             initialDate = startDatePickerOutlet.date
             initializeDates()
             updateColorButtons() // Initialize the color
@@ -949,11 +959,53 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
+    func fetchPrescriptions() {
+        do {
+            self.myPrescriptions = try self.context.fetch(Prescription.fetchRequest())
+        }
+        catch {
+            // TODO: Handle Error Here
+        }
+    }
+    
     // MARK: - Navigation
+    
+    
+    @IBAction func deleteButton(_ sender: UIBarButtonItem) {
+        let removePrescription = self.myPrescriptions![prescriptionIndex]
+        self.context.delete(removePrescription) //removes the swiped shop
+        do {
+            try self.context.save()
+        }catch{
+            
+        }
+        self.fetchPrescriptions()
+        performSegue(withIdentifier: "backToPrescriptionsSegue", sender: true)
+    }
     
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
         if isEditPage {
-            //TODO: Edit stuff here
+             let prescription = self.myPrescriptions![prescriptionIndex]
+             
+            prescription.name = nameTF.text
+            prescription.dose = amountTF.text
+            prescription.notes = noteTF.text
+            prescription.doseTimings = checkedDosageTimes
+            prescription.color = getSelectedColor()
+            prescription.startDate = startDatePickerOutlet.date
+            //TODO: Modify the notifications
+            if(repeatsSwitch.isOn) {
+                prescription.endDate = endDatePickerOutlet.date
+                prescription.frequency = getSelectedFrequency()
+            }
+            //TODO: edit dosage times
+            do {
+                try self.context.save()
+            } catch {
+                     
+            }
+            self.fetchPrescriptions()
+
             performSegue(withIdentifier: "editToViewSegue", sender: true)
         } else {
         if(isFormValid()) {
