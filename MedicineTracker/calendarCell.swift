@@ -36,18 +36,34 @@ class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDa
         let tomrw = date.addingTimeInterval(86400)
         let calendar = Calendar.current
         dateF.dateFormat = "MMM d, yyyy"
+        
         for i in 0...myPrescriptions!.count-1{
+            
+            if (theCell == "Today") && (calendar.isDateInToday(myPrescriptions![i].startDate!)){
+                eachPreCell.append(myPrescriptions![i])
+                
+            }else if (theCell == "Tomorrow") && (calendar.isDateInTomorrow(myPrescriptions![i].startDate!)){
+                eachPreCell.append(myPrescriptions![i])
+
+            }else if (dateF.string(from: myPrescriptions![i].startDate!)) == (theCell){
+                eachPreCell.append(myPrescriptions![i])
+            }
+            
+            
+            
+            /*
+            
            
             if (( dateF.string(from: myPrescriptions![i].startDate!)) == dateF.string(from: date)) && (theCell == "Today") {
                 eachPreCell.append(myPrescriptions![i])
                 print("hi")
                 
-            }else if ( dateF.string(from: myPrescriptions![i].startDate!)) == dateF.string(from: tomrw) && (theCell == "Tommorow") {
+            }else if ( dateF.string(from: myPrescriptions![i].startDate!)) == dateF.string(from: tomrw) && (theCell == "Tomorow") {
                 eachPreCell.append(myPrescriptions![i])
             }else if (dateF.string(from: myPrescriptions![i].startDate!)) == (theCell){
                 eachPreCell.append(myPrescriptions![i])
             }
-    
+    */
         }
         print(eachPreCell)
         cellArray.append(eachPreCell)
@@ -83,7 +99,7 @@ class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return cellArray[(0)].count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pCalendarCollectionCell", for: indexPath) as! pCalendarCollectionCell
@@ -91,8 +107,6 @@ class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDa
            //cell.editB.tag = indexPath.row
            //cell.editB.addTarget(self, action: #selector(editCell), for: .touchUpInside)
         let prescription = cellArray[(0)][indexPath.row]
-        print(prescription)
-        count += 1
         cell.configure(with: prescription.name ?? "null",color: prescription.color ?? UIColor.white, dose: prescription.dose ?? " ")
         return cell
     }

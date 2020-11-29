@@ -61,15 +61,13 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 for i in 0...myPrescriptions!.count-1 {
                 
-                if (calendar.component(.day, from: date) == (calendar.component(.day, from: myPrescriptions![i].startDate!))){
+                if (Calendar.current.isDateInToday(myPrescriptions![i].startDate!)){
                     // is today
                     myPrescriptions![i].whatDay = 0
-                }else if(calendar.component(.day, from: myPrescriptions![i].startDate!) == (calendar.component(.day, from: tomrw))){
+                }else if(Calendar.current.isDateInTomorrow(tomrw)){
                         //is tmrw
                     myPrescriptions![i].whatDay = 1
-                }else if(calendar.component(.day, from: myPrescriptions![i].startDate!)) < (calendar.component(.day, from: week)){
-                        // is later this week
-                    myPrescriptions![i].whatDay = 2
+                
                 }else{
                     // LATER
                     myPrescriptions![i].whatDay = 3
@@ -90,10 +88,10 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
                     if (today) && (tmrw) {
                         tableViewLabels.append("Today")
-                        tableViewLabels.append("Tommorow")
+                        tableViewLabels.append("Tomorrow")
                         labelDatesStartIndex = 2
                     }else if !(today) && (tmrw){
-                        tableViewLabels.append("Tommorow")
+                        tableViewLabels.append("Tomorrow")
                         labelDatesStartIndex = 1
                     }else if (today) && !(tmrw){
                         tableViewLabels.append("Today")
@@ -123,7 +121,7 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
                 sortedDates = startDatesUnsorted
             */
-            for i in labelDatesStartIndex...(startDatesUnsorted.count-1){
+            for i in 0...(startDatesUnsorted.count-1){
                 /*var smallest:Date = startDatesUnsorted[i]
                 for y in i...startDatesUnsorted.count-1{
                     if (startDatesUnsorted[y] < smallest){
@@ -131,10 +129,32 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                 }*/
                 let dateA = startDatesUnsorted[i]
+                let calendar = Calendar.current
+                let date = Date()
+                let tomrw = date.addingTimeInterval(86400)
                 let dateF = DateFormatter()
                 dateF.dateFormat = "MMM d, yyyy"
                 //print((calendar.component(.day, from: smallest)))
                 //if ((calendar.component(.day, from: smallest)) != calendar.component(.day, from: date)) && ((calendar.component(.day, from: smallest)) != calendar.component(.day, from: tomrw)) {
+                if (Calendar.current.isDateInToday(startDatesUnsorted[i])){
+                    
+                    
+                    
+                }else if ((Calendar.current.isDateInTomorrow(startDatesUnsorted[i]))){
+                    
+                    
+                }else if !(i == 0){
+                    if (dateF.string(from: startDatesUnsorted[i-1])) != (dateF.string(from: startDatesUnsorted[i])){
+                        
+                        tableViewLabels.append(dateF.string(from: dateA))
+                    }
+                    
+                }
+                
+                
+                
+                
+                /*
                 if !(i == 0) && !(labelDatesStartIndex == 0){
                 
                     
@@ -147,11 +167,12 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     tableViewLabels.append(dateF.string(from: dateA))
 
                 }
-                
+                */
                 
             }
             
             }
+ 
             /*
             
             let pre:Int = myPrescriptions!.count
@@ -202,8 +223,7 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         default:
             text = "Later on"
         }*/
-        
-        
+        print(tableViewLabels)
         
         cell.configure(datalabel: tableViewLabels[indexPath.row], indexOfTableCell: indexPath.row)
         //cell.textLabel?.text = name[indexPath.row]
