@@ -227,7 +227,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         super.viewDidLoad()
         itsEditPage()
     }
-    
+    // MARK: Loads Edit Page
     func itsEditPage() {
         if isEditPage {
             navigatorBar.title = "Edit Prescription"
@@ -235,13 +235,16 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             navigatorBar.rightBarButtonItems = [nextButton, deleteButton]
             deleteButton.isEnabled = true
             deleteButton.tintColor = UIColor.red
+            initialDate = startDatePickerOutlet.date
             //navigatorBar.rightBarButtonItem?.title
             nameTF.text = myPrescriptions![prescriptionIndex].name
             amountTF.text = myPrescriptions![prescriptionIndex].dose
+            noteTF.text = myPrescriptions![prescriptionIndex].notes
             displayColorButtons()
             updateColorButtons()
             if myPrescriptions![prescriptionIndex].endDate == nil {
                 repeatsSwitch.setOn(false, animated: true)
+                updateRepeatsSwitchComponents()
             } else {
                 repeatsSwitch.setOn(true, animated: true)
             }
@@ -249,6 +252,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             //endDatePickerOutlet.date = myPrescriptions![prescriptionIndex].endDate!, enddate not used anymore
             displayFrequency()
             updateFrequencyButtons()
+            updateRepeatsSwitchComponents()
+            
             
             //TODO: Choose dosage times from core data
             initializeDates()
@@ -413,12 +418,14 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             endDateLabel.isEnabled = true
             frequencyLabel.isEnabled = true
             frequencyInfoButton.isEnabled = true
-            dailyEnabled = true
-            updateFrequencyButtons()
+            if !isEditPage  {
+                dailyEnabled = true
+            }
             repeatWeeklyButton.backgroundColor = UIColor.systemBlue
             repeatMonthlyButton.backgroundColor = UIColor.systemBlue
             frequencyView.isUserInteractionEnabled = true
             isRepeats = true
+            updateFrequencyButtons()
             
         } else {
             endDatePickerOutlet.isEnabled = false
@@ -428,18 +435,19 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             dailyEnabled = false
             weeklyEnabled = false
             monthlyEnabled = false
-            updateFrequencyButtons()
+            
             repeatDailyButton.backgroundColor = UIColor.systemGray
             repeatWeeklyButton.backgroundColor = UIColor.systemGray
             repeatMonthlyButton.backgroundColor = UIColor.systemGray
             
             frequencyView.isUserInteractionEnabled = false
             isRepeats = false
-            
+            updateFrequencyButtons()
         }
     }
     
     func displayFrequency() {
+        print("Frequency=", myPrescriptions![prescriptionIndex].frequency)
         dailyEnabled = false
         if myPrescriptions![prescriptionIndex].frequency == "Daily" {
             dailyEnabled = true
@@ -448,6 +456,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         } else if myPrescriptions![prescriptionIndex].frequency == "Monthly" {
             monthlyEnabled = true
         }
+        
+        print(dailyEnabled)
+        print(weeklyEnabled)
+        print(monthlyEnabled)
     }
     
     func displayColorButtons(){
@@ -1035,28 +1047,43 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
         if isEditPage {
-             let prescription = self.myPrescriptions![prescriptionIndex]
-             
-            prescription.name = nameTF.text
-            prescription.dose = amountTF.text
-            prescription.notes = noteTF.text
-            prescription.doseTimings = checkedDosageTimes
-            prescription.color = getSelectedColor()
-            prescription.startDate = startDatePickerOutlet.date
-            //TODO: Modify the notifications
-            if(repeatsSwitch.isOn) {
-                prescription.endDate = endDatePickerOutlet.date
-                prescription.frequency = getSelectedFrequency()
-            }
-            //TODO: edit dosage times
-            do {
-                try self.context.save()
-            } catch {
-                     
-            }
-            self.fetchPrescriptions()
+            if isFormValid() {
+                let prescription = self.myPrescriptions![prescriptionIndex]
+                
+               prescription.name = nameTF.text
+               prescription.dose = amountTF.text
+               prescription.notes = noteTF.text
+               addDoseTimesToArray() // Adds what is checked to checkedDosageTimes
+               prescription.doseTimings = checkedDosageTimes
+               print(checkedDosageTimes)
+               prescription.color = getSelectedColor()
+               prescription.startDate = startDatePickerOutlet.date
+               //TODO: Modify the notifications
+               if(repeatsSwitch.isOn) {
+                   prescription.endDate = endDatePickerOutlet.date
+                   prescription.frequency = getSelectedFrequency()
+               }
+               //TODO: edit dosage times
+               
+               
+               
+               
+               do {
+                   try self.context.save()
+               } catch {
+                        
+               }
+               
+               self.fetchPrescriptions()
 
-            performSegue(withIdentifier: "editToViewSegue", sender: true)
+               performSegue(withIdentifier: "editToViewSegue", sender: true)
+                
+            } else {
+                let alert = UIAlertController(title: "Something is Missing", message: "Please make sure all the fields are filled out.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(alert, animated: true)
+            }
+             
         } else {
         if(isFormValid()) {
             // Add Prescription to Core Data
@@ -1127,7 +1154,9 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             
             
         } else {
-            print("Form is not complete")
+            let alert = UIAlertController(title: "Something is Missing", message: "Please make sure all the fields are filled out.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true)
         }
         }
     }
