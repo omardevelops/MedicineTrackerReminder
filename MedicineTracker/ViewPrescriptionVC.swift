@@ -41,7 +41,11 @@ class ViewPrescriptionVC: UIViewController {
     }
         
     @IBAction func backButton(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "viewToPrescriptionsSegue", sender: self)
+        // return to previous viewcontroller
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+        print("just returned")
+        //performSegue(withIdentifier: "viewToPrescriptionsSegue", sender: self)
     }
     
     // MARK: - Navigation

@@ -1163,9 +1163,17 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         if isEditPage {
-            performSegue(withIdentifier: "editToViewSegue", sender: self)
+            // return to previous viewcontroller
+            navigationController?.popViewController(animated: true)
+            dismiss(animated: true, completion: nil)
+            print("just returned")
+            //performSegue(withIdentifier: "editToViewSegue", sender: self)
         } else {
-            performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
+            // return to previous viewcontroller
+            navigationController?.popViewController(animated: true)
+            dismiss(animated: true, completion: nil)
+            print("just returned")
+            //performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
         }
     }
     
