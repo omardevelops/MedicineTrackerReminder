@@ -67,27 +67,73 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         let todayDateAsString = formatter.string(from: Date())
         formatter.dateFormat = "hh:mm a, dd MM y"
         
-        let dateTime1 = formatter.date(from: initialTimings[0]+", "+todayDateAsString)
-        let dateTime2 = formatter.date(from: initialTimings[1]+", "+todayDateAsString)
-        let dateTime3 = formatter.date(from: initialTimings[2]+", "+todayDateAsString)
-        let dateTime4 = formatter.date(from: initialTimings[3]+", "+todayDateAsString)
-        let dateTime5 = formatter.date(from: initialTimings[4]+", "+todayDateAsString)
-        let dateTime6 = formatter.date(from: initialTimings[5]+", "+todayDateAsString)
-        /*let dateTime1 = Date(timeIntervalSinceNow: 28800.0) // 8AM
-        let dateTime2 = Date(timeIntervalSinceNow: 43200.0) // 12PM
-        let dateTime3 = Date(timeIntervalSinceNow: 64800.0) // 6PM
-        let dateTime4 = Date(timeIntervalSinceNow: 75600.0) // 9PM
-        let dateTime5 = Date(timeIntervalSinceNow: 86400.0) // 12AM
-        let dateTime6 = Date(timeIntervalSinceNow: 10800.0) // 3AM*/
+
+        for j in 0 ..< initialTimings.count {
+            allDosageTimes.append(formatter.date(from: initialTimings[j] + ", " + todayDateAsString)!)
+        }
         
-        allDosageTimes.append(dateTime1!)
-        allDosageTimes.append(dateTime2!)
-        allDosageTimes.append(dateTime3!)
-        allDosageTimes.append(dateTime4!)
-        allDosageTimes.append(dateTime5!)
-        allDosageTimes.append(dateTime6!)
+        if isEditPage {
+            print("Editing the dosage times")
+            for i in 0 ..< myPrescriptions![prescriptionIndex].doseTimings!.count {
+                allDosageTimes[i] = myPrescriptions![prescriptionIndex].doseTimings![i]
+                switch(i) {
+                case 0:
+                    morningChecked = true
+                    print("morning")
+                    dosesPerDayCounter += 1
+                    break;
+                case 1:
+                    afternoonChecked = true
+                    dosesPerDayCounter += 1
+                    break;
+                case 2:
+                    eveningChecked = true
+                    dosesPerDayCounter += 1
+                    break;
+                case 3:
+                    fourthChecked = true
+                    dosesPerDayCounter += 1
+                    break;
+                case 4:
+                    fifthChecked = true
+                    dosesPerDayCounter += 1
+                    break;
+                case 5:
+                    sixthChecked = true
+                    dosesPerDayCounter += 1
+                    break;
+                default:
+                    break
+                    
+                
+                }
+            }
+        }
+            
+            /*
+            let dateTime1 = formatter.date(from: initialTimings[0]+", "+todayDateAsString)
+            let dateTime2 = formatter.date(from: initialTimings[1]+", "+todayDateAsString)
+            let dateTime3 = formatter.date(from: initialTimings[2]+", "+todayDateAsString)
+            let dateTime4 = formatter.date(from: initialTimings[3]+", "+todayDateAsString)
+            let dateTime5 = formatter.date(from: initialTimings[4]+", "+todayDateAsString)
+            let dateTime6 = formatter.date(from: initialTimings[5]+", "+todayDateAsString)
+            /*let dateTime1 = Date(timeIntervalSinceNow: 28800.0) // 8AM
+            let dateTime2 = Date(timeIntervalSinceNow: 43200.0) // 12PM
+            let dateTime3 = Date(timeIntervalSinceNow: 64800.0) // 6PM
+            let dateTime4 = Date(timeIntervalSinceNow: 75600.0) // 9PM
+            let dateTime5 = Date(timeIntervalSinceNow: 86400.0) // 12AM
+            let dateTime6 = Date(timeIntervalSinceNow: 10800.0) // 3AM*/
+            
+            allDosageTimes.append(dateTime1!)
+            allDosageTimes.append(dateTime2!)
+            allDosageTimes.append(dateTime3!)
+            allDosageTimes.append(dateTime4!)
+            allDosageTimes.append(dateTime5!)
+            allDosageTimes.append(dateTime6!)
+            
+            print(allDosageTimes)*/
         
-        print(allDosageTimes)
+        
         
     }
     
@@ -200,10 +246,14 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 repeatsSwitch.setOn(true, animated: true)
             }
             startDatePickerOutlet.date = myPrescriptions![prescriptionIndex].startDate!
-            endDatePickerOutlet.date = myPrescriptions![prescriptionIndex].endDate!
+            //endDatePickerOutlet.date = myPrescriptions![prescriptionIndex].endDate!, enddate not used anymore
             displayFrequency()
             updateFrequencyButtons()
+            
             //TODO: Choose dosage times from core data
+            initializeDates()
+            print(allDosageTimes)
+            updateDoseTimeButtons()
         } else {
             navigatorBar.title = "Add Prescription"
             navigatorBar.rightBarButtonItem?.title = "Next"
@@ -1089,31 +1139,11 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             destinationVC.delegate = self // To use customTime protocol to pass values between views
             
             
-            /*Saving the already set values
-            destinationVC.nameTF = nameTF.text ?? ""
-            destinationVC.doseTF = amountTF.text ?? ""
-            destinationVC.isRepeats = isRepeats
-            destinationVC.startDate = startDatePickerOutlet.date
-            destinationVC.endDate = endDatePickerOutlet.date
-            destinationVC.dailyEnabled = dailyEnabled
-            destinationVC.weeklyEnabled = weeklyEnabled
-            destinationVC.monthlyEnabled = monthlyEnabled
-            destinationVC.customEnabled = customEnabled
-            destinationVC.dosesPerDayCounter = dosesPerDayCounter
-            destinationVC.morningChecked = morningChecked
-            destinationVC.afternoonChecked = afternoonChecked
-            destinationVC.eveningChecked = eveningChecked
-            destinationVC.fourthChecked = fourthChecked
-            destinationVC.fifthChecked = fifthChecked
-            destinationVC.sixthChecked = sixthChecked
-            destinationVC.isYellow = isYellow
-            destinationVC.isOrange = isOrange
-            destinationVC.isRed = isRed
-            destinationVC.isBlue = isBlue
-            destinationVC.isGreen = isGreen*/
-            
         } else if segue.identifier == "editToViewSegue" {
-            let destinationVC = segue.destination as! ViewPrescriptionVC
+            let destTabVC = segue.destination as! UITabBarController
+            let destNavVC = destTabVC.viewControllers![0] as! UINavigationController
+            let destinationVC = destNavVC.topViewController as! MyPrescriptionsVC
+            
             destinationVC.prescriptionIndex = self.prescriptionIndex
             destinationVC.myPrescriptions = self.myPrescriptions
         }
