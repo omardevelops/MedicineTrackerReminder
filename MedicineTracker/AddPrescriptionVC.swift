@@ -1097,7 +1097,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             newPrescription!.color = getSelectedColor()
             newPrescription!.startDate = startDatePickerOutlet.date
             newPrescription!.notificationType = false // Not alarm
-            
+            /*
             let calendar = Calendar.current
             let date = Date()
             let tmrw = date.addingTimeInterval(86400)
@@ -1115,7 +1115,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 // LATER
                 newPrescription!.whatDay = 3
         
-            }
+            }*/
             
             if(repeatsSwitch.isOn) {
                 newPrescription!.endDate = endDatePickerOutlet.date

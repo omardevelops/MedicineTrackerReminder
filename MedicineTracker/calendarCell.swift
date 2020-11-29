@@ -12,6 +12,12 @@ class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDa
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var myPrescriptions : [Prescription]?
+
+    var eachPreCell = [Prescription]()
+    var IndexForCell:Int = 0
+    var cellArray = [[Prescription]]()
+    var count:Int = 0
+    var IndexArr:[Int] = []
     
 
     
@@ -21,10 +27,49 @@ class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDa
     
 
     
-    public func configure(datalabel: String){
+    public func configure(datalabel: String,  indexOfTableCell: Int){
         //TODO: Configure Image and Color
         
+        let theCell = datalabel
+        let date = Date()
+        let dateF = DateFormatter()
+        let tomrw = date.addingTimeInterval(86400)
+        let calendar = Calendar.current
+        dateF.dateFormat = "MMM d, yyyy"
+        
+        for i in 0...myPrescriptions!.count-1{
+            
+            if (theCell == "Today") && (calendar.isDateInToday(myPrescriptions![i].startDate!)){
+                eachPreCell.append(myPrescriptions![i])
+                
+            }else if (theCell == "Tomorrow") && (calendar.isDateInTomorrow(myPrescriptions![i].startDate!)){
+                eachPreCell.append(myPrescriptions![i])
+
+            }else if (dateF.string(from: myPrescriptions![i].startDate!)) == (theCell){
+                eachPreCell.append(myPrescriptions![i])
+            }
+            
+            
+            
+            /*
+            
+           
+            if (( dateF.string(from: myPrescriptions![i].startDate!)) == dateF.string(from: date)) && (theCell == "Today") {
+                eachPreCell.append(myPrescriptions![i])
+                print("hi")
+                
+            }else if ( dateF.string(from: myPrescriptions![i].startDate!)) == dateF.string(from: tomrw) && (theCell == "Tomorow") {
+                eachPreCell.append(myPrescriptions![i])
+            }else if (dateF.string(from: myPrescriptions![i].startDate!)) == (theCell){
+                eachPreCell.append(myPrescriptions![i])
+            }
+    */
+        }
+        print(eachPreCell)
+        cellArray.append(eachPreCell)
+        print(cellArray)
         dateLabel.text = datalabel
+        IndexArr.append(indexOfTableCell)
         
     }
     
@@ -54,15 +99,14 @@ class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return myPrescriptions?.count ?? 0
+        return cellArray[(0)].count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pCalendarCollectionCell", for: indexPath) as! pCalendarCollectionCell
         
            //cell.editB.tag = indexPath.row
            //cell.editB.addTarget(self, action: #selector(editCell), for: .touchUpInside)
-        
-        let prescription = myPrescriptions![indexPath.row]
+        let prescription = cellArray[(0)][indexPath.row]
         cell.configure(with: prescription.name ?? "null",color: prescription.color ?? UIColor.white, dose: prescription.dose ?? " ")
         return cell
     }
@@ -72,7 +116,6 @@ class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDa
     func fetchPrescriptions() {
         do {
             self.myPrescriptions = try self.context.fetch(Prescription.fetchRequest())
-            
             DispatchQueue.main.async {
                 // Reload CollectionView
                 self.pCalendarCollectionView.reloadData()
