@@ -19,9 +19,9 @@ class ViewPrescriptionVC: UIViewController {
     
     var myPrescriptions : [Prescription]?
     var prescriptionIndex = 0
+    var isEditPage = true
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(myPrescriptions)
         nameLabel.text = myPrescriptions![prescriptionIndex].name
         dosageLabel.text = myPrescriptions![prescriptionIndex].dose
         noteLabel.text = myPrescriptions![prescriptionIndex].notes
@@ -49,10 +49,11 @@ class ViewPrescriptionVC: UIViewController {
     //In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "viewToEditSegue" {
-            let destinationVC = segue.destination as! EditPrescriptionVC
+            let destinationNavVC = segue.destination as! UINavigationController
+            let destinationVC = destinationNavVC.topViewController as! AddPrescriptionVC
             destinationVC.prescriptionIndex = self.prescriptionIndex
             destinationVC.myPrescriptions = self.myPrescriptions
-            
+            destinationVC.isEditPage = self.isEditPage
         }
     }
 }

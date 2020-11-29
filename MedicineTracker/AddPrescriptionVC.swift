@@ -47,7 +47,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var prescriptionArray : [Prescription]?
     
     var newPrescription : Prescription?
-    
+    var myPrescriptions : [Prescription]?
+    var prescriptionIndex = 0
     var notificationCount : Int?
     
     var allDosageTimes : [Date] = []
@@ -66,27 +67,73 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         let todayDateAsString = formatter.string(from: Date())
         formatter.dateFormat = "hh:mm a, dd MM y"
         
-        let dateTime1 = formatter.date(from: initialTimings[0]+", "+todayDateAsString)
-        let dateTime2 = formatter.date(from: initialTimings[1]+", "+todayDateAsString)
-        let dateTime3 = formatter.date(from: initialTimings[2]+", "+todayDateAsString)
-        let dateTime4 = formatter.date(from: initialTimings[3]+", "+todayDateAsString)
-        let dateTime5 = formatter.date(from: initialTimings[4]+", "+todayDateAsString)
-        let dateTime6 = formatter.date(from: initialTimings[5]+", "+todayDateAsString)
-        /*let dateTime1 = Date(timeIntervalSinceNow: 28800.0) // 8AM
-        let dateTime2 = Date(timeIntervalSinceNow: 43200.0) // 12PM
-        let dateTime3 = Date(timeIntervalSinceNow: 64800.0) // 6PM
-        let dateTime4 = Date(timeIntervalSinceNow: 75600.0) // 9PM
-        let dateTime5 = Date(timeIntervalSinceNow: 86400.0) // 12AM
-        let dateTime6 = Date(timeIntervalSinceNow: 10800.0) // 3AM*/
+
+        for j in 0 ..< initialTimings.count {
+            allDosageTimes.append(formatter.date(from: initialTimings[j] + ", " + todayDateAsString)!)
+        }
         
-        allDosageTimes.append(dateTime1!)
-        allDosageTimes.append(dateTime2!)
-        allDosageTimes.append(dateTime3!)
-        allDosageTimes.append(dateTime4!)
-        allDosageTimes.append(dateTime5!)
-        allDosageTimes.append(dateTime6!)
+        if isEditPage {
+            print("Editing the dosage times")
+            for i in 0 ..< myPrescriptions![prescriptionIndex].doseTimings!.count {
+                allDosageTimes[i] = myPrescriptions![prescriptionIndex].doseTimings![i]
+                switch(i) {
+                case 0:
+                    morningChecked = true
+                    print("morning")
+                    dosesPerDayCounter += 1
+                    break;
+                case 1:
+                    afternoonChecked = true
+                    dosesPerDayCounter += 1
+                    break;
+                case 2:
+                    eveningChecked = true
+                    dosesPerDayCounter += 1
+                    break;
+                case 3:
+                    fourthChecked = true
+                    dosesPerDayCounter += 1
+                    break;
+                case 4:
+                    fifthChecked = true
+                    dosesPerDayCounter += 1
+                    break;
+                case 5:
+                    sixthChecked = true
+                    dosesPerDayCounter += 1
+                    break;
+                default:
+                    break
+                    
+                
+                }
+            }
+        }
+            
+            /*
+            let dateTime1 = formatter.date(from: initialTimings[0]+", "+todayDateAsString)
+            let dateTime2 = formatter.date(from: initialTimings[1]+", "+todayDateAsString)
+            let dateTime3 = formatter.date(from: initialTimings[2]+", "+todayDateAsString)
+            let dateTime4 = formatter.date(from: initialTimings[3]+", "+todayDateAsString)
+            let dateTime5 = formatter.date(from: initialTimings[4]+", "+todayDateAsString)
+            let dateTime6 = formatter.date(from: initialTimings[5]+", "+todayDateAsString)
+            /*let dateTime1 = Date(timeIntervalSinceNow: 28800.0) // 8AM
+            let dateTime2 = Date(timeIntervalSinceNow: 43200.0) // 12PM
+            let dateTime3 = Date(timeIntervalSinceNow: 64800.0) // 6PM
+            let dateTime4 = Date(timeIntervalSinceNow: 75600.0) // 9PM
+            let dateTime5 = Date(timeIntervalSinceNow: 86400.0) // 12AM
+            let dateTime6 = Date(timeIntervalSinceNow: 10800.0) // 3AM*/
+            
+            allDosageTimes.append(dateTime1!)
+            allDosageTimes.append(dateTime2!)
+            allDosageTimes.append(dateTime3!)
+            allDosageTimes.append(dateTime4!)
+            allDosageTimes.append(dateTime5!)
+            allDosageTimes.append(dateTime6!)
+            
+            print(allDosageTimes)*/
         
-        print(allDosageTimes)
+        
         
     }
     
@@ -137,6 +184,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var redBG: UIButton!
     @IBOutlet weak var orangeBG: UIButton!
     
+    @IBOutlet weak var navigatorBar: UINavigationItem!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
+    
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
     // MARK: View Variables
     private var startDatePicker : UIDatePicker?
     private var endDatePicker : UIDatePicker?
@@ -159,6 +210,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var isRed : Bool = false
     var isBlue : Bool = false
     var isGreen : Bool = false
+    var isEditPage : Bool = false
     
     var sentDate : Date? = nil
     var sentIndex : Int = 0
@@ -173,31 +225,65 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //start date
-        initialDate = startDatePickerOutlet.date
-        initializeDates()
-        updateColorButtons() // Initialize the color
-        repeatsSwitch.isOn = isRepeats
-        nameTF.text = receivingName
-        amountTF.text = receivingDose
-        startDatePickerOutlet.date = receivingStartDate
-        endDatePickerOutlet.date = receivingEndDate
-
-        
-        updateRepeatsSwitchComponents()
-        updateDoseTimeButtons()
-        
-        //remind me
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        
-        if remindTF != nil {
-            remindTF.inputView = pickerView
-            remindTF.textAlignment = .center
-            remindTF.placeholder = "X minutes before"
-        }
+        itsEditPage()
     }
     
+    func itsEditPage() {
+        if isEditPage {
+            navigatorBar.title = "Edit Prescription"
+            navigatorBar.rightBarButtonItem?.title = "Edit"
+            navigatorBar.rightBarButtonItems = [nextButton, deleteButton]
+            deleteButton.isEnabled = true
+            deleteButton.tintColor = UIColor.red
+            //navigatorBar.rightBarButtonItem?.title
+            nameTF.text = myPrescriptions![prescriptionIndex].name
+            amountTF.text = myPrescriptions![prescriptionIndex].dose
+            displayColorButtons()
+            updateColorButtons()
+            if myPrescriptions![prescriptionIndex].endDate == nil {
+                repeatsSwitch.setOn(false, animated: true)
+            } else {
+                repeatsSwitch.setOn(true, animated: true)
+            }
+            startDatePickerOutlet.date = myPrescriptions![prescriptionIndex].startDate!
+            //endDatePickerOutlet.date = myPrescriptions![prescriptionIndex].endDate!, enddate not used anymore
+            displayFrequency()
+            updateFrequencyButtons()
+            
+            //TODO: Choose dosage times from core data
+            initializeDates()
+            print(allDosageTimes)
+            updateDoseTimeButtons()
+        } else {
+            navigatorBar.title = "Add Prescription"
+            navigatorBar.rightBarButtonItem?.title = "Next"
+            navigatorBar.rightBarButtonItems = [nextButton, deleteButton]
+            deleteButton.isEnabled = false
+            deleteButton.tintColor = UIColor.clear
+            initialDate = startDatePickerOutlet.date
+            initializeDates()
+            updateColorButtons() // Initialize the color
+            repeatsSwitch.isOn = isRepeats
+            nameTF.text = receivingName
+            amountTF.text = receivingDose
+            startDatePickerOutlet.date = receivingStartDate
+            endDatePickerOutlet.date = receivingEndDate
+
+            
+            updateRepeatsSwitchComponents()
+            updateDoseTimeButtons()
+            
+            //remind me
+            pickerView.delegate = self
+            pickerView.dataSource = self
+            
+            if remindTF != nil {
+                remindTF.inputView = pickerView
+                remindTF.textAlignment = .center
+                remindTF.placeholder = "X minutes before"
+            }
+        }
+    }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
         view.endEditing(true)
@@ -350,6 +436,32 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             frequencyView.isUserInteractionEnabled = false
             isRepeats = false
             
+        }
+    }
+    
+    func displayFrequency() {
+        dailyEnabled = false
+        if myPrescriptions![prescriptionIndex].frequency == "Daily" {
+            dailyEnabled = true
+        } else if myPrescriptions![prescriptionIndex].frequency == "Weekly" {
+            weeklyEnabled = true
+        } else if myPrescriptions![prescriptionIndex].frequency == "Monthly" {
+            monthlyEnabled = true
+        }
+    }
+    
+    func displayColorButtons(){
+        isYellow = false
+        if myPrescriptions![prescriptionIndex].color == yellowBG.backgroundColor ?? UIColor.systemBlue {
+            isYellow = true
+        } else if myPrescriptions![prescriptionIndex].color == orangeBG.backgroundColor ?? UIColor.systemBlue {
+            isOrange = true
+        } else if myPrescriptions![prescriptionIndex].color == redBG.backgroundColor ?? UIColor.systemBlue {
+            isRed = true
+        } else if myPrescriptions![prescriptionIndex].color == blueBG.backgroundColor ?? UIColor.systemBlue {
+            isBlue = true
+        } else if myPrescriptions![prescriptionIndex].color == greenBG.backgroundColor ?? UIColor.systemBlue {
+            isGreen = true
         }
     }
     
@@ -897,9 +1009,55 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
+    func fetchPrescriptions() {
+        do {
+            self.myPrescriptions = try self.context.fetch(Prescription.fetchRequest())
+        }
+        catch {
+            // TODO: Handle Error Here
+        }
+    }
+    
     // MARK: - Navigation
     
+    
+    @IBAction func deleteButton(_ sender: UIBarButtonItem) {
+        let removePrescription = self.myPrescriptions![prescriptionIndex]
+        self.context.delete(removePrescription) //removes the swiped shop
+        do {
+            try self.context.save()
+        }catch{
+            
+        }
+        self.fetchPrescriptions()
+        performSegue(withIdentifier: "backToPrescriptionsSegue", sender: true)
+    }
+    
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
+        if isEditPage {
+             let prescription = self.myPrescriptions![prescriptionIndex]
+             
+            prescription.name = nameTF.text
+            prescription.dose = amountTF.text
+            prescription.notes = noteTF.text
+            prescription.doseTimings = checkedDosageTimes
+            prescription.color = getSelectedColor()
+            prescription.startDate = startDatePickerOutlet.date
+            //TODO: Modify the notifications
+            if(repeatsSwitch.isOn) {
+                prescription.endDate = endDatePickerOutlet.date
+                prescription.frequency = getSelectedFrequency()
+            }
+            //TODO: edit dosage times
+            do {
+                try self.context.save()
+            } catch {
+                     
+            }
+            self.fetchPrescriptions()
+
+            performSegue(withIdentifier: "editToViewSegue", sender: true)
+        } else {
         if(isFormValid()) {
             // Add Prescription to Core Data
             newPrescription = Prescription(context: self.context)
@@ -965,14 +1123,21 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             setNotifications()
             
             
-            
                 performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
             
             
         } else {
             print("Form is not complete")
         }
-        
+        }
+    }
+    
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
+        if isEditPage {
+            performSegue(withIdentifier: "editToViewSegue", sender: self)
+        } else {
+            performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
+        }
     }
     
     // MARK: Prepare for segue
@@ -993,29 +1158,13 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             destinationVC.delegate = self // To use customTime protocol to pass values between views
             
             
-            /*Saving the already set values
-            destinationVC.nameTF = nameTF.text ?? ""
-            destinationVC.doseTF = amountTF.text ?? ""
-            destinationVC.isRepeats = isRepeats
-            destinationVC.startDate = startDatePickerOutlet.date
-            destinationVC.endDate = endDatePickerOutlet.date
-            destinationVC.dailyEnabled = dailyEnabled
-            destinationVC.weeklyEnabled = weeklyEnabled
-            destinationVC.monthlyEnabled = monthlyEnabled
-            destinationVC.customEnabled = customEnabled
-            destinationVC.dosesPerDayCounter = dosesPerDayCounter
-            destinationVC.morningChecked = morningChecked
-            destinationVC.afternoonChecked = afternoonChecked
-            destinationVC.eveningChecked = eveningChecked
-            destinationVC.fourthChecked = fourthChecked
-            destinationVC.fifthChecked = fifthChecked
-            destinationVC.sixthChecked = sixthChecked
-            destinationVC.isYellow = isYellow
-            destinationVC.isOrange = isOrange
-            destinationVC.isRed = isRed
-            destinationVC.isBlue = isBlue
-            destinationVC.isGreen = isGreen*/
+        } else if segue.identifier == "editToViewSegue" {
+            let destTabVC = segue.destination as! UITabBarController
+            let destNavVC = destTabVC.viewControllers![0] as! UINavigationController
+            let destinationVC = destNavVC.topViewController as! MyPrescriptionsVC
             
+            destinationVC.prescriptionIndex = self.prescriptionIndex
+            destinationVC.myPrescriptions = self.myPrescriptions
         }
     }
     
