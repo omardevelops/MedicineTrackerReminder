@@ -973,14 +973,16 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     // Checks if form is valid and ready to be used as a Prescription object. Checks if required fields are empty or not.
     func isFormValid() -> Bool {
         let startDate : Date = startDatePickerOutlet.date
-        let interval : TimeInterval
+        let endDate : Date = endDatePickerOutlet.date
+        let intervalFromToday : TimeInterval
+        let intervalFromEndDate : TimeInterval
         if(nameTF.hasText && amountTF.hasText && isColorPicked() && isTimePicked()) {
-            interval = startDate.timeIntervalSince(initialDate!)
-            
-            if(interval > -80000) {
+            intervalFromToday = startDate.timeIntervalSince(initialDate!)
+            intervalFromEndDate = startDate.timeIntervalSince(endDate)
+            if intervalFromToday > -80000 && intervalFromEndDate < -1 {
                     return true
                 } else {
-                    let alert = UIAlertController(title: String("Date Error"), message: String("Start Date cannot be in the past!"), preferredStyle: .alert)
+                    let alert = UIAlertController(title: String("Date Error"), message: String("Start Date cannot be in the past. End Date cannot be before Start Date."), preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true)
                     return false

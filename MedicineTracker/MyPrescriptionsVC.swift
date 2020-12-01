@@ -19,9 +19,11 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    //go to edit view func
+    // MARK: Edit Cell
+    // NEEDS FIXING
     @objc func editCell() {
         performSegue(withIdentifier: "goToEdit", sender: self)
+        
     }
     
     
@@ -123,6 +125,10 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
             destinationVC.prescriptionIndex = self.prescriptionIndex
             destinationVC.myPrescriptions = self.myPrescriptions
             
+        } else if segue.identifier == "goToEdit" {
+            let destinationVC = segue.destination as! AddPrescriptionVC
+            destinationVC.prescriptionIndex = self.prescriptionIndex
+            destinationVC.isEditPage = true
         }
     }
     

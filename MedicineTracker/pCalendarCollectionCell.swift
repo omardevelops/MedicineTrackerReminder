@@ -14,7 +14,7 @@ class pCalendarCollectionCell: UICollectionViewCell {
     @IBOutlet weak var editB: UIButton!
     
     @objc func editCell(_ sender: UIButton) {
-        print("edit")
+        print(pCalendarCollectionCell.index(self))
      /*   MyPrescriptionsVC.performSegueWithIdentifier("showActionPreview", sender: nil)*/
     }
     @IBOutlet weak var viewO: UIView!
