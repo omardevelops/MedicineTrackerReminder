@@ -58,6 +58,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     var initialDate : Date?
     
+    var viewFirstTime : Bool = true
+    
     
     func initializeDates() {
         // TIME ZONE IS GMT FOR THIS
@@ -72,7 +74,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             allDosageTimes.append(formatter.date(from: initialTimings[j] + ", " + todayDateAsString)!)
         }
         
-        if isEditPage {
+        if isEditPage && viewFirstTime {
+            viewFirstTime = false
             print("Editing the dosage times")
             for i in 0 ..< myPrescriptions![prescriptionIndex].doseTimings!.count {
                 allDosageTimes[i] = myPrescriptions![prescriptionIndex].doseTimings![i]
@@ -105,7 +108,6 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 default:
                     break
                     
-                
                 }
             }
         }
@@ -273,7 +275,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             amountTF.text = receivingDose
             startDatePickerOutlet.date = receivingStartDate
             endDatePickerOutlet.date = receivingEndDate
-
+            
             
             updateRepeatsSwitchComponents()
             updateDoseTimeButtons()
@@ -792,31 +794,36 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     // MARK: Set Notifications
     // This function fires off the notifications based on the date and dosage times, and enddate and frequency if it is a repeating reminder
-    func setNotifications() {
+    func isNotificationsAuthorized() -> Bool {
+        var isAuthorized = false
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {success, error in
             if success {
                 // schedule notifications
                 print("Success notification auth")
-                self.scheduleNotifications()
+                isAuthorized = true
             } else if error != nil {
                 print("Notification auth ERROR")
-                
+                //return false
             } else {
                 print("Notifications not authorized")
-                
+                //return false
             }
         })
+        
+        if isAuthorized {
+            return true
+        } else {
+            return false
+        }
         
         
     }
     
-    func scheduleNotifications() {
-        // Initialize identifiers array
-        newPrescription!.identifier = []
+    func scheduleNotifications(_ newPrescription : Prescription?) {
         let frequency = newPrescription!.frequency
         
         let key = "notificationIdentifierCounter"
-        notificationCount = UserDefaults.standard.integer(forKey: key)
+        notificationCount = UserDefaults.standard.integer(forKey: key) + 1
         var identifier = String(notificationCount!)
         
         print("I am in scheduleNotifications()")
@@ -841,6 +848,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 content.body = identifier
                 
                 newPrescription!.identifier!.append(identifier)
+                print(newPrescription!.identifier!)
                 
                 notificationCount! += 1
                 identifier = String(notificationCount!)
@@ -862,6 +870,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 content.body = identifier
                 
                 newPrescription!.identifier!.append(identifier)
+                print(newPrescription!.identifier!)
                 
                 notificationCount! += 1
                 identifier = String(notificationCount!)
@@ -883,6 +892,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 content.body = identifier
                 
                 newPrescription!.identifier!.append(identifier)
+                print(newPrescription!.identifier!)
                 
                 notificationCount! += 1
                 identifier = String(notificationCount!)
@@ -904,6 +914,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 content.body = identifier
                 
                 newPrescription!.identifier!.append(identifier)
+                print(newPrescription!.identifier!)
                 
                 notificationCount! += 1
                 identifier = String(notificationCount!)
@@ -924,7 +935,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
         //UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["notif"])
         
-        
+        print(newPrescription!.identifier!)
         
         
     }
@@ -1036,20 +1047,32 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     
     @IBAction func deleteButton(_ sender: UIBarButtonItem) {
-        let removePrescription = self.myPrescriptions![prescriptionIndex]
-        self.context.delete(removePrescription) //removes the swiped shop
-        do {
-            try self.context.save()
-        }catch{
+        let alert = UIAlertController(title: "Delete this prescription?", message: "You will not be able to recover it.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action in
+            // Unschedule any notifications created for this prescription
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: self.myPrescriptions![self.prescriptionIndex].identifier!)
             
-        }
-        self.fetchPrescriptions()
-        performSegue(withIdentifier: "backToPrescriptionsSegue", sender: true)
+            
+            let removePrescription = self.myPrescriptions![self.prescriptionIndex]
+            self.context.delete(removePrescription)
+            do {
+                try self.context.save()
+            }catch{
+                
+            }
+            self.fetchPrescriptions()
+            self.performSegue(withIdentifier: "backToPrescriptionsSegue", sender: true)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+        
+        present(alert, animated: true)
+        
     }
     
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
         if isEditPage {
             if isFormValid() {
+                
                 let prescription = self.myPrescriptions![prescriptionIndex]
                 
                prescription.name = nameTF.text
@@ -1062,13 +1085,24 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                prescription.startDate = startDatePickerOutlet.date
                //TODO: Modify the notifications
                if(repeatsSwitch.isOn) {
+                   isRepeats = true
                    prescription.endDate = endDatePickerOutlet.date
                    prescription.frequency = getSelectedFrequency()
                }
+                
+                if true {
+                    print("Hey")
+                    // Unschedule any notifications created for this prescription by looking at the prescription's identifiers
+                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: prescription.identifier!)
+                    // Re-intialize the identifiers
+                    prescription.identifier = []
+                    print(prescription.identifier!)
+                    scheduleNotifications(prescription)
+                    print(prescription.identifier!, "It works")
+                } else {
+                    print("Notifications unauthorized. Cannot add prescription.")
+                }
                //TODO: edit dosage times
-               
-               
-               
                
                do {
                    try self.context.save()
@@ -1099,27 +1133,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             newPrescription!.color = getSelectedColor()
             newPrescription!.startDate = startDatePickerOutlet.date
             newPrescription!.notificationType = false // Not alarm
-            /*
-            let calendar = Calendar.current
-            let date = Date()
-            let tmrw = date.addingTimeInterval(86400)
-            let week = date.addingTimeInterval(604800)
-            if (calendar.component(.day, from: date) == (calendar.component(.day, from: newPrescription!.startDate!))){
-                // is today
-                newPrescription!.whatDay = 0
-            }else if(calendar.component(.day, from: newPrescription!.startDate!) == (calendar.component(.day, from: tmrw))){
-                    //is tmrw
-                newPrescription!.whatDay = 1
-            }else if(calendar.component(.day, from: newPrescription!.startDate!)) < (calendar.component(.day, from: week)){
-                    // is later this week
-                newPrescription!.whatDay = 2
-            }else{
-                // LATER
-                newPrescription!.whatDay = 3
-        
-            }*/
+            // Initialize identifiers array
+            newPrescription!.identifier = []
             
-            if(repeatsSwitch.isOn) {
+            if repeatsSwitch.isOn {
                 newPrescription!.endDate = endDatePickerOutlet.date
                 newPrescription!.frequency = getSelectedFrequency()
             }
@@ -1140,19 +1157,27 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             
             print(checkedDosageTimes)
             
+            if true {
+                print("Hey")
+                print(newPrescription!.identifier!)
+                scheduleNotifications(newPrescription)
+                print(newPrescription!.identifier!, "It works")
                 prescriptionArray!.append(newPrescription!)
+                
                 // Save data
-                do {
-                    try self.context.save()
-                }
-                catch {
-                    // TODO: Handle error
-                }
+            do {
+                try self.context.save()
+            }
+            catch {
+                // TODO: Handle error
+            }
             
-            setNotifications()
+            performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
+            } else {
+                print("Notifications unauthorized. Cannot add prescription.")
+            }
             
             
-                performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
             
             
         } else {
