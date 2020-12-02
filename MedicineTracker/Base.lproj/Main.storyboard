@@ -68,20 +68,178 @@
         <!--Settings-->
         <scene sceneID="JwO-Ab-R9K">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iET-oL-CUI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="haa-hL-XAQ" customClass="SettingsVC" customModule="MedicineTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Uy-2a-COG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TAp-lj-6Zu">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="7aE-IF-OTb"/>
+                                </constraints>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="25"/>
+                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Settings" largeTitleDisplayMode="always" id="ge3-RZ-W6I"/>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personalization Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MkL-qm-NdH">
+                                <rect key="frame" x="20" y="112" width="301" height="31"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52G-yL-ptm">
+                                <rect key="frame" x="20" y="182" width="108.5" height="26"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Dosage Times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sv-Ko-Dh3">
+                                <rect key="frame" x="20" y="289" width="216.5" height="26"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FUn-bm-wb5">
+                                <rect key="frame" x="20" y="216" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y6r-9Y-UhJ">
+                                <rect key="frame" x="244.5" y="289" width="25" height="24"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ul7-Rf-Fhm">
+                                <rect key="frame" x="30" y="734" width="354" height="37"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                <state key="normal" title="Re-authorize Notification Permissions"/>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4Mm-9P-Lxa">
+                                <rect key="frame" x="55" y="355" width="304" height="298"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVq-2X-0YE">
+                                        <rect key="frame" x="0.0" y="0.0" width="304" height="33"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <state key="normal" title="Preset 1">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iI0-1o-N6h">
+                                        <rect key="frame" x="0.0" y="53" width="304" height="33"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <state key="normal" title="Preset 2">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcL-KS-pwj">
+                                        <rect key="frame" x="0.0" y="106" width="304" height="33"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <state key="normal" title="Preset 3">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejD-mH-APd">
+                                        <rect key="frame" x="0.0" y="159" width="304" height="33"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <state key="normal" title="Preset 4">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INm-mY-tWf">
+                                        <rect key="frame" x="0.0" y="212" width="304" height="33"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <state key="normal" title="Preset 5">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chB-gb-Ejh">
+                                        <rect key="frame" x="0.0" y="265" width="304" height="33"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <state key="normal" title="Preset 6">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="aIR-hB-Cmu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9sv-Ko-Dh3" firstAttribute="top" secondItem="Y6r-9Y-UhJ" secondAttribute="top" id="1jv-xn-9uG"/>
+                            <constraint firstItem="9sv-Ko-Dh3" firstAttribute="leading" secondItem="7Uy-2a-COG" secondAttribute="leadingMargin" id="5TP-S7-PT5"/>
+                            <constraint firstItem="MkL-qm-NdH" firstAttribute="top" secondItem="TAp-lj-6Zu" secondAttribute="bottom" constant="24" id="7P8-rx-VSq"/>
+                            <constraint firstItem="4Mm-9P-Lxa" firstAttribute="leading" secondItem="aIR-hB-Cmu" secondAttribute="leading" constant="55" id="AI4-iD-5Ql"/>
+                            <constraint firstItem="TAp-lj-6Zu" firstAttribute="leading" secondItem="aIR-hB-Cmu" secondAttribute="leading" id="DUx-bC-ZER"/>
+                            <constraint firstItem="TAp-lj-6Zu" firstAttribute="top" secondItem="aIR-hB-Cmu" secondAttribute="top" id="DwZ-Vg-rEz"/>
+                            <constraint firstItem="9sv-Ko-Dh3" firstAttribute="top" secondItem="FUn-bm-wb5" secondAttribute="bottom" constant="39" id="FUT-dn-Tw2"/>
+                            <constraint firstItem="Y6r-9Y-UhJ" firstAttribute="leading" secondItem="9sv-Ko-Dh3" secondAttribute="trailing" constant="8" id="FxF-ce-oDD"/>
+                            <constraint firstItem="9sv-Ko-Dh3" firstAttribute="leading" secondItem="FUn-bm-wb5" secondAttribute="leading" id="HDB-nT-yZw"/>
+                            <constraint firstItem="9sv-Ko-Dh3" firstAttribute="leading" secondItem="MkL-qm-NdH" secondAttribute="leading" id="IyK-ra-XhT"/>
+                            <constraint firstItem="4Mm-9P-Lxa" firstAttribute="centerX" secondItem="7Uy-2a-COG" secondAttribute="centerX" id="L5M-vt-frl"/>
+                            <constraint firstItem="FUn-bm-wb5" firstAttribute="top" secondItem="52G-yL-ptm" secondAttribute="bottom" constant="8" id="NC5-aA-zf7"/>
+                            <constraint firstItem="4Mm-9P-Lxa" firstAttribute="centerX" secondItem="FUn-bm-wb5" secondAttribute="centerX" id="Qag-as-pGY"/>
+                            <constraint firstItem="ul7-Rf-Fhm" firstAttribute="centerX" secondItem="7Uy-2a-COG" secondAttribute="centerX" id="UID-Oc-3wP"/>
+                            <constraint firstItem="9sv-Ko-Dh3" firstAttribute="leading" secondItem="52G-yL-ptm" secondAttribute="leading" id="chZ-9H-M5M"/>
+                            <constraint firstItem="ul7-Rf-Fhm" firstAttribute="top" secondItem="4Mm-9P-Lxa" secondAttribute="bottom" constant="81" id="eIS-oE-3EW"/>
+                            <constraint firstItem="aIR-hB-Cmu" firstAttribute="trailing" secondItem="4Mm-9P-Lxa" secondAttribute="trailing" constant="55" id="f9t-EU-YJB"/>
+                            <constraint firstItem="4Mm-9P-Lxa" firstAttribute="top" secondItem="9sv-Ko-Dh3" secondAttribute="bottom" constant="40" id="mEn-Qt-mUD"/>
+                            <constraint firstItem="4Mm-9P-Lxa" firstAttribute="centerX" secondItem="TAp-lj-6Zu" secondAttribute="centerX" id="oS0-ab-A4I"/>
+                            <constraint firstItem="4Mm-9P-Lxa" firstAttribute="top" secondItem="7Uy-2a-COG" secondAttribute="top" constant="355" id="uBD-ma-gth"/>
+                            <constraint firstItem="4Mm-9P-Lxa" firstAttribute="centerX" secondItem="ul7-Rf-Fhm" secondAttribute="centerX" id="zCa-1b-RyC"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="8eA-UF-jC3">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iET-oL-CUI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2494" y="-320"/>
+            <point key="canvasLocation" x="2492.753623188406" y="-320.08928571428572"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="wg7-f3-ORb">
@@ -746,6 +904,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="peK-35-msY">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="25"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1024,7 +1185,7 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Have to take before eating, or you die." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IE1-ZP-ODF">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Have to take before eating." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IE1-ZP-ODF">
                                         <rect key="frame" x="47" y="459" width="323" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1071,6 +1232,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bss-AJ-Ogf">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="25"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1084,7 +1248,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="11l-Vj-FmI"/>
-        <segue reference="ojc-T4-Jb5"/>
+        <segue reference="u7Y-xg-7CH"/>
         <segue reference="rDD-yp-7h2"/>
         <segue reference="GlV-86-TCK"/>
     </inferredMetricsTieBreakers>
