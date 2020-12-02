@@ -31,9 +31,9 @@ class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDa
         //TODO: Configure Image and Color
         
         let theCell = datalabel
-        let date = Date()
+        //let date = Date()
         let dateF = DateFormatter()
-        let tomrw = date.addingTimeInterval(86400)
+        //let tomrw = date.addingTimeInterval(86400)
         let calendar = Calendar.current
         dateF.dateFormat = "MMM d, yyyy"
         
@@ -49,25 +49,11 @@ class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDa
                 eachPreCell.append(myPrescriptions![i])
             }
             
-            
-            
-            /*
-            
-           
-            if (( dateF.string(from: myPrescriptions![i].startDate!)) == dateF.string(from: date)) && (theCell == "Today") {
-                eachPreCell.append(myPrescriptions![i])
-                print("hi")
-                
-            }else if ( dateF.string(from: myPrescriptions![i].startDate!)) == dateF.string(from: tomrw) && (theCell == "Tomorow") {
-                eachPreCell.append(myPrescriptions![i])
-            }else if (dateF.string(from: myPrescriptions![i].startDate!)) == (theCell){
-                eachPreCell.append(myPrescriptions![i])
-            }
-    */
+    
         }
-        print(eachPreCell)
+        //print(eachPreCell)
         cellArray.append(eachPreCell)
-        print(cellArray)
+        //print(cellArray)
         dateLabel.text = datalabel
         IndexArr.append(indexOfTableCell)
         
@@ -87,6 +73,14 @@ class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDa
         pCalendarCollectionView.register(pCalendarCollectionCell.nib(), forCellWithReuseIdentifier: "pCalendarCollectionCell")
         // Initialization code
         fetchPrescriptions()
+    }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        isHidden = false
+        isSelected = false
+        isHighlighted = false
+        
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

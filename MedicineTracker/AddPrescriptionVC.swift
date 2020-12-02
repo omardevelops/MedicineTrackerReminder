@@ -993,11 +993,18 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             if intervalFromToday > -80000 && intervalFromEndDate < -1 {
                     return true
                 } else {
+                    ///Does not show error when repeat is off
+                    if (repeatsSwitch.isOn == true){
                     let alert = UIAlertController(title: String("Date Error"), message: String("Start Date cannot be in the past. End Date cannot be before Start Date."), preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true)
-                    return false
+                    
+                        return false
+                    }else{
+                        return true
+                    }
                 }
+                
         } else {
             let alert = UIAlertController(title: String("Incomplete Form"), message: String("Please check for missing information. Example: Make sure you have at least one dosage time selected."), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

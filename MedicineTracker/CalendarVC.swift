@@ -54,10 +54,10 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             //let dates:[Date] = []
             if myPrescriptions!.count > 0 {
                 
-                let calendar = Calendar.current
+               // let calendar = Calendar.current
                 let date = Date()
                 let tomrw = date.addingTimeInterval(86400)
-                let week = date.addingTimeInterval(604800)
+                //let week = date.addingTimeInterval(604800)
                 
                 for i in 0...myPrescriptions!.count-1 {
                 
@@ -105,7 +105,8 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 startDatesUnsorted.append(myPrescriptions![i].startDate!)
                 
             }
-                startDatesUnsorted.sort()
+                startDatesUnsorted.sort()//NOW ITS SORTED
+                print(startDatesUnsorted)
                 /*
                  
                 for i in 0...(myPrescriptions!.count-1){
@@ -129,9 +130,9 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                 }*/
                 let dateA = startDatesUnsorted[i]
-                let calendar = Calendar.current
-                let date = Date()
-                let tomrw = date.addingTimeInterval(86400)
+                //let calendar = Calendar.current
+                //let date = Date()
+                //let tomrw = date.addingTimeInterval(86400)
                 let dateF = DateFormatter()
                 dateF.dateFormat = "MMM d, yyyy"
                 //print((calendar.component(.day, from: smallest)))
@@ -144,9 +145,17 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     
                     
                 }else if !(i == 0){
+                    if(dateA>tomrw){
                     if (dateF.string(from: startDatesUnsorted[i-1])) != (dateF.string(from: startDatesUnsorted[i])){
                         
                         tableViewLabels.append(dateF.string(from: dateA))
+                    }
+                    }
+                    
+                }else{
+                    if(dateA>tomrw){
+                        tableViewLabels.append(dateF.string(from: dateA))
+
                     }
                     
                 }
@@ -210,6 +219,7 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell", for: indexPath) as! calendarCell
+        
         /*
         let prescription = myPrescriptions![indexPath.row]
         var text = ""
@@ -224,8 +234,9 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             text = "Later on"
         }*/
         print(tableViewLabels)
-        
+        cell.prepareForReuse()
         cell.configure(datalabel: tableViewLabels[indexPath.row], indexOfTableCell: indexPath.row)
+        
         //cell.textLabel?.text = name[indexPath.row]
         return cell
     }
