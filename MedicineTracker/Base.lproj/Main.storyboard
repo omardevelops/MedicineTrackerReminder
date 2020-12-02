@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -492,10 +492,16 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jF1-nj-Zy0" userLabel="FrequencyInfoButton">
                                                 <rect key="frame" x="142" y="546" width="25" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="frequencyInfoButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="QYE-O9-N3Q"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QA4-s9-HRf" userLabel="ReminderTimesInfo">
                                                 <rect key="frame" x="173" y="662" width="25" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="dosageInfoButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="A5A-ds-d13"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oj2-sp-Wx6" userLabel="Color1">
                                                 <rect key="frame" x="48" y="267" width="50" height="50"/>
@@ -656,7 +662,6 @@
                         <outlet property="startDatePickerOutlet" destination="szm-fP-V8O" id="ATl-m0-jIA"/>
                         <outlet property="yellowBG" destination="Oj2-sp-Wx6" id="vyl-QC-aNK"/>
                         <segue destination="xyG-ZB-c6x" kind="presentation" identifier="add2notification" id="Nvx-hO-LYB"/>
-                        <segue destination="Mv7-vO-4hy" kind="presentation" identifier="verificationSegue" modalPresentationStyle="fullScreen" id="yeZ-31-VpV"/>
                         <segue destination="49e-Tb-3d3" kind="presentation" identifier="backToPrescriptionsSegue" modalPresentationStyle="fullScreen" id="Gpl-ux-aDZ"/>
                         <segue destination="rlA-Wf-Byf" kind="show" identifier="customDosageTimeSegue" id="ja8-X7-4TB"/>
                         <segue destination="49e-Tb-3d3" kind="presentation" identifier="editToViewSegue" modalPresentationStyle="fullScreen" id="GlV-86-TCK"/>
@@ -695,47 +700,6 @@
                 </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1973.913043478261" y="-974.33035714285711"/>
-        </scene>
-        <!--Verification-->
-        <scene sceneID="AY1-M4-QLI">
-            <objects>
-                <viewController id="Mv7-vO-4hy" customClass="VerifyBeforeAddingVC" customModule="MedicineTracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xqs-3t-zKw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2bN-sj-96H">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Verification" id="9dg-s9-Sp2">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Hrq-E2-xDB"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="ysB-LO-JCs"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name of Prescription" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQx-sa-U1k">
-                                <rect key="frame" x="49" y="133" width="184" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="WNL-AR-l5g"/>
-                        <color key="backgroundColor" red="0.87058823529411766" green="0.90980392156862744" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Verification" id="Q3l-95-DTD">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ZCg-RX-O9p"/>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="T8x-TO-lWf"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="nameLabel" destination="sQx-sa-U1k" id="ICw-u9-TlM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="C4D-bj-cip" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2836" y="-974"/>
         </scene>
         <!--My Prescriptions-->
         <scene sceneID="KUX-bs-zcO">
@@ -1060,7 +1024,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEN-V4-JfK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3473.913043478261" y="359.59821428571428"/>
+            <point key="canvasLocation" x="2493" y="370"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="O2t-0X-b3Y">
