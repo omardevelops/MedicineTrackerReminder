@@ -828,9 +828,9 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
         print("I am in scheduleNotifications()")
         let content = UNMutableNotificationContent()
-        content.title = "Prescription: "+newPrescription!.name!
-        content.sound = .default
-        content.body = identifier
+        content.title = "Time to take Prescription: "+newPrescription!.name!
+        content.sound = .defaultCritical
+        content.body = "You are taking: "+(newPrescription!.dose!)
         
         //let targetDate = Date().addingTimeInterval(20)
         

@@ -70,7 +70,7 @@
             <objects>
                 <viewController id="haa-hL-XAQ" customClass="SettingsVC" customModule="MedicineTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Uy-2a-COG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="aIR-hB-Cmu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -88,11 +88,11 @@
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="CalendarVC" customModule="MedicineTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SNp-hK-hww">
-                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="07Y-Ch-lRN" customClass="calendarCell" customModule="MedicineTracker" customModuleProvider="target">
@@ -659,7 +659,7 @@
                         <segue destination="Mv7-vO-4hy" kind="presentation" identifier="verificationSegue" modalPresentationStyle="fullScreen" id="yeZ-31-VpV"/>
                         <segue destination="49e-Tb-3d3" kind="presentation" identifier="backToPrescriptionsSegue" modalPresentationStyle="fullScreen" id="Gpl-ux-aDZ"/>
                         <segue destination="rlA-Wf-Byf" kind="show" identifier="customDosageTimeSegue" id="ja8-X7-4TB"/>
-                        <segue destination="49e-Tb-3d3" kind="presentation" identifier="editToViewSegue" id="GlV-86-TCK"/>
+                        <segue destination="49e-Tb-3d3" kind="presentation" identifier="editToViewSegue" modalPresentationStyle="fullScreen" id="GlV-86-TCK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SoM-iE-FAf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1069,7 +1069,7 @@
                     <tabBarItem key="tabBarItem" title="Calendar" image="calendar" catalog="system" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bss-AJ-Ogf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1083,8 +1083,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4RT-RJ-zG7"/>
-        <segue reference="4qT-v0-769"/>
+        <segue reference="11l-Vj-FmI"/>
         <segue reference="ojc-T4-Jb5"/>
         <segue reference="rDD-yp-7h2"/>
         <segue reference="GlV-86-TCK"/>
