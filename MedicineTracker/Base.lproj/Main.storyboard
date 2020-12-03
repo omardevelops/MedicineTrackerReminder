@@ -380,13 +380,6 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8k2-Pz-Aoa">
-                                                <rect key="frame" x="215" y="412" width="80" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Frequency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiq-E5-Aa1">
                                                 <rect key="frame" x="41" y="545" width="93" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -730,11 +723,7 @@
                                                 </connections>
                                             </button>
                                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="szm-fP-V8O">
-                                                <rect key="frame" x="40" y="444" width="134" height="69"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            </datePicker>
-                                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="1j1-eC-Td3">
-                                                <rect key="frame" x="215" y="444" width="134" height="69"/>
+                                                <rect key="frame" x="40" y="444" width="327" height="69"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             </datePicker>
                                         </subviews>
@@ -803,8 +792,6 @@
                         <outlet property="blueBG" destination="Zk3-Ng-XUH" id="1G0-pT-8ei"/>
                         <outlet property="deleteButton" destination="hOt-cN-zsw" id="ri9-eN-goM"/>
                         <outlet property="dosesPerDayLabel" destination="VvV-0M-mUd" id="Jmz-g9-9dO"/>
-                        <outlet property="endDateLabel" destination="8k2-Pz-Aoa" id="XDn-Sa-4HE"/>
-                        <outlet property="endDatePickerOutlet" destination="1j1-eC-Td3" id="snz-fA-sZx"/>
                         <outlet property="eveningTimeButtonOutlet" destination="Tcu-vr-Mw4" id="XfX-Fl-rxi"/>
                         <outlet property="fifthTimeButtonOutlet" destination="qhA-6a-SiJ" id="Ofe-t8-pyx"/>
                         <outlet property="fourthTimeButtonOutlet" destination="NB0-1l-fSV" id="MA7-h0-Yk8"/>
@@ -1157,26 +1144,26 @@
             <objects>
                 <viewController id="rlA-Wf-Byf" customClass="customDosageTimeVC" customModule="MedicineTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K5f-m6-cvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="Rn1-Rp-rCF">
-                                <rect key="frame" x="0.0" y="252" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="164" width="414" height="216"/>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set a Custom Time For Your" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzo-yW-Oh4">
-                                <rect key="frame" x="34.5" y="121" width="345" height="35"/>
+                                <rect key="frame" x="34.5" y="33" width="345" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Dose" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxk-FH-l0B">
-                                <rect key="frame" x="127.5" y="171" width="159" height="41"/>
+                                <rect key="frame" x="127.5" y="83" width="159" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNC-pd-zdE">
-                                <rect key="frame" x="88.5" y="476" width="237" height="51"/>
+                                <rect key="frame" x="88.5" y="388" width="237" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="Set Custom Time"/>
                                 <connections>
@@ -1443,7 +1430,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pk9-xe-WZN"/>
+        <segue reference="ja8-X7-4TB"/>
         <segue reference="11l-Vj-FmI"/>
         <segue reference="ojc-T4-Jb5"/>
         <segue reference="rDD-yp-7h2"/>

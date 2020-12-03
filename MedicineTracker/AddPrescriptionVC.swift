@@ -234,7 +234,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             noteTF.text = myPrescriptions![prescriptionIndex].notes
             displayColorButtons()
             updateColorButtons()
-            if myPrescriptions![prescriptionIndex].endDate == nil {
+            if myPrescriptions![prescriptionIndex].isRepeats == false {
                 repeatsSwitch.setOn(false, animated: true)
                 updateRepeatsSwitchComponents()
             } else {
@@ -264,7 +264,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             nameTF.text = receivingName
             amountTF.text = receivingDose
             startDatePickerOutlet.date = receivingStartDate
-            endDatePickerOutlet.date = receivingEndDate
+            //endDatePickerOutlet.date = receivingEndDate
             customDaysToNotifyOn = [false, false, false, false, false, false, false] // Initialize the custom day selector
             
             updateRepeatsSwitchComponents()
@@ -406,8 +406,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     func updateRepeatsSwitchComponents() {
         if(repeatsSwitch.isOn) {
-            endDatePickerOutlet.isEnabled = true
-            endDateLabel.isEnabled = true
+            //endDatePickerOutlet.isEnabled = true
+            //endDateLabel.isEnabled = true
             frequencyLabel.isEnabled = true
             frequencyInfoButton.isEnabled = true
             if !isEditPage  {
@@ -420,8 +420,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             updateFrequencyButtons()
             
         } else {
-            endDatePickerOutlet.isEnabled = false
-            endDateLabel.isEnabled = false
+            //endDatePickerOutlet.isEnabled = false
+            //endDateLabel.isEnabled = false
             frequencyLabel.isEnabled = false
             frequencyInfoButton.isEnabled = false
             dailyEnabled = false
@@ -476,8 +476,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     // MARK: Repeats Switch
     @IBAction func pressRepeatsSwitch(_ sender: UISwitch) {
         if(sender.isOn) {
-            endDatePickerOutlet.isEnabled = true
-            endDateLabel.isEnabled = true
+            //endDatePickerOutlet.isEnabled = true
+            //endDateLabel.isEnabled = true
             frequencyLabel.isEnabled = true
             frequencyInfoButton.isEnabled = true
             dailyEnabled = true
@@ -489,8 +489,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             isRepeats = true
             
         } else {
-            endDatePickerOutlet.isEnabled = false
-            endDateLabel.isEnabled = false
+            //endDatePickerOutlet.isEnabled = false
+            //endDateLabel.isEnabled = false
             frequencyLabel.isEnabled = false
             frequencyInfoButton.isEnabled = false
             dailyEnabled = false
@@ -852,7 +852,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
         print("I am in scheduleNotifications()")
         let content = UNMutableNotificationContent()
-        content.title = "Time to take Prescription: "+newPrescription!.name!
+        let userName = UserDefaults.standard.string(forKey: "username")
+        content.title = "Hey " + (userName ?? "") + ", Time to take Prescription: "+newPrescription!.name!
         content.sound = .defaultCritical
         content.body = "You are taking: "+(newPrescription!.dose!)
         
@@ -1062,13 +1063,13 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     // Checks if form is valid and ready to be used as a Prescription object. Checks if required fields are empty or not.
     func isFormValid() -> Bool {
         let startDate : Date = startDatePickerOutlet.date
-        let endDate : Date = endDatePickerOutlet.date
+        //let endDate : Date = endDatePickerOutlet.date
         let intervalFromToday : TimeInterval
-        let intervalFromEndDate : TimeInterval
+        //let intervalFromEndDate : TimeInterval
         if(nameTF.hasText && amountTF.hasText && isColorPicked() && isTimePicked()) {
             intervalFromToday = startDate.timeIntervalSince(initialDate!)
-            intervalFromEndDate = startDate.timeIntervalSince(endDate)
-            if intervalFromToday > -80000 && intervalFromEndDate < -1 {
+            //intervalFromEndDate = startDate.timeIntervalSince(endDate)
+            if intervalFromToday > -80000 || isEditPage {
                     return true
                 } else {
                     ///Does not show error when repeat is off
@@ -1171,7 +1172,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                //TODO: Modify the notifications
                if(repeatsSwitch.isOn) {
                    isRepeats = true
-                   prescription.endDate = endDatePickerOutlet.date
+                   //prescription.endDate = endDatePickerOutlet.date
                    prescription.frequency = getSelectedFrequency()
                }
                 
@@ -1226,7 +1227,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             newPrescription!.isRepeats = isRepeats
             
             if repeatsSwitch.isOn {
-                newPrescription!.endDate = endDatePickerOutlet.date
+                //newPrescription!.endDate = endDatePickerOutlet.date
                 newPrescription!.frequency = getSelectedFrequency()
             }
             
