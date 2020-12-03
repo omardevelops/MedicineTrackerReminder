@@ -62,7 +62,12 @@ class SettingsVC: UIViewController, customTimeDelegate {
         defaults.setValue(yourNameTF.text, forKey: "username")
     }
     
-    
+    @IBAction func infoButton(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Default Dosage Times", message: "You can set when you take your doses to your preferred time here in order to make adding a prescription faster and easier", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Got it", style: .default, handler: nil))
+        present(alert, animated: true)
+    }
+
     // MARK: Buttons Actions
     @IBAction func tapPresetTime1(_ sender: UIButton) {
         sentIndex = 0

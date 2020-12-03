@@ -96,11 +96,9 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y6r-9Y-UhJ">
                                 <rect key="frame" x="244.5" y="289" width="25" height="24"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ul7-Rf-Fhm">
-                                <rect key="frame" x="30" y="734" width="354" height="37"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
-                                <state key="normal" title="Re-authorize Notification Permissions"/>
+                                <connections>
+                                    <action selector="infoButton:" destination="haa-hL-XAQ" eventType="touchUpInside" id="9a0-KR-9Rz"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4Mm-9P-Lxa">
                                 <rect key="frame" x="55" y="355" width="304" height="298"/>
@@ -229,14 +227,11 @@
                             <constraint firstItem="4Mm-9P-Lxa" firstAttribute="centerX" secondItem="7Uy-2a-COG" secondAttribute="centerX" id="L5M-vt-frl"/>
                             <constraint firstItem="FUn-bm-wb5" firstAttribute="top" secondItem="52G-yL-ptm" secondAttribute="bottom" constant="8" id="NC5-aA-zf7"/>
                             <constraint firstItem="4Mm-9P-Lxa" firstAttribute="centerX" secondItem="FUn-bm-wb5" secondAttribute="centerX" id="Qag-as-pGY"/>
-                            <constraint firstItem="ul7-Rf-Fhm" firstAttribute="centerX" secondItem="7Uy-2a-COG" secondAttribute="centerX" id="UID-Oc-3wP"/>
                             <constraint firstItem="MkL-qm-NdH" firstAttribute="top" secondItem="aIR-hB-Cmu" secondAttribute="top" constant="37" id="XAV-3i-Sxb"/>
                             <constraint firstItem="9sv-Ko-Dh3" firstAttribute="leading" secondItem="52G-yL-ptm" secondAttribute="leading" id="chZ-9H-M5M"/>
-                            <constraint firstItem="ul7-Rf-Fhm" firstAttribute="top" secondItem="4Mm-9P-Lxa" secondAttribute="bottom" constant="81" id="eIS-oE-3EW"/>
                             <constraint firstItem="aIR-hB-Cmu" firstAttribute="trailing" secondItem="4Mm-9P-Lxa" secondAttribute="trailing" constant="55" id="f9t-EU-YJB"/>
                             <constraint firstItem="4Mm-9P-Lxa" firstAttribute="top" secondItem="9sv-Ko-Dh3" secondAttribute="bottom" constant="40" id="mEn-Qt-mUD"/>
                             <constraint firstItem="4Mm-9P-Lxa" firstAttribute="top" secondItem="7Uy-2a-COG" secondAttribute="top" constant="355" id="uBD-ma-gth"/>
-                            <constraint firstItem="4Mm-9P-Lxa" firstAttribute="centerX" secondItem="ul7-Rf-Fhm" secondAttribute="centerX" id="zCa-1b-RyC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="oLp-vH-Cr6"/>
