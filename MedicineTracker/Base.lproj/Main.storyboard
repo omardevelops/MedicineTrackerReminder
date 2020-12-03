@@ -677,7 +677,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vnc-Lb-3Lf" userLabel="Color1">
                                                 <rect key="frame" x="124" y="267" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.99971586469999996" green="0.94918927484098325" blue="0.39465951219898232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1291,25 +1291,25 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5RC-o1-JjA">
-                                        <rect key="frame" x="47" y="572" width="78" height="21"/>
+                                        <rect key="frame" x="47" y="410" width="78" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nov 18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkA-PV-7dz">
-                                        <rect key="frame" x="47" y="596" width="88" height="35"/>
+                                        <rect key="frame" x="47" y="434" width="88" height="35"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="110-L6-93h">
-                                        <rect key="frame" x="47" y="668" width="37" height="21"/>
+                                        <rect key="frame" x="47" y="506" width="37" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have to take before eating." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IE1-ZP-ODF">
-                                        <rect key="frame" x="47" y="692" width="320" height="20.5"/>
+                                        <rect key="frame" x="47" y="530" width="320" height="20.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -1327,6 +1327,7 @@
                                     <constraint firstAttribute="trailing" secondItem="IE1-ZP-ODF" secondAttribute="trailing" constant="47" id="0OH-f2-l7q"/>
                                     <constraint firstItem="a3e-90-XEk" firstAttribute="top" secondItem="kf9-i9-I0d" secondAttribute="bottom" constant="34" id="2kY-6D-dha"/>
                                     <constraint firstAttribute="trailing" secondItem="sqS-Tz-xJv" secondAttribute="trailing" constant="47" id="2tm-jp-Z2f"/>
+                                    <constraint firstItem="5RC-o1-JjA" firstAttribute="top" secondItem="sqS-Tz-xJv" secondAttribute="bottom" constant="20" id="4Kg-NG-JxT"/>
                                     <constraint firstItem="sqS-Tz-xJv" firstAttribute="leading" secondItem="Rrc-sk-5lw" secondAttribute="leading" constant="47" id="9R0-a2-val"/>
                                     <constraint firstItem="5RC-o1-JjA" firstAttribute="leading" secondItem="Rrc-sk-5lw" secondAttribute="leading" constant="47" id="AcS-cb-J2i"/>
                                     <constraint firstItem="sqS-Tz-xJv" firstAttribute="top" secondItem="bw8-yo-AI1" secondAttribute="bottom" constant="10" id="E2Y-G7-5K2"/>
@@ -1334,7 +1335,6 @@
                                     <constraint firstItem="u0a-5e-JCt" firstAttribute="top" secondItem="Rrc-sk-5lw" secondAttribute="top" constant="45" id="LMb-WK-bLY"/>
                                     <constraint firstItem="IE1-ZP-ODF" firstAttribute="top" secondItem="110-L6-93h" secondAttribute="bottom" constant="3" id="X1X-fA-fZc"/>
                                     <constraint firstItem="4Df-5Z-dWo" firstAttribute="leading" secondItem="Rrc-sk-5lw" secondAttribute="leading" constant="47" id="aRt-nf-OFK"/>
-                                    <constraint firstAttribute="bottom" secondItem="IE1-ZP-ODF" secondAttribute="bottom" constant="95.5" id="alY-TG-T4T"/>
                                     <constraint firstItem="bw8-yo-AI1" firstAttribute="top" secondItem="4Df-5Z-dWo" secondAttribute="bottom" constant="34" id="bOC-WY-t5L"/>
                                     <constraint firstItem="u0a-5e-JCt" firstAttribute="leading" secondItem="Rrc-sk-5lw" secondAttribute="leading" constant="47" id="cd0-39-tRo"/>
                                     <constraint firstItem="Niu-iT-6Os" firstAttribute="leading" secondItem="Rrc-sk-5lw" secondAttribute="leading" constant="47" id="cjr-xb-uYv"/>
@@ -1431,7 +1431,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ja8-X7-4TB"/>
-        <segue reference="11l-Vj-FmI"/>
+        <segue reference="4qT-v0-769"/>
         <segue reference="ojc-T4-Jb5"/>
         <segue reference="rDD-yp-7h2"/>
         <segue reference="GlV-86-TCK"/>
