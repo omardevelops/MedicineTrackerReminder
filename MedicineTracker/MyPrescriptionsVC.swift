@@ -38,6 +38,18 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
             // These default initial timings will be initialized on the first run of the app and can be modified by the user in Settings
             let initialTimings = ["8:00 AM", "12:00 PM", "06:00 PM", "09:00 PM", "12:00 AM", "03:00 AM"]
             defaults.setValue(initialTimings, forKey: "Default dosage times")
+            
+            // Set name pop-up menu
+            let alert = UIAlertController(title: "Your Name", message: "Welcome! What is your name?", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textfield) in
+                textfield.placeholder = "Enter Your Name"
+            })
+            alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { action in
+                let textfield = alert.textFields![0]
+                let defaults = UserDefaults.standard
+                defaults.setValue(textfield.text, forKey: "username")
+            }))
+            present(alert, animated: true)
         }
         
         collectionView.delegate = self
