@@ -17,6 +17,12 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var testCount = 4
     var today:Bool = false
     var tmrw:Bool = false
+    var daily:Bool = false
+    var dailyArr: [Date] = []
+    var weeklyArr: [Date] = []
+    var monthlyArr: [Date] = []
+    var weekly:Bool = false
+    var monthly:Bool = false
     var tableViewLabels:[String] = []
     var labelDatesStartIndex:Int = 0
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -64,7 +70,7 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 if (Calendar.current.isDateInToday(myPrescriptions![i].startDate!)){
                     // is today
                     myPrescriptions![i].whatDay = 0
-                }else if(Calendar.current.isDateInTomorrow(tomrw)){
+                }else if(Calendar.current.isDateInTomorrow(myPrescriptions![i].startDate!)){
                         //is tmrw
                     myPrescriptions![i].whatDay = 1
                 
@@ -101,10 +107,52 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                
             for i in 0...(myPrescriptions!.count-1) {
-                
+                if (myPrescriptions![i].frequency == "Daily"){
+                    daily = true
+                    dailyArr.append(myPrescriptions![i].startDate!)
+                }
+                if (myPrescriptions![i].frequency == "Weekly"){
+                    weekly = true
+                    weeklyArr.append(myPrescriptions![i].startDate!)
+                }
+                if (myPrescriptions![i].frequency == "Monthly"){
+                    monthly = true
+                    monthlyArr.append(myPrescriptions![i].startDate!)
+                }
                 startDatesUnsorted.append(myPrescriptions![i].startDate!)
                 
             }
+                if (daily){
+                    dailyArr.sort()
+                    var dailyDate = dailyArr[0]
+                    for _ in 0...50{
+                        dailyDate.addTimeInterval(86400)
+                        startDatesUnsorted.append(dailyDate)
+                    }
+                }
+                if (weekly){
+                    weeklyArr.sort()
+                    var weeklyDate = weeklyArr[0]
+                    for _ in 0...8{
+                        weeklyDate.addTimeInterval(604800)
+                        startDatesUnsorted.append(weeklyDate)
+                    }
+                }/*
+                if (monthly){
+                    monthlyArr.sort()
+                    var monthlyDate = monthlyArr[0]
+                    for _ in 0...2{
+                        monthlyDate.addTimeInterval(2419200)
+                        startDatesUnsorted.append(monthlyDate)
+                    }
+                }*/
+                
+                
+                
+                
+                
+                
+                
                 startDatesUnsorted.sort()//NOW ITS SORTED
                 print(startDatesUnsorted)
                 /*
@@ -123,6 +171,7 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 sortedDates = startDatesUnsorted
             */
             for i in 0...(startDatesUnsorted.count-1){
+                
                 /*var smallest:Date = startDatesUnsorted[i]
                 for y in i...startDatesUnsorted.count-1{
                     if (startDatesUnsorted[y] < smallest){
