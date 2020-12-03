@@ -214,6 +214,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     var pickerView = UIPickerView()
     
+    // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         itsEditPage()
@@ -264,7 +265,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             amountTF.text = receivingDose
             startDatePickerOutlet.date = receivingStartDate
             endDatePickerOutlet.date = receivingEndDate
-            
+            customDaysToNotifyOn = [false, false, false, false, false, false, false] // Initialize the custom day selector
             
             updateRepeatsSwitchComponents()
             updateDoseTimeButtons()
@@ -426,10 +427,12 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             dailyEnabled = false
             weeklyEnabled = false
             monthlyEnabled = false
+            customEnabled = false
             
             repeatDailyButton.backgroundColor = UIColor.systemGray
             repeatWeeklyButton.backgroundColor = UIColor.systemGray
             repeatMonthlyButton.backgroundColor = UIColor.systemGray
+            repeatCustomButton.backgroundColor = UIColor.systemGray
             
             frequencyView.isUserInteractionEnabled = false
             isRepeats = false
@@ -446,6 +449,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             weeklyEnabled = true
         } else if myPrescriptions![prescriptionIndex].frequency == "Monthly" {
             monthlyEnabled = true
+        } else if myPrescriptions![prescriptionIndex].frequency == "Custom" {
+            customEnabled = true
         }
         
         print(dailyEnabled)
@@ -853,8 +858,6 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                     }
                 })
                 
-                content.body = identifier
-                
                 newPrescription!.identifier!.append(identifier)
                 print(newPrescription!.identifier!)
                 
@@ -874,8 +877,6 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                         self.isNotificationsSet = false
                     }
                 })
-                
-                content.body = identifier
                 
                 newPrescription!.identifier!.append(identifier)
                 print(newPrescription!.identifier!)
@@ -897,8 +898,6 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                     }
                 })
                 
-                content.body = identifier
-                
                 newPrescription!.identifier!.append(identifier)
                 print(newPrescription!.identifier!)
                 
@@ -918,8 +917,6 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                         self.isNotificationsSet = false
                     }
                 })
-                
-                content.body = identifier
                 
                 newPrescription!.identifier!.append(identifier)
                 print(newPrescription!.identifier!)
@@ -950,7 +947,6 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                             }
                         })
                         
-                        content.body = identifier
                         
                         newPrescription!.identifier!.append(identifier)
                         print(newPrescription!.identifier!)
@@ -958,8 +954,6 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                         notificationCount! += 1
                         identifier = String(notificationCount!)
                         
-                        
-                        print(dosageTime)
                     }
                     
                 }
@@ -1311,6 +1305,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             destinationVC.myPrescriptions = self.myPrescriptions
         } else if segue.identifier == "setCustomDaysSegue" {
             let destinationVC = segue.destination as! setCustomWeekDayVC
+            
+            destinationVC.isDaySelected = customDaysToNotifyOn!
             
             destinationVC.delegate = self // To use customTime protocol to pass values between views
         }

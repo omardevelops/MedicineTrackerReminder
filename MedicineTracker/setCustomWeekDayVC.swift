@@ -30,6 +30,7 @@ class setCustomWeekDayVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        updateButtonViews()
     }
     
     // Updates the button views according to whether they're selected or not
