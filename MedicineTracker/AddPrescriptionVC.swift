@@ -738,7 +738,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     @IBAction func dosageInfoButton(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Dosage Times", message: "Choose what time(s) you would like to take the medicine.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Dosage Times", message: "Choose what time(s) you would like to take the medicine. Long press on a button to set a custom timing.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
