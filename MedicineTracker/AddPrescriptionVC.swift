@@ -143,7 +143,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var repeatDailyButton: UIButton!
     @IBOutlet weak var repeatWeeklyButton: UIButton!
     @IBOutlet weak var repeatMonthlyButton: UIButton!
-    
+    @IBOutlet weak var repeatCustomButton: UIButton!
     
     @IBOutlet weak var dosesPerDayLabel: UILabel!
     @IBOutlet weak var morningTimeButtonOutlet: UIButton!
@@ -519,6 +519,12 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             weeklyEnabled = false
         }
         updateFrequencyButtons()
+    }
+    
+    
+    @IBAction func repeatCustomButton(_ sender: UIButton) {
+        // Segue to set the custom days of the week
+        performSegue(withIdentifier: "setCustomDaysSegue", sender: self)
     }
     
     func updateFrequencyButtons() {

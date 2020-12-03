@@ -19,6 +19,7 @@
 		29563ECB255D2F5E0017667D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29563EC9255D2F5E0017667D /* LaunchScreen.storyboard */; };
 		29563ED3255D2FF70017667D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29563ED2255D2FF70017667D /* SettingsVC.swift */; };
 		29563ED7255D43650017667D /* AddPrescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29563ED6255D43650017667D /* AddPrescriptionVC.swift */; };
+		297B97812578897F00273051 /* setCustomWeekDayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297B97802578897F00273051 /* setCustomWeekDayVC.swift */; };
 		297B9F9A256F332D0038AF24 /* VerifyBeforeAddingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297B9F99256F332D0038AF24 /* VerifyBeforeAddingVC.swift */; };
 		297B9FC225707B890038AF24 /* customDosageTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297B9FC125707B890038AF24 /* customDosageTimeVC.swift */; };
 		7AC679172570FFCD0093BF2D /* ViewPrescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC679162570FFCD0093BF2D /* ViewPrescriptionVC.swift */; };
@@ -45,6 +46,7 @@
 		29563ECC255D2F5E0017667D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29563ED2255D2FF70017667D /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		29563ED6255D43650017667D /* AddPrescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPrescriptionVC.swift; sourceTree = "<group>"; };
+		297B97802578897F00273051 /* setCustomWeekDayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setCustomWeekDayVC.swift; sourceTree = "<group>"; };
 		297B9F99256F332D0038AF24 /* VerifyBeforeAddingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyBeforeAddingVC.swift; sourceTree = "<group>"; };
 		297B9FC125707B890038AF24 /* customDosageTimeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customDosageTimeVC.swift; sourceTree = "<group>"; };
 		7AC679162570FFCD0093BF2D /* ViewPrescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPrescriptionVC.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				297B9FC125707B890038AF24 /* customDosageTimeVC.swift */,
 				29563ED6255D43650017667D /* AddPrescriptionVC.swift */,
 				297B9F99256F332D0038AF24 /* VerifyBeforeAddingVC.swift */,
+				297B97802578897F00273051 /* setCustomWeekDayVC.swift */,
 				29563EC1255D2F5C0017667D /* Main.storyboard */,
 				29563EC7255D2F5E0017667D /* Assets.xcassets */,
 				29563EC9255D2F5E0017667D /* LaunchScreen.storyboard */,
@@ -207,6 +210,7 @@
 				29563ED7255D43650017667D /* AddPrescriptionVC.swift in Sources */,
 				29563ED3255D2FF70017667D /* SettingsVC.swift in Sources */,
 				2923DF942572539600F77317 /* Prescription+CoreDataProperties.swift in Sources */,
+				297B97812578897F00273051 /* setCustomWeekDayVC.swift in Sources */,
 				F4E6A19B2570FF9B00A79DC1 /* calendarCell.swift in Sources */,
 				F4DC7D762565FC9700086AF7 /* prescriptionCell.swift in Sources */,
 			);
