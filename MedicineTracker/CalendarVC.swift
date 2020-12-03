@@ -125,7 +125,6 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 if (daily){
                     dailyArr.sort()
                     var dailyDate = dailyArr[0]
-                    startDatesUnsorted.append(dailyDate)
                     for _ in 0...50{
                         dailyDate.addTimeInterval(86400)
                         startDatesUnsorted.append(dailyDate)
@@ -134,21 +133,19 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 if (weekly){
                     weeklyArr.sort()
                     var weeklyDate = weeklyArr[0]
-                    startDatesUnsorted.append(weeklyDate)
                     for _ in 0...8{
                         weeklyDate.addTimeInterval(604800)
                         startDatesUnsorted.append(weeklyDate)
                     }
-                }
+                }/*
                 if (monthly){
                     monthlyArr.sort()
                     var monthlyDate = monthlyArr[0]
-                    startDatesUnsorted.append(monthlyDate)
                     for _ in 0...2{
                         monthlyDate.addTimeInterval(2419200)
                         startDatesUnsorted.append(monthlyDate)
                     }
-                }
+                }*/
                 
                 
                 
