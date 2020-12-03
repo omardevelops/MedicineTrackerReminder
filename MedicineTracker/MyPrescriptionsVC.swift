@@ -24,10 +24,10 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     
     // MARK: Edit Cell
     // NEEDS FIXING
-    @objc func editCell() {
-        performSegue(withIdentifier: "goToEdit", sender: self)
-        
-    }
+    //@objc func editCell() {
+     //   performSegue(withIdentifier: "goToEdit", sender: self)
+     //
+   // }
     
     
     override func viewDidLoad() {
@@ -80,8 +80,8 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "prescriptionCell", for: indexPath) as! prescriptionCell
         
-           cell.editB.tag = indexPath.row
-           cell.editB.addTarget(self, action: #selector(editCell), for: .touchUpInside)
+          // cell.editB.tag = indexPath.row
+          // cell.editB.addTarget(self, action: #selector(editCell), for: .touchUpInside)
         
         let prescription = myPrescriptions![indexPath.row]
         cell.configure(with: prescription.name ?? "null",color: prescription.color ?? UIColor.white, dose: prescription.dose ?? " ")

@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,16 +25,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deP-Hx-AHc">
-                        <rect key="frame" x="146" y="10" width="28" height="28"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="28" id="Ukf-LJ-Ylw"/>
-                            <constraint firstAttribute="width" constant="28" id="wqB-Ej-7tB"/>
-                        </constraints>
-                        <state key="normal">
-                            <imageReference key="image" image="ellipsis.circle" catalog="system" symbolScale="large" renderingMode="original"/>
-                        </state>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dose" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RX0-0r-6yL">
                         <rect key="frame" x="10" y="111" width="131" height="24"/>
                         <constraints>
@@ -54,15 +43,12 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="deP-Hx-AHc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="OIs-V6-epc"/>
                 <constraint firstAttribute="trailing" secondItem="RX0-0r-6yL" secondAttribute="trailing" constant="43" id="XVA-61-Ntb"/>
                 <constraint firstItem="RX0-0r-6yL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Yo6-TU-LQI"/>
                 <constraint firstAttribute="bottom" secondItem="9Fn-GE-48x" secondAttribute="bottom" constant="24" id="ZYz-IC-6Ag"/>
                 <constraint firstAttribute="trailing" secondItem="9Fn-GE-48x" secondAttribute="trailing" constant="10" id="h50-aZ-BJg"/>
                 <constraint firstItem="9Fn-GE-48x" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="hkM-Qp-iLb"/>
                 <constraint firstAttribute="bottom" secondItem="RX0-0r-6yL" secondAttribute="bottom" constant="3" id="igc-AV-v2v"/>
-                <constraint firstAttribute="trailing" secondItem="deP-Hx-AHc" secondAttribute="trailing" constant="10" id="j7I-Oq-Mb5"/>
-                <constraint firstItem="deP-Hx-AHc" firstAttribute="leading" secondItem="XIM-SH-Zdq" secondAttribute="trailing" constant="75" id="n4y-or-1xg"/>
                 <constraint firstItem="9Fn-GE-48x" firstAttribute="top" secondItem="XIM-SH-Zdq" secondAttribute="bottom" constant="8" symbolic="YES" id="nKg-cR-Hm0"/>
                 <constraint firstItem="9Fn-GE-48x" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="72" id="zg6-ac-1Pf"/>
             </constraints>
@@ -72,7 +58,6 @@
                 <userDefinedRuntimeAttribute type="string" keyPath="layer.masksToBounds" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="editB" destination="deP-Hx-AHc" id="JVI-y1-zMo"/>
                 <outlet property="pDose" destination="RX0-0r-6yL" id="LvS-sX-nHI"/>
                 <outlet property="pLabel" destination="9Fn-GE-48x" id="icb-dT-ZfH"/>
             </connections>
@@ -80,7 +65,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <image name="pill" width="649" height="648"/>
     </resources>
 </document>

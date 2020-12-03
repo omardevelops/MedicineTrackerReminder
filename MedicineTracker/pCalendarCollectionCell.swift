@@ -11,12 +11,12 @@ import UIKit
 class pCalendarCollectionCell: UICollectionViewCell {
 
     @IBOutlet weak var pDose: UILabel!
-    @IBOutlet weak var editB: UIButton!
+    //@IBOutlet weak var editB: UIButton!
     
-    @objc func editCell(_ sender: UIButton) {
-        print(pCalendarCollectionCell.index(self))
-     /*   MyPrescriptionsVC.performSegueWithIdentifier("showActionPreview", sender: nil)*/
-    }
+    //@objc func editCell(_ sender: UIButton) {
+    //    print(pCalendarCollectionCell.index(self))
+    // /*   MyPrescriptionsVC.performSegueWithIdentifier("showActionPreview", sender: nil)*/
+    //}
     @IBOutlet weak var viewO: UIView!
     @IBOutlet weak var pLabel: UILabel!
     override func awakeFromNib() {

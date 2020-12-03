@@ -31,26 +31,27 @@ class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDa
         //TODO: Configure Image and Color
         
         let theCell = datalabel
-        //let date = Date()
+        let date = Date()
         let dateF = DateFormatter()
-        //let tomrw = date.addingTimeInterval(86400)
+        let tomrw = date.addingTimeInterval(86400)
         let calendar = Calendar.current
         dateF.dateFormat = "MMM d, yyyy"
         
         for i in 0...myPrescriptions!.count-1{
             
-            if (theCell == "Today") && (calendar.isDateInToday(myPrescriptions![i].startDate!)){
+            if (theCell == "Today") && (calendar.isDateInToday(myPrescriptions![i].startDate!)) && !(myPrescriptions![i].frequency == "Daily"){
                 eachPreCell.append(myPrescriptions![i])
                 
-            }else if (theCell == "Tomorrow") && (calendar.isDateInTomorrow(myPrescriptions![i].startDate!)){
+            }else if (theCell == "Tomorrow") && (calendar.isDateInTomorrow(myPrescriptions![i].startDate!)) && !(myPrescriptions![i].frequency == "Daily"){
                 eachPreCell.append(myPrescriptions![i])
 
-            }else if (dateF.string(from: myPrescriptions![i].startDate!)) == (theCell){
+            }else if (dateF.string(from: myPrescriptions![i].startDate!)) == (theCell) && !(myPrescriptions![i].frequency == "Daily"){
                 eachPreCell.append(myPrescriptions![i])
             }
-            if(myPrescriptions![i].frequency == "Daily") && !(theCell == "Today") && !(theCell == "Tomorrow") {
+            if (myPrescriptions![i].frequency == "Daily") && !(theCell == "Today" && myPrescriptions![i].startDate! > date) && (!(theCell == "Tomorrow" && myPrescriptions![i].startDate! > tomrw)){
                 eachPreCell.append(myPrescriptions![i])
             }}
+        
         //print(eachPreCell)
         cellArray.append(eachPreCell)
         //print(cellArray)

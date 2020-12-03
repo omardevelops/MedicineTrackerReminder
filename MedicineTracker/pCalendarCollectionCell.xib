@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FTl-ea-YAK">
-                        <rect key="frame" x="-3" y="0.0" width="184" height="138"/>
+                        <rect key="frame" x="0.0" y="0.0" width="184" height="138"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="138" id="dqs-gA-10f"/>
@@ -27,7 +26,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prescription" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNi-jA-lrm">
-                        <rect key="frame" x="7" y="72" width="164" height="42"/>
+                        <rect key="frame" x="10" y="72" width="164" height="42"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="42" id="bnV-5G-klH"/>
                             <constraint firstAttribute="width" constant="164" id="v2o-Yp-BkP"/>
@@ -36,18 +35,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhJ-2t-JuH">
-                        <rect key="frame" x="146" y="10" width="25" height="28"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="25" id="129-3c-jhC"/>
-                            <constraint firstAttribute="height" constant="28" id="8rf-9f-RRS"/>
-                        </constraints>
-                        <state key="normal">
-                            <imageReference key="image" image="ellipsis.circle" catalog="system" symbolScale="large" renderingMode="original"/>
-                        </state>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.64999997615814209" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dose" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLM-lW-YXN">
-                        <rect key="frame" x="7" y="111" width="131" height="24"/>
+                        <rect key="frame" x="10" y="111" width="131" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="131" id="MvA-b3-HoS"/>
                             <constraint firstAttribute="height" constant="24" id="QN4-GD-06j"/>
@@ -65,19 +54,17 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="wLM-lW-YXN" firstAttribute="leading" secondItem="Uzz-vh-AZr" secondAttribute="leading" constant="10" id="588-nz-sub"/>
-                <constraint firstAttribute="bottom" secondItem="FhJ-2t-JuH" secondAttribute="bottom" constant="100" id="894-Sd-iKx"/>
                 <constraint firstItem="FTl-ea-YAK" firstAttribute="top" secondItem="Uzz-vh-AZr" secondAttribute="top" id="8n5-su-Pht"/>
                 <constraint firstAttribute="trailing" secondItem="FTl-ea-YAK" secondAttribute="trailing" id="AR8-fQ-ASE"/>
+                <constraint firstAttribute="trailing" secondItem="NNi-jA-lrm" secondAttribute="trailing" constant="10" id="Avq-fp-KoV"/>
                 <constraint firstAttribute="bottom" secondItem="FTl-ea-YAK" secondAttribute="bottom" id="JZ0-r5-P5F"/>
                 <constraint firstItem="NNi-jA-lrm" firstAttribute="top" secondItem="Uzz-vh-AZr" secondAttribute="top" constant="72" id="Kr6-H5-NNO"/>
                 <constraint firstItem="wLM-lW-YXN" firstAttribute="top" secondItem="EFB-AD-ARS" secondAttribute="bottom" constant="47" id="LdQ-qE-YIa"/>
                 <constraint firstAttribute="bottom" secondItem="EFB-AD-ARS" secondAttribute="bottom" constant="74" id="U9Q-N0-C5J"/>
                 <constraint firstItem="NNi-jA-lrm" firstAttribute="leading" secondItem="Uzz-vh-AZr" secondAttribute="leading" constant="10" id="Yv9-4p-iRd"/>
                 <constraint firstItem="FTl-ea-YAK" firstAttribute="leading" secondItem="Uzz-vh-AZr" secondAttribute="leading" id="al3-wl-25f"/>
-                <constraint firstAttribute="trailing" secondItem="FhJ-2t-JuH" secondAttribute="trailing" constant="10" id="bN0-Qn-Gds"/>
                 <constraint firstAttribute="bottom" secondItem="NNi-jA-lrm" secondAttribute="bottom" constant="24" id="c9H-J9-I5x"/>
                 <constraint firstAttribute="trailing" secondItem="NNi-jA-lrm" secondAttribute="trailing" constant="10" id="efx-qG-uKe"/>
-                <constraint firstItem="FhJ-2t-JuH" firstAttribute="leading" secondItem="EFB-AD-ARS" secondAttribute="trailing" constant="75" id="hd1-9X-Qmy"/>
                 <constraint firstAttribute="bottom" secondItem="wLM-lW-YXN" secondAttribute="bottom" constant="3" id="lMs-DA-Mxg"/>
                 <constraint firstAttribute="trailing" secondItem="wLM-lW-YXN" secondAttribute="trailing" constant="43" id="mDb-ZA-Vy7"/>
             </constraints>
@@ -87,7 +74,6 @@
                 <userDefinedRuntimeAttribute type="string" keyPath="layer.masksToBounds" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="editB" destination="FhJ-2t-JuH" id="dAI-Od-2zp"/>
                 <outlet property="pDose" destination="wLM-lW-YXN" id="3KO-uh-A08"/>
                 <outlet property="pLabel" destination="NNi-jA-lrm" id="lFA-Rd-A1w"/>
                 <outlet property="viewO" destination="FTl-ea-YAK" id="5Hr-D1-xIz"/>
@@ -96,7 +82,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <image name="pill" width="649" height="648"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
