@@ -2,11 +2,13 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Prescription" representedClassName="Prescription" syncable="YES">
         <attribute name="color" optional="YES" attributeType="Transformable"/>
+        <attribute name="customDaysSelected" optional="YES" attributeType="Transformable"/>
         <attribute name="dose" optional="YES" attributeType="String"/>
         <attribute name="doseTimings" optional="YES" attributeType="Transformable"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="frequency" optional="YES" attributeType="String"/>
         <attribute name="identifier" optional="YES" attributeType="Transformable"/>
+        <attribute name="isRepeats" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="notificationType" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -14,6 +16,6 @@
         <attribute name="whatDay" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Prescription" positionX="-36" positionY="9" width="128" height="193"/>
+        <element name="Prescription" positionX="-36" positionY="9" width="128" height="238"/>
     </elements>
 </model>
