@@ -13,19 +13,19 @@ class prescriptionCell: UICollectionViewCell {
     @IBOutlet weak var pDose: UILabel!
     @IBOutlet weak var editB: UIButton!
     
-    @objc func editCell(_ sender: UIButton) {
+    /*objc func editCell(_ sender: UIButton) {
         print("edit")
      /*   MyPrescriptionsVC.performSegueWithIdentifier("showActionPreview", sender: nil)*/
-    }
+    }*/
     @IBOutlet weak var pLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+
         // Initialization code
     }
     
     public func configure(with name: String,color: UIColor, dose: String){
         //TODO: Configure Image and Color
-        
         pLabel.text = name
         pDose.text = dose
         self.backgroundColor = color

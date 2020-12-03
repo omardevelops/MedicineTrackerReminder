@@ -32,6 +32,7 @@ class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDa
         
         let theCell = datalabel
         //let date = Date()
+        //var weeklyC = 0
         let dateF = DateFormatter()
         //let tomrw = date.addingTimeInterval(86400)
         let calendar = Calendar.current
@@ -48,9 +49,9 @@ class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDa
             }else if (dateF.string(from: myPrescriptions![i].startDate!)) == (theCell){
                 eachPreCell.append(myPrescriptions![i])
             }
-            if(myPrescriptions![i].frequency == "Daily") && !(theCell == "Today") && !(theCell == "Tomorrow") {
+           /* if ((myPrescriptions![i].frequency == "Daily") && !(theCell == "Today") && !(theCell == "Tomorrow")){
                 eachPreCell.append(myPrescriptions![i])
-            }}
+            }*/}
         //print(eachPreCell)
         cellArray.append(eachPreCell)
         //print(cellArray)

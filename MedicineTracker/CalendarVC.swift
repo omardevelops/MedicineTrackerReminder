@@ -122,10 +122,18 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 startDatesUnsorted.append(myPrescriptions![i].startDate!)
                 
             }
-                if (daily){
+                /*if (monthly){
+                    monthlyArr.sort()
+                    var monthlyDate = monthlyArr[0]
+                    for _ in 0...2{
+                        monthlyDate.addTimeInterval(2419200)
+                        startDatesUnsorted.append(monthlyDate)
+                    }*/
+                //}/*
+               /* if (daily){
                     dailyArr.sort()
                     var dailyDate = dailyArr[0]
-                    for _ in 0...50{
+                    for _ in 0...30{
                         dailyDate.addTimeInterval(86400)
                         startDatesUnsorted.append(dailyDate)
                     }
@@ -133,21 +141,14 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 if (weekly){
                     weeklyArr.sort()
                     var weeklyDate = weeklyArr[0]
-                    for _ in 0...8{
+                    for _ in 0...4{
                         weeklyDate.addTimeInterval(604800)
                         startDatesUnsorted.append(weeklyDate)
-                    }
-                }/*
-                if (monthly){
-                    monthlyArr.sort()
-                    var monthlyDate = monthlyArr[0]
-                    for _ in 0...2{
-                        monthlyDate.addTimeInterval(2419200)
-                        startDatesUnsorted.append(monthlyDate)
                     }
                 }*/
                 
                 
+            
                 
                 
                 
