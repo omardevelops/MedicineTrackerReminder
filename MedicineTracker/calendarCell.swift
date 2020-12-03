@@ -48,9 +48,9 @@ class calendarCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDa
             }else if (dateF.string(from: myPrescriptions![i].startDate!)) == (theCell){
                 eachPreCell.append(myPrescriptions![i])
             }
-            
-    
-        }
+            if(myPrescriptions![i].frequency == "Daily") && !(theCell == "Today") && !(theCell == "Tomorrow") {
+                eachPreCell.append(myPrescriptions![i])
+            }}
         //print(eachPreCell)
         cellArray.append(eachPreCell)
         //print(cellArray)
