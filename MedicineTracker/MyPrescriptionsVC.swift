@@ -19,6 +19,9 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    // Used to initialize the default dosage timings
+    //let initialTimings : [String]?
+    
     // MARK: Edit Cell
     // NEEDS FIXING
     @objc func editCell() {
@@ -29,6 +32,26 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let defaults = UserDefaults.standard
+        let defaultTimingsArray = defaults.array(forKey: "Default dosage times")
+        if defaultTimingsArray == nil {
+            // These default initial timings will be initialized on the first run of the app and can be modified by the user in Settings
+            let initialTimings = ["8:00 AM", "12:00 PM", "06:00 PM", "09:00 PM", "12:00 AM", "03:00 AM"]
+            defaults.setValue(initialTimings, forKey: "Default dosage times")
+            
+            // Set name pop-up menu
+            let alert = UIAlertController(title: "Your Name", message: "Welcome! What is your name?", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textfield) in
+                textfield.placeholder = "Enter Your Name"
+            })
+            alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { action in
+                let textfield = alert.textFields![0]
+                let defaults = UserDefaults.standard
+                defaults.setValue(textfield.text, forKey: "username")
+            }))
+            present(alert, animated: true)
+        }
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(prescriptionCell.nib(), forCellWithReuseIdentifier: "prescriptionCell")
@@ -38,45 +61,11 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     @IBAction func addPrescription(_ sender: UIBarButtonItem) {
-       /* let alert = UIAlertController(title: "Add Prescription", message: "", preferredStyle: .alert)
         
-        alert.addTextField()
-        
-        let action = UIAlertAction(title: "Add Person", style: .default, handler: {action in
-            
-            // Get textfield for alert
-            let textfield = alert.textFields![0]
-            
-            // Create a prescription object
-            let newPrescription = Prescription(context: self.context)
-            newPrescription.name = textfield.text
-            
-            // Save data
-            do {
-                try self.context.save()
-            }
-            catch {
-                // TODO: Handle error
-            }
-            
-            // Re-fetch data
-            self.fetchPrescriptions()
-        })
-        
-        alert.addAction(action)
-        present(alert, animated: true)*/
-        
-        // Changed by me, Omar
         performSegue(withIdentifier: "addDetailSegue", sender: self)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         
-        //DELETE CELL
-       /* let ps = myPrescriptions![indexPath.row]
-        context.delete(ps)
-        self.fetchPrescriptions()
-        
-        print("Tapped Cell #", indexPath.row)*/
         prescriptionIndex = indexPath.row
         performSegue(withIdentifier: "viewPrescriptionSegue", sender: self)
     }
@@ -85,7 +74,7 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
         
         CalendarVC.count.CountForReal =  myPrescriptions?.count ?? 0
         return myPrescriptions?.count ?? 0
-        //return MyPrescriptionsVC.cellCount
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
