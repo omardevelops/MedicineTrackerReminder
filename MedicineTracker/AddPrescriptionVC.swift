@@ -731,6 +731,17 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
     }
     
+    @IBAction func frequencyInfoButton(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Frequency", message: "Choose how often you would like to take the medicine.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func dosageInfoButton(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Dosage Times", message: "Choose what time(s) you would like to take the medicine.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     // MARK: Long Press Gestures
     @IBAction func firstLongPress(_ sender: UILongPressGestureRecognizer) {
