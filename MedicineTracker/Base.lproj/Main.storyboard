@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -58,7 +58,7 @@
                         <outlet property="collectionView" destination="RZe-bp-PzR" id="SUg-Wz-aHZ"/>
                         <segue destination="Tif-yn-oOe" kind="presentation" identifier="addDetailSegue" modalPresentationStyle="fullScreen" id="4qT-v0-769"/>
                         <segue destination="YF3-4J-4hH" kind="presentation" identifier="viewPrescriptionSegue" modalPresentationStyle="fullScreen" id="4RT-RJ-zG7"/>
-                        <segue destination="Tif-yn-oOe" kind="presentation" identifier="goToEdit" modalPresentationStyle="fullScreen" id="fvG-t5-Ikl"/>
+                        <segue destination="lTY-yc-D7m" kind="presentation" identifier="goToEdit" modalPresentationStyle="fullScreen" id="rDD-yp-7h2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -318,7 +318,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrZ-WI-2Yp">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbB-JH-T8k">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
@@ -975,7 +975,7 @@
             <objects>
                 <viewController id="ODS-Ub-Ybg" customClass="setCustomWeekDayVC" customModule="MedicineTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SJm-rT-5Ln">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="On what days are you taking your medicine?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekb-bM-S84">
@@ -1144,26 +1144,26 @@
             <objects>
                 <viewController id="rlA-Wf-Byf" customClass="customDosageTimeVC" customModule="MedicineTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K5f-m6-cvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="Rn1-Rp-rCF">
-                                <rect key="frame" x="0.0" y="252" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="164" width="414" height="216"/>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set a Custom Time For Your" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzo-yW-Oh4">
-                                <rect key="frame" x="34.5" y="121" width="345" height="35"/>
+                                <rect key="frame" x="34.5" y="33" width="345" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Dose" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxk-FH-l0B">
-                                <rect key="frame" x="127.5" y="171" width="159" height="41"/>
+                                <rect key="frame" x="127.5" y="83" width="159" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNC-pd-zdE">
-                                <rect key="frame" x="88.5" y="476" width="237" height="51"/>
+                                <rect key="frame" x="88.5" y="388" width="237" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="Set Custom Time"/>
                                 <connections>
@@ -1430,14 +1430,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4RT-RJ-zG7"/>
         <segue reference="ja8-X7-4TB"/>
-<<<<<<< HEAD
         <segue reference="4qT-v0-769"/>
-=======
-        <segue reference="fvG-t5-Ikl"/>
->>>>>>> 2b78ee85445aa86c114a232a691194e6bd546509
         <segue reference="ojc-T4-Jb5"/>
+        <segue reference="rDD-yp-7h2"/>
         <segue reference="GlV-86-TCK"/>
     </inferredMetricsTieBreakers>
     <resources>

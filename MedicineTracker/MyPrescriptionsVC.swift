@@ -24,8 +24,7 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
     
     // MARK: Edit Cell
     // NEEDS FIXING
-    @objc func editCell(sender: UIButton!) {
-        print("editing time")
+    @objc func editCell() {
         performSegue(withIdentifier: "goToEdit", sender: self)
         
     }
@@ -116,14 +115,9 @@ class MyPrescriptionsVC: UIViewController, UICollectionViewDelegate, UICollectio
             destinationVC.myPrescriptions = self.myPrescriptions
             
         } else if segue.identifier == "goToEdit" {
-            let destinationNavVC = segue.destination as! UINavigationController
-            let destinationVC = destinationNavVC.topViewController as! AddPrescriptionVC
+            let destinationVC = segue.destination as! AddPrescriptionVC
             destinationVC.prescriptionIndex = self.prescriptionIndex
             destinationVC.isEditPage = true
-            destinationVC.myPrescriptions = self.myPrescriptions
-            destinationVC.prescriptionArray = myPrescriptions
-
-
         }
     }
     
