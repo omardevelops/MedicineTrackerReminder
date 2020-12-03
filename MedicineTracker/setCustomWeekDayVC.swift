@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol CustomDaysVCDelegate : class {
+    func setCustomDays(customDaysSelected : [Bool])
+}
+
 class setCustomWeekDayVC: UIViewController {
+    
+    weak var delegate : CustomDaysVCDelegate?
 
     @IBOutlet weak var buttonOutlet1: UIButton!
     @IBOutlet weak var buttonOutlet2: UIButton!
@@ -143,7 +149,23 @@ class setCustomWeekDayVC: UIViewController {
     }
     
     @IBAction func setCustomDaysButton(_ sender: UIButton) {
+        // Dismiss view and transfer back the data to the add view
+        var isAnythingSelected = false
+        for day in isDaySelected {
+            if day == true {
+                isAnythingSelected = true
+                break
+            }
+        }
         
+        if isAnythingSelected {
+            delegate?.setCustomDays(customDaysSelected: isDaySelected)
+        }
+        
+        // return to previous viewcontroller
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+        print("just returned")
     }
     
 

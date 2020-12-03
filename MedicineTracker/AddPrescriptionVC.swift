@@ -29,8 +29,16 @@ extension UIColor {
     }
 }
 
-class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, customTimeDelegate {
-    
+class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, customTimeDelegate, CustomDaysVCDelegate {
+    // For custom days delegate
+    func setCustomDays(customDaysSelected: [Bool]) {
+        customDaysToNotifyOn = customDaysSelected
+        dailyEnabled = false
+        weeklyEnabled = false
+        monthlyEnabled = false
+        customEnabled = true
+        updateFrequencyButtons()
+    }
     
     // For customTime delegate
     func setCustomTime(time: Date) {
@@ -60,6 +68,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var initialDate : Date?
     
     var viewFirstTime : Bool = true
+    
+    var customDaysToNotifyOn : [Bool]?
     
     
     func initializeDates() {
@@ -469,6 +479,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             updateFrequencyButtons()
             repeatWeeklyButton.backgroundColor = UIColor.systemBlue
             repeatMonthlyButton.backgroundColor = UIColor.systemBlue
+            repeatCustomButton.backgroundColor = UIColor.systemBlue
             frequencyView.isUserInteractionEnabled = true
             isRepeats = true
             
@@ -484,6 +495,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             repeatDailyButton.backgroundColor = UIColor.systemGray
             repeatWeeklyButton.backgroundColor = UIColor.systemGray
             repeatMonthlyButton.backgroundColor = UIColor.systemGray
+            repeatCustomButton.backgroundColor = UIColor.systemGray
             
             frequencyView.isUserInteractionEnabled = false
             isRepeats = false
@@ -501,6 +513,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             dailyEnabled = true
             weeklyEnabled = false
             monthlyEnabled = false
+            customEnabled = false
         }
         updateFrequencyButtons()
     }
@@ -509,6 +522,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             weeklyEnabled = true
             dailyEnabled = false
             monthlyEnabled = false
+            customEnabled = false
         }
         updateFrequencyButtons()
     }
@@ -517,6 +531,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             monthlyEnabled = true
             dailyEnabled = false
             weeklyEnabled = false
+            customEnabled = false
         }
         updateFrequencyButtons()
     }
@@ -550,6 +565,14 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         } else {
             repeatMonthlyButton.backgroundColor = UIColor.systemBlue
             repeatMonthlyButton.setTitle("Monthly", for: .normal)
+        }
+        
+        if customEnabled {
+            repeatCustomButton.backgroundColor = UIColor.customLightBlue
+            repeatCustomButton.setTitle("Custom ✓", for: .normal)
+        } else {
+            repeatCustomButton.backgroundColor = UIColor.systemBlue
+            repeatCustomButton.setTitle("Custom", for: .normal)
         }
     }
     
@@ -904,6 +927,43 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 notificationCount! += 1
                 identifier = String(notificationCount!)
         }
+        } else if frequency == "Custom" {
+            for index in 0 ..< customDaysToNotifyOn!.count {
+                let day = customDaysToNotifyOn![index]
+                let weekday = getSelectedWeekday(isDaySelected: day, index: index)
+                print(weekday)
+                if weekday != -1 {
+                    for dosageTime in checkedDosageTimes {
+                        let hour = Calendar.current.component(.hour, from: dosageTime)
+                        let minute = Calendar.current.component(.minute, from: dosageTime)
+                        var dateComponents = DateComponents()
+                        dateComponents.weekday = weekday
+                        dateComponents.hour = hour
+                        dateComponents.minute = minute
+                        
+                        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+                        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                        UNUserNotificationCenter.current().add(request, withCompletionHandler: {error in
+                            if error != nil {
+                                print("Adding notification error")
+                                self.isNotificationsSet = false
+                            }
+                        })
+                        
+                        content.body = identifier
+                        
+                        newPrescription!.identifier!.append(identifier)
+                        print(newPrescription!.identifier!)
+                        
+                        notificationCount! += 1
+                        identifier = String(notificationCount!)
+                        
+                        
+                        print(dosageTime)
+                    }
+                    
+                }
+            }
         }
         
         // Sets the new notificationCount for the next prescription to have unique identifiers
@@ -923,6 +983,32 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         print(newPrescription!.identifier!)
         
         
+    }
+    
+    func getSelectedWeekday(isDaySelected: Bool, index: Int) -> Int {
+        // Maps the boolean array to the weekdays in Xcode where 1 is Sunday and 7 is Saturday
+        if isDaySelected {
+            switch index {
+            case 0: // Saturday
+                return 7
+            case 1: // Sunday
+                return 1
+            case 2: // Monday
+                return 2
+            case 3: // Tuesday
+                return 3
+            case 4: // Wednesday
+                return 4
+            case 5: // Thursday
+                return 5
+            case 6: // Friday
+                return 6
+            default:
+                return -1
+            }
+        } else {
+            return -1
+        }
     }
     
     func isColorPicked() -> Bool {
@@ -952,8 +1038,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             return "Daily"
         } else if weeklyEnabled {
             return "Weekly"
-        } else {
+        } else if monthlyEnabled {
             return "Monthly"
+        } else {
+            return "Custom"
         }
     }
     
@@ -1094,7 +1182,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 } else {
                     print("Notifications unauthorized. Cannot add prescription.")
                 }
-               //TODO: edit dosage times
+               
                
                do {
                    try self.context.save()
@@ -1164,7 +1252,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 // TODO: Handle error
             }
             
-            performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
+            //performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
             } else {
                 print("Notifications unauthorized. Cannot add prescription.")
             }
@@ -1221,6 +1309,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             
             destinationVC.prescriptionIndex = self.prescriptionIndex
             destinationVC.myPrescriptions = self.myPrescriptions
+        } else if segue.identifier == "setCustomDaysSegue" {
+            let destinationVC = segue.destination as! setCustomWeekDayVC
+            
+            destinationVC.delegate = self // To use customTime protocol to pass values between views
         }
     }
     
