@@ -10,12 +10,13 @@ import UIKit
 
 class ViewPrescriptionVC: UIViewController {
     
+    // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dosageLabel: UILabel!
-    @IBOutlet weak var nextDoseLabel: UILabel!
+    @IBOutlet weak var dosageTimingsLabel: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
-    @IBOutlet weak var endDateLabel: UILabel!
     @IBOutlet weak var noteLabel: UILabel!
+    @IBOutlet weak var frequencyLabel: UILabel!
     
     var myPrescriptions : [Prescription]?
     var prescriptionIndex = 0
@@ -25,13 +26,30 @@ class ViewPrescriptionVC: UIViewController {
         nameLabel.text = myPrescriptions![prescriptionIndex].name
         dosageLabel.text = myPrescriptions![prescriptionIndex].dose
         noteLabel.text = myPrescriptions![prescriptionIndex].notes
+        let myPrescription = myPrescriptions![prescriptionIndex]
+        if myPrescription.isRepeats {
+            frequencyLabel.text = myPrescription.frequency
+        } else {
+            frequencyLabel.text = "Non-repeating Prescription"
+        }
+        
+        let dosageTimings = myPrescriptions![prescriptionIndex].doseTimings
+        let timingFormatter = DateFormatter()
+        timingFormatter.dateFormat = "hh:mm a"
+        var timingsText : String = ""
+        for timing in dosageTimings! {
+            timingsText += timingFormatter.string(from: timing)
+            timingsText += "\n"
+            print(timing)
+        }
+        dosageTimingsLabel.text = timingsText
         //TODO: next dose
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US")
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMd")
         //dateFormatter.dateFormat = "MM/dd"
         startDateLabel.text = dateFormatter.string(from: myPrescriptions![prescriptionIndex].startDate!)
-        endDateLabel.text = dateFormatter.string(from: myPrescriptions![prescriptionIndex].endDate ?? myPrescriptions![prescriptionIndex].startDate!)
+        //endDateLabel.text = dateFormatter.string(from: myPrescriptions![prescriptionIndex].endDate ?? myPrescriptions![prescriptionIndex].startDate!)
         // Do any additional setup after loading the view.
     }
     

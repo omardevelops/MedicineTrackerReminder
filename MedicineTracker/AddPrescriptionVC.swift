@@ -1261,7 +1261,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 // TODO: Handle error
             }
             
-            //performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
+            performSegue(withIdentifier: "backToPrescriptionsSegue", sender: self)
             } else {
                 print("Notifications unauthorized. Cannot add prescription.")
             }
