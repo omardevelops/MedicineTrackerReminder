@@ -253,7 +253,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             updateDoseTimeButtons()
         } else {
             navigatorBar.title = "Add Prescription"
-            navigatorBar.rightBarButtonItem?.title = "Next"
+            navigatorBar.rightBarButtonItem?.title = "Add"
             navigatorBar.rightBarButtonItems = [nextButton, deleteButton]
             deleteButton.isEnabled = false
             deleteButton.tintColor = UIColor.clear

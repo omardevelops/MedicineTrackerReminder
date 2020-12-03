@@ -263,7 +263,17 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if myPrescriptions != nil {
+            if myPrescriptions!.count < 5 {
+                return myPrescriptions!.count
+            } else if myPrescriptions!.count >= 5 {
+                return 5
+            } else {
+                return 0
+            }
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{

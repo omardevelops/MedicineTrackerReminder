@@ -58,7 +58,6 @@
                         <outlet property="collectionView" destination="RZe-bp-PzR" id="SUg-Wz-aHZ"/>
                         <segue destination="Tif-yn-oOe" kind="presentation" identifier="addDetailSegue" modalPresentationStyle="fullScreen" id="4qT-v0-769"/>
                         <segue destination="YF3-4J-4hH" kind="presentation" identifier="viewPrescriptionSegue" modalPresentationStyle="fullScreen" id="4RT-RJ-zG7"/>
-                        <segue destination="lTY-yc-D7m" kind="presentation" identifier="goToEdit" modalPresentationStyle="fullScreen" id="rDD-yp-7h2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -318,7 +317,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrZ-WI-2Yp">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbB-JH-T8k">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
@@ -401,23 +400,6 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4u-Nv-u5d">
-                                                <rect key="frame" x="48" y="1139" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Notification Settings">
-                                                            <attributes>
-                                                                <font key="NSFont" metaFont="system" size="15"/>
-                                                                <integer key="NSUnderline" value="1"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </state>
-                                                <connections>
-                                                    <action selector="notificationButton:" destination="lTY-yc-D7m" eventType="touchUpInside" id="GE5-fw-Rdl"/>
-                                                </connections>
-                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mmr-Kx-9CZ">
                                                 <rect key="frame" x="-8" y="577" width="414" height="55"/>
                                                 <subviews>
@@ -677,7 +659,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vnc-Lb-3Lf" userLabel="Color1">
                                                 <rect key="frame" x="124" y="267" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.99971586469999996" green="0.94918927484098325" blue="0.39465951219898232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="1" green="0.93502706853630835" blue="0.57567169520605055" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -739,13 +721,6 @@
                                             <constraint firstItem="Mmr-Kx-9CZ" firstAttribute="leading" secondItem="vbB-JH-T8k" secondAttribute="leading" constant="-8" id="sss-Qs-GUw"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4br-os-3dD">
-                                        <rect key="frame" x="186" y="1365" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.8672696352" green="0.91017228360000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -804,7 +779,6 @@
                         <outlet property="navigatorBar" destination="L1I-wI-1CX" id="GAm-9y-euv"/>
                         <outlet property="nextButton" destination="Mkn-Bs-cqc" id="b6b-yE-Ovb"/>
                         <outlet property="noteTF" destination="KWg-65-zbs" id="0lz-cG-VZ6"/>
-                        <outlet property="notificationButton" destination="l4u-Nv-u5d" id="Vhl-eq-T3F"/>
                         <outlet property="orangeBG" destination="Vnc-Lb-3Lf" id="f1w-iJ-fGL"/>
                         <outlet property="redBG" destination="nkb-hH-wHc" id="vpT-oQ-3H4"/>
                         <outlet property="repeatCustomButton" destination="6rw-xn-c6F" id="ULw-aR-vHz"/>
@@ -975,7 +949,7 @@
             <objects>
                 <viewController id="ODS-Ub-Ybg" customClass="setCustomWeekDayVC" customModule="MedicineTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SJm-rT-5Ln">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="On what days are you taking your medicine?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekb-bM-S84">
@@ -1144,26 +1118,26 @@
             <objects>
                 <viewController id="rlA-Wf-Byf" customClass="customDosageTimeVC" customModule="MedicineTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K5f-m6-cvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="Rn1-Rp-rCF">
-                                <rect key="frame" x="0.0" y="164" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="252" width="414" height="216"/>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set a Custom Time For Your" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzo-yW-Oh4">
-                                <rect key="frame" x="34.5" y="33" width="345" height="35"/>
+                                <rect key="frame" x="34.5" y="121" width="345" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Dose" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxk-FH-l0B">
-                                <rect key="frame" x="127.5" y="83" width="159" height="41"/>
+                                <rect key="frame" x="127.5" y="171" width="159" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNC-pd-zdE">
-                                <rect key="frame" x="88.5" y="388" width="237" height="51"/>
+                                <rect key="frame" x="88.5" y="476" width="237" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="Set Custom Time"/>
                                 <connections>
@@ -1433,7 +1407,6 @@
         <segue reference="ja8-X7-4TB"/>
         <segue reference="11l-Vj-FmI"/>
         <segue reference="ojc-T4-Jb5"/>
-        <segue reference="rDD-yp-7h2"/>
         <segue reference="GlV-86-TCK"/>
     </inferredMetricsTieBreakers>
     <resources>
