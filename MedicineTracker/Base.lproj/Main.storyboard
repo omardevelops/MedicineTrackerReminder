@@ -74,25 +74,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TAp-lj-6Zu">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="7aE-IF-OTb"/>
-                                </constraints>
-                                <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="25"/>
-                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Settings" largeTitleDisplayMode="always" id="ge3-RZ-W6I"/>
-                                </items>
-                            </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personalization Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MkL-qm-NdH">
-                                <rect key="frame" x="20" y="112" width="301" height="31"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52G-yL-ptm">
                                 <rect key="frame" x="20" y="182" width="108.5" height="26"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
@@ -105,10 +86,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FUn-bm-wb5">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Test" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FUn-bm-wb5">
                                 <rect key="frame" x="20" y="216" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="changedNameTF:" destination="haa-hL-XAQ" eventType="editingChanged" id="dhO-3U-zVN"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y6r-9Y-UhJ">
                                 <rect key="frame" x="244.5" y="289" width="25" height="24"/>
@@ -134,6 +118,9 @@
                                                 <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="tapPresetTime1:" destination="haa-hL-XAQ" eventType="touchUpInside" id="LvW-uN-oXv"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iI0-1o-N6h">
                                         <rect key="frame" x="0.0" y="53" width="304" height="33"/>
@@ -148,6 +135,9 @@
                                                 <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="tapPresetTime2:" destination="haa-hL-XAQ" eventType="touchUpInside" id="JZr-QA-gEq"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcL-KS-pwj">
                                         <rect key="frame" x="0.0" y="106" width="304" height="33"/>
@@ -162,6 +152,9 @@
                                                 <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="tapPresetTime3:" destination="haa-hL-XAQ" eventType="touchUpInside" id="nAk-3D-afp"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejD-mH-APd">
                                         <rect key="frame" x="0.0" y="159" width="304" height="33"/>
@@ -176,6 +169,9 @@
                                                 <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="tapPresetTime4:" destination="haa-hL-XAQ" eventType="touchUpInside" id="tRa-9A-oNz"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INm-mY-tWf">
                                         <rect key="frame" x="0.0" y="212" width="304" height="33"/>
@@ -190,6 +186,9 @@
                                                 <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="tapPresetTime5:" destination="haa-hL-XAQ" eventType="touchUpInside" id="BZ8-DA-MgV"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chB-gb-Ejh">
                                         <rect key="frame" x="0.0" y="265" width="304" height="33"/>
@@ -204,19 +203,25 @@
                                                 <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="tapPresetTime6:" destination="haa-hL-XAQ" eventType="touchUpInside" id="wOl-5v-6xR"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personalization Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MkL-qm-NdH">
+                                <rect key="frame" x="20" y="125" width="301" height="31"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aIR-hB-Cmu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="9sv-Ko-Dh3" firstAttribute="top" secondItem="Y6r-9Y-UhJ" secondAttribute="top" id="1jv-xn-9uG"/>
                             <constraint firstItem="9sv-Ko-Dh3" firstAttribute="leading" secondItem="7Uy-2a-COG" secondAttribute="leadingMargin" id="5TP-S7-PT5"/>
-                            <constraint firstItem="MkL-qm-NdH" firstAttribute="top" secondItem="TAp-lj-6Zu" secondAttribute="bottom" constant="24" id="7P8-rx-VSq"/>
                             <constraint firstItem="4Mm-9P-Lxa" firstAttribute="leading" secondItem="aIR-hB-Cmu" secondAttribute="leading" constant="55" id="AI4-iD-5Ql"/>
-                            <constraint firstItem="TAp-lj-6Zu" firstAttribute="leading" secondItem="aIR-hB-Cmu" secondAttribute="leading" id="DUx-bC-ZER"/>
-                            <constraint firstItem="TAp-lj-6Zu" firstAttribute="top" secondItem="aIR-hB-Cmu" secondAttribute="top" id="DwZ-Vg-rEz"/>
                             <constraint firstItem="9sv-Ko-Dh3" firstAttribute="top" secondItem="FUn-bm-wb5" secondAttribute="bottom" constant="39" id="FUT-dn-Tw2"/>
                             <constraint firstItem="Y6r-9Y-UhJ" firstAttribute="leading" secondItem="9sv-Ko-Dh3" secondAttribute="trailing" constant="8" id="FxF-ce-oDD"/>
                             <constraint firstItem="9sv-Ko-Dh3" firstAttribute="leading" secondItem="FUn-bm-wb5" secondAttribute="leading" id="HDB-nT-yZw"/>
@@ -225,21 +230,29 @@
                             <constraint firstItem="FUn-bm-wb5" firstAttribute="top" secondItem="52G-yL-ptm" secondAttribute="bottom" constant="8" id="NC5-aA-zf7"/>
                             <constraint firstItem="4Mm-9P-Lxa" firstAttribute="centerX" secondItem="FUn-bm-wb5" secondAttribute="centerX" id="Qag-as-pGY"/>
                             <constraint firstItem="ul7-Rf-Fhm" firstAttribute="centerX" secondItem="7Uy-2a-COG" secondAttribute="centerX" id="UID-Oc-3wP"/>
+                            <constraint firstItem="MkL-qm-NdH" firstAttribute="top" secondItem="aIR-hB-Cmu" secondAttribute="top" constant="37" id="XAV-3i-Sxb"/>
                             <constraint firstItem="9sv-Ko-Dh3" firstAttribute="leading" secondItem="52G-yL-ptm" secondAttribute="leading" id="chZ-9H-M5M"/>
                             <constraint firstItem="ul7-Rf-Fhm" firstAttribute="top" secondItem="4Mm-9P-Lxa" secondAttribute="bottom" constant="81" id="eIS-oE-3EW"/>
                             <constraint firstItem="aIR-hB-Cmu" firstAttribute="trailing" secondItem="4Mm-9P-Lxa" secondAttribute="trailing" constant="55" id="f9t-EU-YJB"/>
                             <constraint firstItem="4Mm-9P-Lxa" firstAttribute="top" secondItem="9sv-Ko-Dh3" secondAttribute="bottom" constant="40" id="mEn-Qt-mUD"/>
-                            <constraint firstItem="4Mm-9P-Lxa" firstAttribute="centerX" secondItem="TAp-lj-6Zu" secondAttribute="centerX" id="oS0-ab-A4I"/>
                             <constraint firstItem="4Mm-9P-Lxa" firstAttribute="top" secondItem="7Uy-2a-COG" secondAttribute="top" constant="355" id="uBD-ma-gth"/>
                             <constraint firstItem="4Mm-9P-Lxa" firstAttribute="centerX" secondItem="ul7-Rf-Fhm" secondAttribute="centerX" id="zCa-1b-RyC"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="8eA-UF-jC3">
-                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="Settings" id="oLp-vH-Cr6"/>
+                    <connections>
+                        <outlet property="presetTime1" destination="AVq-2X-0YE" id="vvo-Dr-Nml"/>
+                        <outlet property="presetTime2" destination="iI0-1o-N6h" id="xpq-ju-LFF"/>
+                        <outlet property="presetTime3" destination="lcL-KS-pwj" id="1GM-xd-EGZ"/>
+                        <outlet property="presetTime4" destination="ejD-mH-APd" id="yMw-am-5PI"/>
+                        <outlet property="presetTime5" destination="INm-mY-tWf" id="sGn-Cu-S1p"/>
+                        <outlet property="presetTime6" destination="chB-gb-Ejh" id="qdg-Ko-pG8"/>
+                        <outlet property="yourNameTF" destination="FUn-bm-wb5" id="eGT-Bs-ESV"/>
+                        <segue destination="rlA-Wf-Byf" kind="show" identifier="FromSettingsToSetTimeSegue" id="pk9-xe-WZN"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2492.753623188406" y="-320.08928571428572"/>
+            <point key="canvasLocation" x="3402.898550724638" y="-320.08928571428572"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="wg7-f3-ORb">
@@ -294,7 +307,7 @@
                     <connections>
                         <segue destination="K6N-Oa-8Bc" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="DaV-gm-5oc" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="haa-hL-XAQ" kind="relationship" relationship="viewControllers" id="XNQ-MH-sgM"/>
+                        <segue destination="3JJ-fo-t0s" kind="relationship" relationship="viewControllers" id="XNQ-MH-sgM"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -1014,7 +1027,7 @@
             <objects>
                 <viewController id="rlA-Wf-Byf" customClass="customDosageTimeVC" customModule="MedicineTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K5f-m6-cvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="Rn1-Rp-rCF">
@@ -1245,9 +1258,34 @@
             </objects>
             <point key="canvasLocation" x="749.27536231884062" y="359.59821428571428"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="kc6-WY-tFm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3JJ-fo-t0s" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="8eA-UF-jC3">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3rT-QB-hZq">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="25"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="haa-hL-XAQ" kind="relationship" relationship="rootViewController" id="8OX-l2-Yc4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uEM-Nr-V6x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2492.753623188406" y="-320.08928571428572"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="11l-Vj-FmI"/>
+        <segue reference="pk9-xe-WZN"/>
+        <segue reference="4qT-v0-769"/>
         <segue reference="u7Y-xg-7CH"/>
         <segue reference="rDD-yp-7h2"/>
         <segue reference="GlV-86-TCK"/>

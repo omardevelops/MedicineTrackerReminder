@@ -54,7 +54,8 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var allDosageTimes : [Date] = []
     var checkedDosageTimes : [Date] = [] // What is checked will be added to the prescription array
     
-    let initialTimings = ["8:00 AM", "12:00 PM", "06:00 PM", "09:00 PM", "12:00 AM", "03:00 AM"]
+    // Timings stored as an array of Strings of format "HH:mm a" -> EXAMPLE: "08:00 AM"
+    var initialTimings : [String]?
     
     var initialDate : Date?
     
@@ -63,15 +64,17 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     func initializeDates() {
         // TIME ZONE IS GMT FOR THIS
-        
+     
+        let defaults = UserDefaults.standard
+        initialTimings = defaults.stringArray(forKey: "Default dosage times")
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MM y"
         let todayDateAsString = formatter.string(from: Date())
         formatter.dateFormat = "hh:mm a, dd MM y"
         
 
-        for j in 0 ..< initialTimings.count {
-            allDosageTimes.append(formatter.date(from: initialTimings[j] + ", " + todayDateAsString)!)
+        for j in 0 ..< initialTimings!.count {
+            allDosageTimes.append(formatter.date(from: initialTimings![j] + ", " + todayDateAsString)!)
         }
         
         if isEditPage && viewFirstTime {
@@ -111,30 +114,6 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 }
             }
         }
-            
-            /*
-            let dateTime1 = formatter.date(from: initialTimings[0]+", "+todayDateAsString)
-            let dateTime2 = formatter.date(from: initialTimings[1]+", "+todayDateAsString)
-            let dateTime3 = formatter.date(from: initialTimings[2]+", "+todayDateAsString)
-            let dateTime4 = formatter.date(from: initialTimings[3]+", "+todayDateAsString)
-            let dateTime5 = formatter.date(from: initialTimings[4]+", "+todayDateAsString)
-            let dateTime6 = formatter.date(from: initialTimings[5]+", "+todayDateAsString)
-            /*let dateTime1 = Date(timeIntervalSinceNow: 28800.0) // 8AM
-            let dateTime2 = Date(timeIntervalSinceNow: 43200.0) // 12PM
-            let dateTime3 = Date(timeIntervalSinceNow: 64800.0) // 6PM
-            let dateTime4 = Date(timeIntervalSinceNow: 75600.0) // 9PM
-            let dateTime5 = Date(timeIntervalSinceNow: 86400.0) // 12AM
-            let dateTime6 = Date(timeIntervalSinceNow: 10800.0) // 3AM*/
-            
-            allDosageTimes.append(dateTime1!)
-            allDosageTimes.append(dateTime2!)
-            allDosageTimes.append(dateTime3!)
-            allDosageTimes.append(dateTime4!)
-            allDosageTimes.append(dateTime5!)
-            allDosageTimes.append(dateTime6!)
-            
-            print(allDosageTimes)*/
-        
         
         
     }
