@@ -245,7 +245,7 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             displayFrequency()
             updateFrequencyButtons()
             updateRepeatsSwitchComponents()
-            
+            customDaysToNotifyOn = myPrescriptions![prescriptionIndex].customDaysSelected
             
             //TODO: Choose dosage times from core data
             initializeDates()
@@ -1209,6 +1209,10 @@ class AddPrescriptionVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             newPrescription!.notificationType = false // Not alarm
             // Initialize identifiers array
             newPrescription!.identifier = []
+            // Store custom days in the prescription
+            newPrescription!.customDaysSelected = customDaysToNotifyOn
+            // Store isRepeats in prescription
+            newPrescription!.isRepeats = isRepeats
             
             if repeatsSwitch.isOn {
                 newPrescription!.endDate = endDatePickerOutlet.date

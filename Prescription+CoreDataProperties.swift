@@ -2,7 +2,7 @@
 //  Prescription+CoreDataProperties.swift
 //  MedicineTracker
 //
-//  Created by Omar Ahmed on 11/27/20.
+//  Created by Omar Ahmed on 12/3/20.
 //  Copyright © 2020 Omar Ahmad. All rights reserved.
 //
 //
@@ -28,6 +28,8 @@ extension Prescription {
     @NSManaged public var notificationType: Bool
     @NSManaged public var startDate: Date?
     @NSManaged public var whatDay: Int16
+    @NSManaged public var customDaysSelected: [Bool]?
+    @NSManaged public var isRepeats: Bool
 
 }
 
