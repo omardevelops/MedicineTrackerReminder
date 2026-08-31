@@ -59,6 +59,28 @@ class NotAnIngredientsList(ValueError):
         self.advisory = advisory
 
 
+_BRACKETED = re.compile(r"\(([^()]*)\)")
+
+
+def _excise_bracketed_advisories(text: str) -> tuple[str, list[str]]:
+    """Remove parenthesised advisories, keeping the rest of the list intact.
+
+    Labels commonly inline one mid-panel: "Sugar, Milk (May contain: nuts),
+    Salt". Treating that bracket as the end of the declaration would silently
+    drop every ingredient after it.
+    """
+    found: list[str] = []
+
+    def replace(match: re.Match[str]) -> str:
+        inner = match.group(1)
+        if _ADVISORY_RE.search(inner):
+            found.append(inner.strip())
+            return " "
+        return match.group(0)
+
+    return _BRACKETED.sub(replace, text), found
+
+
 def split_panel(text: str) -> tuple[str, str]:
     """Split text into (ingredients declaration, advisory tail).
 
@@ -69,9 +91,11 @@ def split_panel(text: str) -> tuple[str, str]:
     if header is not None:
         text = text[header.end():]
 
+    text, bracketed = _excise_bracketed_advisories(text)
+
     advisory = _ADVISORY_RE.search(text)
     if advisory is None:
-        return text.strip(), ""
+        return text.strip(), " ".join(bracketed)
 
     # An advisory marker before any declaration means the whole text is advisory.
     head = text[: advisory.start()]
@@ -79,7 +103,8 @@ def split_panel(text: str) -> tuple[str, str]:
 
     # Trim a dangling connector left behind by the split.
     head = re.sub(r"[.,;:\s]*$", "", head)
-    return head.strip(), tail.strip()
+    parts = [*bracketed, tail.strip()]
+    return head.strip(), " ".join(p for p in parts if p)
 
 
 def detect(text: str) -> tuple[str, str, str]:

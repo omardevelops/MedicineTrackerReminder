@@ -139,12 +139,18 @@ def tokenize_with_context(text: str) -> list[tuple[str, str]]:
     text = re.sub(r"^\s*ingredient(s)?\s*[:\-]", " ", text, flags=re.IGNORECASE)
     text = re.sub(r"(\w)-\s*\n\s*(\w)", r"\1\2", text)
     text = text.replace("\r", "\n")
+    # A sentence-ending period separates ingredients from the legal statements
+    # that follow them ("...EGG White Powder. MILK Chocolate contains..."). A
+    # period inside a decimal is left alone by the lookahead.
+    # Two word characters must precede it, which leaves "e.g." and "i.e."
+    # intact while still separating "...Powder. MILK Chocolate contains...".
+    text = re.sub(r"(?<=\w{2})\.(?=\s|$)", ",", text)
 
     tokens: list[tuple[str, str]] = []
     seen: set[str] = set()
     for part in _split_top_level(text):
         for candidate, context in _expand(part):
-            cleaned = candidate.strip().strip(".·•*- ")
+            cleaned = candidate.strip().strip(".,;:·•*-()[] ")
             if not cleaned:
                 continue
             key = normalize(cleaned)

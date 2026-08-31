@@ -64,3 +64,10 @@ def test_declaration_without_advisory_keeps_everything():
     head, tail = split_panel("Sugar, Salt")
     assert head == "Sugar, Salt"
     assert tail == ""
+
+
+def test_sentence_period_separates_but_abbreviations_survive():
+    tokens = tokenize("Sugar, EGG White Powder. MILK Chocolate contains milk")
+    assert "EGG White Powder" in tokens
+    # "e.g." must not fragment into stray one-letter tokens.
+    assert all(len(t) > 1 for t in tokenize("Nuts (e.g. almonds, cashews)"))

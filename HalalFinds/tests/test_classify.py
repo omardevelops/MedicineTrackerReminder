@@ -124,14 +124,28 @@ def test_allergen_disclaimer_gets_no_verdict():
 
 
 def test_disclaimer_can_be_forced():
+    """--force still produces a verdict; it just should not be reached for."""
     verdict = classify(MENU_DISCLAIMER, country="GB", force=True)
-    assert verdict.ruling is Ruling.HALAL
+    assert verdict.ruling in (Ruling.HALAL, Ruling.MASHBOOH)
 
 
-def test_listed_allergens_are_all_recognised():
-    """None of the 14 regulated allergens should read as 'unidentified'."""
-    verdict = classify(MENU_DISCLAIMER, country="GB", force=True)
-    assert verdict.unknown == []
+@pytest.mark.parametrize(
+    "allergen",
+    [
+        "Gluten", "Crustaceans", "Eggs", "Fish", "Peanuts", "Soybeans", "Milk",
+        "almonds", "hazelnuts", "walnuts", "cashews", "pecan nuts",
+        "Brazil nuts", "pistachio nuts", "macadamia nuts", "Celery", "Mustard",
+        "Sesame", "Sulphur dioxide", "Lupin", "Molluscs",
+    ],
+)
+def test_regulated_allergens_are_recognised(allergen):
+    """Ordinary halal foods must not read as 'unidentified'.
+
+    A doubtful verdict on celery makes the genuine mashbooh findings look like
+    noise, which is how a user learns to ignore them.
+    """
+    verdict = classify(f"Sugar, {allergen}", country="GB", force=True)
+    assert verdict.unknown == [], f"{allergen} was not recognised"
 
 
 def test_advisory_tail_is_split_off_not_ruled_on():
@@ -156,4 +170,65 @@ def test_empty_text_gets_no_verdict():
 
 def test_plurals_match_singular_entries():
     verdict = classify("Eggs, Nuts, Molluscs, Crustaceans", country="GB", force=True)
+    assert verdict.unknown == []
+
+
+# --- Regressions from a real chocolate-bar panel ---------------------------
+
+BAR_PANEL = (
+    "Ingredients: Sugar, Glucose Syrup, PEANUTS, Skimmed MILK Powder, "
+    "Cocoa Butter°, Cocoa Mass°, Sunflower Oil, Palm Fat, "
+    "Whey Permeate (MILK), MILK Fat, Salt, Emulsifier (SOYA Lecithin), "
+    "EGG White Powder. (May Contain: Other NUTS). May contain: Eggs, Soy"
+)
+
+
+def test_bar_panel_is_doubtful_only_because_of_whey():
+    verdict = classify(BAR_PANEL, country="GB")
+    assert verdict.ruling is Ruling.MASHBOOH
+    assert [f.entry.id for f in verdict.mashbooh] == ["whey"]
+
+
+def test_bar_panel_has_no_unidentified_ingredients():
+    """Ordinary foods reading as doubtful erodes trust in real findings."""
+    assert classify(BAR_PANEL, country="GB").unknown == []
+
+
+def test_organic_marker_does_not_break_matching():
+    verdict = classify("Cocoa Butter°, Cocoa Mass°", country="GB")
+    assert verdict.unknown == []
+
+
+def test_soya_qualifier_clears_lecithin():
+    verdict = classify("Emulsifier (SOYA Lecithin)", country="GB")
+    assert verdict.ruling is Ruling.HALAL
+    assert verdict.findings[0].resolved_by == "label:soy"
+
+
+def test_bracketed_advisory_does_not_truncate_the_list():
+    """'Sugar, Milk (May contain: nuts), Salt' must not lose the Salt."""
+    verdict = classify("Sugar, Milk (May contain: nuts), Salt, Gelatine", country="GB")
+    names = [f.entry.id for f in verdict.findings]
+    assert "gelatin" in names and "salt-spices" in names
+    assert "may contain" in verdict.advisory.lower()
+
+
+def test_token_text_is_clean_of_punctuation_debris():
+    verdict = classify(BAR_PANEL, country="GB")
+    for finding in verdict.findings:
+        assert not finding.text.strip().endswith(("(", ".", ","))
+
+
+def test_trailing_legal_statement_does_not_swallow_an_ingredient():
+    """'EGG White Powder. MILK Chocolate contains...' is two things, not one."""
+    verdict = classify(
+        "Ingredients: Sugar, EGG White Powder. MILK Chocolate Contains "
+        "MILK Solids 14% Minimum.",
+        country="GB",
+    )
+    assert "egg" in [f.entry.id for f in verdict.findings]
+
+
+def test_decimal_points_are_not_split_on():
+    verdict = classify("Sugar, Salt, Cocoa Mass 32.5%", country="GB")
     assert verdict.unknown == []

@@ -138,7 +138,7 @@ cane sugar may be bone-char refined and the label will not say. See
 
 ## Data
 
-- `data/ingredients.json` — 96 entries covering 227 E-numbers and 629 label
+- `data/ingredients.json` — 96 entries covering 227 E-numbers and 641 label
   aliases, each with a ruling, a reason, the ambiguity axis, and per-source
   resolutions
 - `data/countries.json` — 15 jurisdictions, 9 ruling profiles, 5 label signals
