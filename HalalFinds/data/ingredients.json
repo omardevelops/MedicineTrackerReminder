@@ -1,0 +1,2221 @@
+{
+  "version": "0.1.0",
+  "updated": "2026-08-31",
+  "note": "Each entry may omit fields; the loader applies defaults. 'rulings.default' applies to every profile unless a profile key (strict/mainstream/lenient) or a certifier key overrides it.",
+  "entries": [
+    {
+      "id": "pork",
+      "canonical": "Pork",
+      "aliases": [
+        "pig",
+        "swine",
+        "porcine",
+        "pork fat",
+        "bacon",
+        "ham",
+        "prosciutto",
+        "pancetta",
+        "chorizo",
+        "salami (pork)",
+        "pepperoni (pork)",
+        "gammon",
+        "lardon"
+      ],
+      "category": "meat",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "haram"
+      },
+      "reason": "Swine flesh and its derivatives are explicitly prohibited (Qur'an 2:173, 5:3, 6:145, 16:115).",
+      "confidence": "certain"
+    },
+    {
+      "id": "lard",
+      "canonical": "Lard",
+      "aliases": [
+        "pig fat",
+        "saindoux",
+        "schmalz",
+        "manteca de cerdo"
+      ],
+      "category": "fat",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "haram"
+      },
+      "reason": "Rendered pork fat.",
+      "confidence": "certain"
+    },
+    {
+      "id": "blood",
+      "canonical": "Blood and blood products",
+      "aliases": [
+        "blood plasma",
+        "blood meal",
+        "black pudding",
+        "blood sausage",
+        "haemoglobin",
+        "hemoglobin",
+        "plasma protein"
+      ],
+      "category": "animal",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "haram"
+      },
+      "reason": "Flowing blood is explicitly prohibited.",
+      "confidence": "certain"
+    },
+    {
+      "id": "carrion",
+      "canonical": "Meat of an animal not ritually slaughtered",
+      "aliases": [
+        "mechanically separated meat",
+        "meat (unspecified)",
+        "animal protein (unspecified)",
+        "carrion"
+      ],
+      "category": "meat",
+      "ambiguity": "slaughter",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram"
+      },
+      "reason": "Land-animal meat is halal only if the animal was ritually slaughtered. An unlabelled or uncertified source cannot be assumed compliant.",
+      "ask": "Is the meat from a certified halal-slaughtered source?"
+    },
+    {
+      "id": "alcohol-beverage",
+      "canonical": "Alcoholic beverage",
+      "aliases": [
+        "wine",
+        "beer",
+        "rum",
+        "brandy",
+        "whisky",
+        "whiskey",
+        "vodka",
+        "sherry",
+        "liqueur",
+        "kirsch",
+        "marsala",
+        "cognac",
+        "champagne",
+        "sake",
+        "cider (alcoholic)",
+        "port wine"
+      ],
+      "category": "alcohol",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "haram"
+      },
+      "reason": "Khamr (intoxicating drink) is prohibited, including as a recipe ingredient where it is not fully transformed.",
+      "confidence": "certain"
+    },
+    {
+      "id": "ethanol",
+      "canonical": "Ethanol / ethyl alcohol",
+      "codes": [
+        "E1510"
+      ],
+      "aliases": [
+        "alcohol",
+        "ethyl alcohol",
+        "grain alcohol",
+        "denatured alcohol",
+        "alcohol (carrier)"
+      ],
+      "category": "alcohol",
+      "ambiguity": "alcohol",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram"
+      },
+      "reason": "Prohibited as an intoxicant. Widely disputed as a residual carrier solvent in flavourings at trace levels; several certifiers permit below 0.1% carry-over, others do not.",
+      "ask": "Is ethanol present as an intoxicating ingredient or only as a residual flavour carrier, and at what level?"
+    },
+    {
+      "id": "vanilla-extract",
+      "canonical": "Vanilla extract",
+      "aliases": [
+        "vanilla essence",
+        "natural vanilla flavour",
+        "vanilla flavouring"
+      ],
+      "category": "flavouring",
+      "ambiguity": "alcohol",
+      "rulings": {
+        "default": "mashbooh",
+        "lenient": "halal",
+        "strict": "haram"
+      },
+      "reason": "Conventionally extracted into an ethanol carrier (commonly 35% alcohol) which remains in the product.",
+      "ask": "Is this an alcohol-free / glycerin-based vanilla extract?"
+    },
+    {
+      "id": "wine-vinegar",
+      "canonical": "Wine vinegar",
+      "aliases": [
+        "red wine vinegar",
+        "white wine vinegar",
+        "balsamic vinegar",
+        "sherry vinegar"
+      ],
+      "category": "acid",
+      "ambiguity": "alcohol",
+      "rulings": {
+        "default": "mashbooh",
+        "lenient": "halal",
+        "strict": "haram"
+      },
+      "reason": "Produced by acetic fermentation of wine. Most schools hold that full transformation to vinegar (istihalah) renders it permissible; a minority reject vinegar deliberately made from wine.",
+      "certifiers": {
+        "JAKIM": "haram",
+        "HFA": "mashbooh"
+      }
+    },
+    {
+      "id": "malt-vinegar",
+      "canonical": "Malt vinegar",
+      "aliases": [
+        "spirit vinegar",
+        "distilled vinegar",
+        "acetic acid",
+        "vinegar"
+      ],
+      "codes": [
+        "E260"
+      ],
+      "category": "acid",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Fully fermented to acetic acid; no intoxicant remains."
+    },
+    {
+      "id": "brewers-yeast",
+      "canonical": "Brewer's yeast",
+      "aliases": [
+        "brewers yeast",
+        "beer yeast"
+      ],
+      "category": "other",
+      "ambiguity": "alcohol",
+      "rulings": {
+        "default": "halal",
+        "strict": "mashbooh"
+      },
+      "reason": "A by-product of brewing. The yeast itself carries no intoxicant, though strict standards avoid brewing by-products."
+    },
+    {
+      "id": "gelatin",
+      "canonical": "Gelatine",
+      "codes": [
+        "E441"
+      ],
+      "aliases": [
+        "gelatin",
+        "gelatin (unspecified)",
+        "gelatina",
+        "hydrolysed collagen",
+        "collagen hydrolysate",
+        "collagen peptides"
+      ],
+      "category": "gelling agent",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram"
+      },
+      "resolves": {
+        "porcine": "haram",
+        "bovine_halal": "halal",
+        "bovine_uncertified": "mashbooh",
+        "fish": "halal",
+        "plant": "halal"
+      },
+      "reason": "Collagen hydrolysate from animal skin and bone. Porcine is the most common commercial source worldwide; bovine gelatine is halal only from ritually slaughtered cattle.",
+      "ask": "What species is the gelatine from, and was bovine material halal-slaughtered?",
+      "confidence": "high"
+    },
+    {
+      "id": "collagen",
+      "canonical": "Collagen",
+      "aliases": [
+        "marine collagen",
+        "bovine collagen",
+        "collagen protein"
+      ],
+      "category": "protein",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "resolves": {
+        "porcine": "haram",
+        "fish": "halal",
+        "bovine_halal": "halal"
+      },
+      "reason": "Animal connective tissue; same source question as gelatine.",
+      "ask": "What species is the collagen from?"
+    },
+    {
+      "id": "rennet",
+      "canonical": "Rennet",
+      "aliases": [
+        "rennin",
+        "chymosin",
+        "animal rennet",
+        "microbial rennet",
+        "vegetable rennet",
+        "presure",
+        "lab ferment"
+      ],
+      "category": "enzyme",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "resolves": {
+        "microbial": "halal",
+        "plant": "halal",
+        "calf_halal": "halal",
+        "calf_uncertified": "mashbooh",
+        "porcine": "haram"
+      },
+      "reason": "Milk-coagulating enzyme. Microbial and plant rennet are halal; calf rennet requires ritual slaughter, and pepsin-based rennet may be porcine.",
+      "ask": "Is the rennet microbial, plant, or animal? If animal, from what species and slaughter?"
+    },
+    {
+      "id": "whey",
+      "canonical": "Whey",
+      "aliases": [
+        "whey powder",
+        "whey protein",
+        "whey protein concentrate",
+        "whey protein isolate",
+        "sweet whey",
+        "lactoserum"
+      ],
+      "category": "dairy",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "resolves": {
+        "microbial": "halal",
+        "calf_halal": "halal",
+        "porcine": "haram"
+      },
+      "reason": "A cheese-making by-product; inherits the ruling of the rennet used to coagulate the milk.",
+      "ask": "What rennet was used in the cheese the whey came from?"
+    },
+    {
+      "id": "pepsin",
+      "canonical": "Pepsin",
+      "aliases": [
+        "pepsine"
+      ],
+      "category": "enzyme",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram"
+      },
+      "reason": "A digestive enzyme most commonly harvested from porcine stomach mucosa.",
+      "ask": "Is the pepsin porcine, bovine, or microbial?"
+    },
+    {
+      "id": "lipase",
+      "canonical": "Lipase",
+      "aliases": [
+        "lipase enzyme",
+        "pregastric esterase"
+      ],
+      "category": "enzyme",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "reason": "Frequently animal-derived (calf, lamb or kid glandular tissue), though microbial lipase is common.",
+      "ask": "Is the lipase microbial or animal-derived?"
+    },
+    {
+      "id": "enzymes-unspecified",
+      "canonical": "Enzymes (unspecified)",
+      "aliases": [
+        "enzyme",
+        "enzymes",
+        "enzyme preparation",
+        "protease",
+        "trypsin",
+        "amylase (unspecified)"
+      ],
+      "category": "enzyme",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "reason": "Enzymes may be microbial, plant or animal. Labels rarely disclose which.",
+      "ask": "What is the source organism for each enzyme used?"
+    },
+    {
+      "id": "chymosin-fpc",
+      "canonical": "Fermentation-produced chymosin (FPC)",
+      "aliases": [
+        "microbial chymosin",
+        "fermentation produced chymosin",
+        "non-animal rennet"
+      ],
+      "category": "enzyme",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Produced by microbial fermentation without animal tissue."
+    },
+    {
+      "id": "l-cysteine",
+      "canonical": "L-Cysteine",
+      "codes": [
+        "E920",
+        "E921"
+      ],
+      "aliases": [
+        "cysteine",
+        "l cysteine",
+        "l-cystine",
+        "cystine",
+        "dough conditioner (cysteine)"
+      ],
+      "category": "flour treatment",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram"
+      },
+      "resolves": {
+        "synthetic": "halal",
+        "microbial": "halal",
+        "duck_feather": "mashbooh",
+        "human_hair": "haram",
+        "porcine": "haram"
+      },
+      "reason": "A dough conditioner historically produced by hydrolysing keratin from human hair, duck and chicken feathers, or hog bristle. Synthetic and fermentation-derived L-cysteine is now also available.",
+      "ask": "Is the L-cysteine synthetic/fermentation-derived, or keratin-hydrolysed?",
+      "confidence": "high"
+    },
+    {
+      "id": "carmine",
+      "canonical": "Cochineal / Carmine / Carminic acid",
+      "codes": [
+        "E120"
+      ],
+      "aliases": [
+        "carmine",
+        "cochineal",
+        "carminic acid",
+        "natural red 4",
+        "crimson lake",
+        "cochineal extract"
+      ],
+      "category": "colour",
+      "ambiguity": "insect",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram",
+        "lenient": "halal"
+      },
+      "certifiers": {
+        "JAKIM": "haram",
+        "MUI": "haram",
+        "IFANCA": "mashbooh",
+        "HFA": "mashbooh"
+      },
+      "reason": "A red pigment extracted from the cochineal insect. Schools differ on consuming insects: the Maliki position permits, while Hanafi and Shafi'i scholars generally prohibit non-locust insects. Certifiers are divided.",
+      "ask": "Can the colour be substituted with a plant-based red (e.g. anthocyanin, beetroot)?"
+    },
+    {
+      "id": "shellac",
+      "canonical": "Shellac",
+      "codes": [
+        "E904"
+      ],
+      "aliases": [
+        "confectioner's glaze",
+        "confectioners glaze",
+        "pharmaceutical glaze",
+        "resinous glaze",
+        "lac resin",
+        "food glaze"
+      ],
+      "category": "glazing agent",
+      "ambiguity": "insect",
+      "rulings": {
+        "default": "mashbooh",
+        "lenient": "halal"
+      },
+      "reason": "A resin secreted by the lac insect, dissolved in ethanol for application. Two separate concerns: insect origin and the alcohol solvent, most of which evaporates.",
+      "ask": "Is the glaze shellac or a plant/carnauba wax alternative?"
+    },
+    {
+      "id": "beeswax",
+      "canonical": "Beeswax",
+      "codes": [
+        "E901"
+      ],
+      "aliases": [
+        "white beeswax",
+        "yellow beeswax",
+        "cera alba"
+      ],
+      "category": "glazing agent",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "A bee secretion, not the insect body; permitted by consensus."
+    },
+    {
+      "id": "carnauba",
+      "canonical": "Carnauba wax",
+      "codes": [
+        "E903"
+      ],
+      "aliases": [
+        "carnauba",
+        "palm wax"
+      ],
+      "category": "glazing agent",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Plant-derived wax from the carnauba palm."
+    },
+    {
+      "id": "honey",
+      "canonical": "Honey",
+      "aliases": [
+        "clear honey",
+        "raw honey",
+        "miel"
+      ],
+      "category": "sweetener",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Explicitly praised in the Qur'an (16:69)."
+    },
+    {
+      "id": "glycerol",
+      "canonical": "Glycerol / Glycerine",
+      "codes": [
+        "E422"
+      ],
+      "aliases": [
+        "glycerin",
+        "glycerine",
+        "glycerol",
+        "vegetable glycerin",
+        "humectant (glycerol)",
+        "glycerina"
+      ],
+      "category": "humectant",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "resolves": {
+        "plant": "halal",
+        "synthetic": "halal",
+        "porcine": "haram",
+        "bovine_uncertified": "mashbooh"
+      },
+      "reason": "A by-product of fat splitting or soap manufacture; the feedstock may be plant oil, petrochemical, or animal tallow including porcine.",
+      "ask": "Is the glycerol of vegetable, synthetic, or animal origin?",
+      "confidence": "high"
+    },
+    {
+      "id": "e471",
+      "canonical": "Mono- and diglycerides of fatty acids",
+      "codes": [
+        "E471"
+      ],
+      "aliases": [
+        "mono and diglycerides",
+        "monoglycerides",
+        "diglycerides",
+        "glycerides",
+        "mono- & diglycerides",
+        "glycerol monostearate",
+        "GMS",
+        "distilled monoglycerides"
+      ],
+      "category": "emulsifier",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "resolves": {
+        "plant": "halal",
+        "porcine": "haram",
+        "bovine_halal": "halal",
+        "bovine_uncertified": "mashbooh"
+      },
+      "reason": "Emulsifier built from glycerol and fatty acids; both components may be animal-derived. One of the most frequently encountered doubtful additives.",
+      "ask": "Are the fatty acids and glycerol of vegetable origin?",
+      "confidence": "high"
+    },
+    {
+      "id": "e472",
+      "canonical": "Esters of mono- and diglycerides",
+      "codes": [
+        "E472",
+        "E472a",
+        "E472b",
+        "E472c",
+        "E472d",
+        "E472e",
+        "E472f"
+      ],
+      "aliases": [
+        "acetic acid esters of mono- and diglycerides",
+        "lactic acid esters",
+        "citric acid esters of mono- and diglycerides",
+        "DATEM",
+        "diacetyl tartaric acid ester",
+        "mono- and diacetyl tartaric acid esters",
+        "CITREM",
+        "LACTEM",
+        "ACETEM"
+      ],
+      "category": "emulsifier",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "resolves": {
+        "plant": "halal",
+        "porcine": "haram"
+      },
+      "reason": "Built on the same mono/diglyceride backbone as E471, so it carries the identical fatty-acid source question.",
+      "ask": "Are the underlying fatty acids of vegetable origin?"
+    },
+    {
+      "id": "e470",
+      "canonical": "Salts of fatty acids",
+      "codes": [
+        "E470",
+        "E470a",
+        "E470b"
+      ],
+      "aliases": [
+        "sodium stearate",
+        "magnesium salts of fatty acids",
+        "sodium salts of fatty acids"
+      ],
+      "category": "emulsifier",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "reason": "Fatty acid salts; source may be tallow or vegetable oil.",
+      "ask": "Are the fatty acids of vegetable origin?"
+    },
+    {
+      "id": "stearic-acid",
+      "canonical": "Stearic acid / Fatty acids",
+      "codes": [
+        "E570"
+      ],
+      "aliases": [
+        "stearic acid",
+        "fatty acids",
+        "octadecanoic acid",
+        "palmitic acid",
+        "oleic acid"
+      ],
+      "category": "additive",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "resolves": {
+        "plant": "halal",
+        "porcine": "haram"
+      },
+      "reason": "Commercially derived from either vegetable oils or animal tallow.",
+      "ask": "Is the stearic acid of vegetable or tallow origin?"
+    },
+    {
+      "id": "magnesium-stearate",
+      "canonical": "Magnesium stearate",
+      "codes": [
+        "E572"
+      ],
+      "aliases": [
+        "calcium stearate",
+        "stearate (anti-caking)"
+      ],
+      "category": "anti-caking",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "reason": "Very common tablet lubricant; the stearate may come from tallow or from palm/vegetable oil.",
+      "ask": "Is the stearate vegetable-sourced?"
+    },
+    {
+      "id": "e481",
+      "canonical": "Stearoyl lactylates",
+      "codes": [
+        "E481",
+        "E482",
+        "E483"
+      ],
+      "aliases": [
+        "sodium stearoyl lactylate",
+        "SSL",
+        "calcium stearoyl lactylate",
+        "CSL",
+        "stearyl tartrate"
+      ],
+      "category": "emulsifier",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "reason": "Contains a stearoyl group whose fatty acid may be animal-derived.",
+      "ask": "Is the stearic acid vegetable-sourced?"
+    },
+    {
+      "id": "polysorbate",
+      "canonical": "Polysorbates",
+      "codes": [
+        "E432",
+        "E433",
+        "E434",
+        "E435",
+        "E436"
+      ],
+      "aliases": [
+        "polysorbate 20",
+        "polysorbate 60",
+        "polysorbate 65",
+        "polysorbate 80",
+        "tween 80",
+        "polyoxyethylene sorbitan monostearate"
+      ],
+      "category": "emulsifier",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "reason": "Sorbitan esters of fatty acids; the fatty acid component may be tallow-derived.",
+      "ask": "Are the fatty acids vegetable-sourced?"
+    },
+    {
+      "id": "sorbitan-esters",
+      "canonical": "Sorbitan esters",
+      "codes": [
+        "E491",
+        "E492",
+        "E493",
+        "E494",
+        "E495"
+      ],
+      "aliases": [
+        "sorbitan monostearate",
+        "sorbitan tristearate",
+        "sorbitan monolaurate",
+        "sorbitan monooleate",
+        "sorbitan monopalmitate",
+        "span 60"
+      ],
+      "category": "emulsifier",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "reason": "Fatty acid esters of sorbitol; fatty acid source may be animal.",
+      "ask": "Are the fatty acids vegetable-sourced?"
+    },
+    {
+      "id": "e473",
+      "canonical": "Sucrose esters and polyglycerol esters of fatty acids",
+      "codes": [
+        "E473",
+        "E474",
+        "E475",
+        "E476",
+        "E477",
+        "E478",
+        "E479"
+      ],
+      "aliases": [
+        "sucrose esters of fatty acids",
+        "sucroglycerides",
+        "polyglycerol esters of fatty acids",
+        "PGPR",
+        "polyglycerol polyricinoleate",
+        "propylene glycol esters of fatty acids"
+      ],
+      "category": "emulsifier",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "reason": "Fatty-acid-based emulsifiers with the same source question. PGPR (E476) is usually castor-oil derived and often halal, but the polyglycerol component traces back to glycerol.",
+      "ask": "Are the fatty acids and glycerol vegetable-sourced?"
+    },
+    {
+      "id": "lecithin",
+      "canonical": "Lecithin",
+      "codes": [
+        "E322"
+      ],
+      "aliases": [
+        "soy lecithin",
+        "soya lecithin",
+        "sunflower lecithin",
+        "emulsifier (lecithin)",
+        "lécithine"
+      ],
+      "category": "emulsifier",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "resolves": {
+        "plant": "halal",
+        "soy": "halal",
+        "sunflower": "halal",
+        "egg": "halal"
+      },
+      "reason": "Overwhelmingly soy or sunflower derived, both halal. Egg lecithin is also halal. Listed as doubtful only because unqualified 'lecithin' does not state the source; when the label says soy or sunflower it is halal.",
+      "ask": "Is the lecithin soy, sunflower, or egg?",
+      "confidence": "high"
+    },
+    {
+      "id": "e542",
+      "canonical": "Bone phosphate",
+      "codes": [
+        "E542"
+      ],
+      "aliases": [
+        "edible bone phosphate",
+        "dicalcium phosphate (bone)"
+      ],
+      "category": "anti-caking",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram"
+      },
+      "reason": "Made from animal bone; species and slaughter are almost never disclosed.",
+      "ask": "From what species is the bone phosphate, and was it halal-slaughtered?"
+    },
+    {
+      "id": "e640",
+      "canonical": "Glycine",
+      "codes": [
+        "E640"
+      ],
+      "aliases": [
+        "glycine and its sodium salt"
+      ],
+      "category": "flavour enhancer",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh",
+        "lenient": "halal"
+      },
+      "reason": "Usually synthesised chemically, but can be produced by hydrolysing animal collagen or gelatine.",
+      "ask": "Is the glycine synthetic or animal-derived?"
+    },
+    {
+      "id": "e1000",
+      "canonical": "Cholic acid",
+      "codes": [
+        "E1000"
+      ],
+      "aliases": [
+        "ox bile extract",
+        "bile"
+      ],
+      "category": "emulsifier",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram"
+      },
+      "reason": "Extracted from bovine or porcine bile.",
+      "ask": "What species is the bile from?"
+    },
+    {
+      "id": "e631",
+      "canonical": "Disodium inosinate",
+      "codes": [
+        "E627",
+        "E630",
+        "E631",
+        "E633",
+        "E635"
+      ],
+      "aliases": [
+        "disodium guanylate",
+        "disodium 5'-ribonucleotides",
+        "inosinic acid",
+        "IMP",
+        "GMP"
+      ],
+      "category": "flavour enhancer",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "reason": "Nucleotide flavour enhancers historically extracted from sardines or meat; modern production is often microbial fermentation.",
+      "ask": "Are the ribonucleotides fermentation-derived or from animal/fish tissue?"
+    },
+    {
+      "id": "msg",
+      "canonical": "Monosodium glutamate",
+      "codes": [
+        "E620",
+        "E621",
+        "E622",
+        "E623",
+        "E624",
+        "E625"
+      ],
+      "aliases": [
+        "MSG",
+        "glutamic acid",
+        "sodium glutamate",
+        "flavour enhancer 621"
+      ],
+      "category": "flavour enhancer",
+      "ambiguity": "process",
+      "rulings": {
+        "default": "mashbooh",
+        "lenient": "halal"
+      },
+      "reason": "Produced by bacterial fermentation; the growth medium and any enzyme used in it are the point of doubt, not the glutamate itself.",
+      "ask": "What fermentation medium and processing aids are used?"
+    },
+    {
+      "id": "taurine",
+      "canonical": "Taurine",
+      "aliases": [],
+      "category": "additive",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "halal",
+        "strict": "mashbooh"
+      },
+      "reason": "Named after ox bile, from which it was first isolated, but commercial taurine is synthetic."
+    },
+    {
+      "id": "keratin",
+      "canonical": "Keratin",
+      "aliases": [
+        "hydrolysed keratin"
+      ],
+      "category": "protein",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram"
+      },
+      "reason": "From hair, feathers, hooves or horn; species and, for human hair, permissibility are at issue.",
+      "ask": "What is the keratin source?"
+    },
+    {
+      "id": "castoreum",
+      "canonical": "Castoreum",
+      "aliases": [
+        "castor (beaver)"
+      ],
+      "category": "flavouring",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram"
+      },
+      "reason": "A secretion from beaver castor sacs, occasionally used in flavourings. The beaver is not ritually slaughtered."
+    },
+    {
+      "id": "civet-musk",
+      "canonical": "Civet / Musk",
+      "aliases": [
+        "civet",
+        "musk",
+        "civet absolute"
+      ],
+      "category": "flavouring",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "reason": "Animal glandular secretions used in aroma compounds."
+    },
+    {
+      "id": "natural-flavours",
+      "canonical": "Natural flavouring",
+      "aliases": [
+        "natural flavors",
+        "natural flavours",
+        "natural flavour",
+        "flavouring",
+        "flavourings",
+        "flavour",
+        "flavors",
+        "arôme naturel",
+        "natural flavoring substances"
+      ],
+      "category": "flavouring",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "reason": "A legal category, not a single substance. In the US (21 CFR 101.22) it may include material derived from meat, dairy, eggs, or seafood, and commonly uses ethanol or propylene glycol carriers. Nothing on the label narrows it.",
+      "ask": "Are any flavour components animal-derived, and is ethanol used as a carrier?",
+      "confidence": "high"
+    },
+    {
+      "id": "artificial-flavours",
+      "canonical": "Artificial flavouring",
+      "aliases": [
+        "artificial flavors",
+        "artificial flavours",
+        "nature-identical flavouring"
+      ],
+      "category": "flavouring",
+      "ambiguity": "alcohol",
+      "rulings": {
+        "default": "mashbooh",
+        "lenient": "halal"
+      },
+      "reason": "Synthetic aroma chemicals are themselves halal, but they are routinely delivered in an ethanol or propylene glycol carrier.",
+      "ask": "What carrier solvent is used in the flavour system?"
+    },
+    {
+      "id": "smoke-flavour",
+      "canonical": "Smoke flavouring",
+      "aliases": [
+        "smoke flavour",
+        "natural smoke flavor",
+        "liquid smoke"
+      ],
+      "category": "flavouring",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Condensed wood smoke; plant-derived."
+    },
+    {
+      "id": "yeast-extract",
+      "canonical": "Yeast extract",
+      "aliases": [
+        "autolysed yeast",
+        "nutritional yeast",
+        "torula yeast"
+      ],
+      "category": "flavour enhancer",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Derived from cultured yeast, not from brewing."
+    },
+    {
+      "id": "vitamin-d3",
+      "canonical": "Vitamin D3 / Cholecalciferol",
+      "aliases": [
+        "vitamin d3",
+        "cholecalciferol",
+        "vitamin d",
+        "colecalciferol"
+      ],
+      "category": "vitamin",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "resolves": {
+        "lanolin": "halal",
+        "lichen": "halal",
+        "fish": "halal",
+        "porcine": "haram"
+      },
+      "reason": "Usually from lanolin (sheep wool grease, halal by majority view since it is a secretion not flesh) or from fish oil; occasionally stabilised in a gelatine matrix, which reintroduces the gelatine question.",
+      "ask": "What is the D3 source, and is the beadlet gelatine-coated?"
+    },
+    {
+      "id": "vitamin-a",
+      "canonical": "Vitamin A palmitate / Retinol",
+      "aliases": [
+        "vitamin a",
+        "retinyl palmitate",
+        "vitamin a palmitate",
+        "retinol"
+      ],
+      "category": "vitamin",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh",
+        "lenient": "halal"
+      },
+      "reason": "Synthetic retinol is halal, but the palmitate ester and the gelatine-based beadlet coating used for stability are both source-dependent.",
+      "ask": "Is the vitamin A preparation gelatine-coated?"
+    },
+    {
+      "id": "beta-carotene",
+      "canonical": "Carotenes",
+      "codes": [
+        "E160a",
+        "E160b",
+        "E160c",
+        "E160d",
+        "E160e",
+        "E160f",
+        "E161b"
+      ],
+      "aliases": [
+        "beta carotene",
+        "beta-carotene",
+        "carotene",
+        "annatto",
+        "bixin",
+        "norbixin",
+        "paprika extract",
+        "lutein",
+        "capsanthin"
+      ],
+      "category": "colour",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh",
+        "lenient": "halal"
+      },
+      "reason": "The pigments themselves are plant or microbial. The doubt is the delivery form: fat-soluble carotenoids are often supplied as gelatine-encapsulated beadlets.",
+      "ask": "Is the colour supplied in a gelatine-encapsulated form?"
+    },
+    {
+      "id": "omega-3",
+      "canonical": "Fish oil / Omega-3",
+      "aliases": [
+        "fish oil",
+        "omega-3",
+        "omega 3",
+        "EPA",
+        "DHA",
+        "cod liver oil",
+        "algal oil"
+      ],
+      "category": "oil",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Fish and sea creatures are permitted; the Hanafi school restricts this to fish specifically, which covers standard fish oil. Note that softgel capsules are commonly gelatine.",
+      "ask": "If in capsule form, what is the capsule shell made of?"
+    },
+    {
+      "id": "gelatin-capsule",
+      "canonical": "Capsule shell (gelatine)",
+      "aliases": [
+        "softgel",
+        "gelatin capsule",
+        "capsule shell",
+        "hard capsule",
+        "HPMC capsule",
+        "vegetable capsule"
+      ],
+      "category": "excipient",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "resolves": {
+        "hpmc": "halal",
+        "plant": "halal",
+        "porcine": "haram",
+        "bovine_halal": "halal"
+      },
+      "reason": "Capsule shells are gelatine unless stated as HPMC/vegetarian.",
+      "ask": "Is the capsule gelatine or HPMC/pullulan?"
+    },
+    {
+      "id": "lysozyme",
+      "canonical": "Lysozyme",
+      "codes": [
+        "E1105"
+      ],
+      "aliases": [
+        "egg lysozyme"
+      ],
+      "category": "preservative",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Enzyme from egg white; eggs of halal birds are permitted."
+    },
+    {
+      "id": "isinglass",
+      "canonical": "Isinglass",
+      "aliases": [
+        "fish gelatine (fining)"
+      ],
+      "category": "processing aid",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "A fish-swim-bladder fining agent; halal in itself, though its main use is clarifying beer and wine."
+    },
+    {
+      "id": "sugar",
+      "canonical": "Sugar",
+      "aliases": [
+        "cane sugar",
+        "sucrose",
+        "icing sugar",
+        "powdered sugar",
+        "brown sugar",
+        "caster sugar"
+      ],
+      "category": "sweetener",
+      "ambiguity": "process",
+      "rulings": {
+        "default": "halal",
+        "strict": "mashbooh"
+      },
+      "reason": "Sugar itself is halal. Some US and UK cane refiners decolourise with bone char, which does not remain in the product; most scholars and certifiers permit it, a strict minority avoid it. Beet sugar never uses bone char.",
+      "ask": "Was the sugar refined using bone char?"
+    },
+    {
+      "id": "bone-char",
+      "canonical": "Bone char",
+      "aliases": [
+        "natural charcoal (bone)",
+        "animal charcoal"
+      ],
+      "category": "processing aid",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram"
+      },
+      "reason": "Charred animal bone used as a decolourising filter medium."
+    },
+    {
+      "id": "vegetable-carbon",
+      "canonical": "Vegetable carbon",
+      "codes": [
+        "E153"
+      ],
+      "aliases": [
+        "carbo vegetabilis",
+        "plant charcoal"
+      ],
+      "category": "colour",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Plant-derived carbon black; the EU permits only vegetable sources for E153."
+    },
+    {
+      "id": "animal-fat",
+      "canonical": "Animal fat / shortening",
+      "aliases": [
+        "animal fat",
+        "animal shortening",
+        "tallow",
+        "beef tallow",
+        "suet",
+        "dripping",
+        "animal oil"
+      ],
+      "category": "fat",
+      "ambiguity": "slaughter",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram"
+      },
+      "resolves": {
+        "porcine": "haram",
+        "bovine_halal": "halal",
+        "bovine_uncertified": "mashbooh"
+      },
+      "reason": "Unqualified animal fat gives neither species nor slaughter method.",
+      "ask": "What species is the fat from and was it halal-slaughtered?"
+    },
+    {
+      "id": "sodium-caseinate",
+      "canonical": "Casein / Caseinate",
+      "aliases": [
+        "casein",
+        "sodium caseinate",
+        "calcium caseinate",
+        "milk protein",
+        "caseinate"
+      ],
+      "category": "dairy",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "halal",
+        "strict": "mashbooh"
+      },
+      "reason": "A milk protein. Acid casein is halal outright; rennet casein inherits the rennet question.",
+      "ask": "Is this acid casein or rennet casein?"
+    },
+    {
+      "id": "cheese",
+      "canonical": "Cheese",
+      "aliases": [
+        "cheese powder",
+        "parmesan",
+        "cheddar",
+        "mozzarella",
+        "cheese solids"
+      ],
+      "category": "dairy",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh",
+        "lenient": "halal"
+      },
+      "reason": "Coagulated with rennet, which may be microbial, plant, or animal. Some PDO cheeses (e.g. Parmigiano Reggiano) mandate calf rennet.",
+      "ask": "What rennet was used?"
+    },
+    {
+      "id": "milk",
+      "canonical": "Milk and milk solids",
+      "aliases": [
+        "milk",
+        "skimmed milk powder",
+        "milk solids",
+        "cream",
+        "butter",
+        "buttermilk",
+        "lactose",
+        "butterfat",
+        "yoghurt"
+      ],
+      "category": "dairy",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Milk of halal animals is permitted."
+    },
+    {
+      "id": "egg",
+      "canonical": "Egg",
+      "aliases": [
+        "egg white",
+        "egg yolk",
+        "albumen",
+        "egg powder",
+        "ovalbumin"
+      ],
+      "category": "egg",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Eggs of permitted birds are halal."
+    },
+    {
+      "id": "modified-starch",
+      "canonical": "Modified starch",
+      "codes": [
+        "E1404",
+        "E1410",
+        "E1412",
+        "E1413",
+        "E1414",
+        "E1420",
+        "E1422",
+        "E1440",
+        "E1442",
+        "E1450",
+        "E1451"
+      ],
+      "aliases": [
+        "modified corn starch",
+        "modified maize starch",
+        "acetylated starch",
+        "hydroxypropyl starch",
+        "distarch phosphate",
+        "starch sodium octenyl succinate"
+      ],
+      "category": "thickener",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "'Modified' refers to chemical or physical treatment of plant starch, not genetic or animal modification. Commonly and wrongly flagged as doubtful."
+    },
+    {
+      "id": "starch",
+      "canonical": "Starch",
+      "aliases": [
+        "corn starch",
+        "maize starch",
+        "potato starch",
+        "tapioca starch",
+        "wheat starch",
+        "cornflour"
+      ],
+      "category": "thickener",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Plant carbohydrate."
+    },
+    {
+      "id": "maltodextrin",
+      "canonical": "Maltodextrin",
+      "aliases": [
+        "dextrose",
+        "glucose syrup",
+        "glucose-fructose syrup",
+        "corn syrup",
+        "high fructose corn syrup",
+        "dextrin",
+        "invert sugar"
+      ],
+      "category": "carbohydrate",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Enzymatically hydrolysed plant starch."
+    },
+    {
+      "id": "citric-acid",
+      "canonical": "Citric acid and citrates",
+      "codes": [
+        "E330",
+        "E331",
+        "E332",
+        "E333"
+      ],
+      "aliases": [
+        "citric acid",
+        "sodium citrate",
+        "potassium citrate",
+        "calcium citrate",
+        "acidity regulator (citric acid)"
+      ],
+      "category": "acid",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Produced by Aspergillus niger fermentation of a sugar substrate."
+    },
+    {
+      "id": "lactic-acid",
+      "canonical": "Lactic acid and lactates",
+      "codes": [
+        "E270",
+        "E325",
+        "E326",
+        "E327",
+        "E585"
+      ],
+      "aliases": [
+        "lactic acid",
+        "sodium lactate",
+        "potassium lactate",
+        "calcium lactate",
+        "ferrous lactate"
+      ],
+      "category": "acid",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Despite the name, commercial lactic acid is produced by bacterial fermentation of sugars, not from milk or meat."
+    },
+    {
+      "id": "ascorbic-acid",
+      "canonical": "Ascorbic acid / Vitamin C",
+      "codes": [
+        "E300",
+        "E301",
+        "E302",
+        "E303"
+      ],
+      "aliases": [
+        "ascorbic acid",
+        "vitamin c",
+        "sodium ascorbate",
+        "calcium ascorbate"
+      ],
+      "category": "antioxidant",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Produced by fermentation and chemical synthesis from glucose."
+    },
+    {
+      "id": "ascorbyl-palmitate",
+      "canonical": "Ascorbyl palmitate",
+      "codes": [
+        "E304",
+        "E305"
+      ],
+      "aliases": [
+        "ascorbyl stearate"
+      ],
+      "category": "antioxidant",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "mashbooh",
+        "lenient": "halal"
+      },
+      "reason": "Ascorbic acid esterified with palmitic acid, whose source may be animal fat although palm oil dominates.",
+      "ask": "Is the palmitic acid vegetable-sourced?"
+    },
+    {
+      "id": "tocopherols",
+      "canonical": "Tocopherols / Vitamin E",
+      "codes": [
+        "E306",
+        "E307",
+        "E308",
+        "E309"
+      ],
+      "aliases": [
+        "tocopherol",
+        "mixed tocopherols",
+        "alpha-tocopherol",
+        "vitamin e",
+        "natural tocopherols"
+      ],
+      "category": "antioxidant",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Extracted from vegetable oils or synthesised."
+    },
+    {
+      "id": "pectin",
+      "canonical": "Pectin",
+      "codes": [
+        "E440"
+      ],
+      "aliases": [
+        "fruit pectin",
+        "amidated pectin"
+      ],
+      "category": "gelling agent",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Plant polysaccharide from citrus peel and apple pomace; the standard halal replacement for gelatine."
+    },
+    {
+      "id": "hydrocolloids",
+      "canonical": "Plant and seaweed hydrocolloids",
+      "codes": [
+        "E406",
+        "E407",
+        "E410",
+        "E412",
+        "E413",
+        "E414",
+        "E415",
+        "E417",
+        "E418",
+        "E425"
+      ],
+      "aliases": [
+        "agar",
+        "agar-agar",
+        "carrageenan",
+        "locust bean gum",
+        "carob gum",
+        "guar gum",
+        "tragacanth",
+        "gum arabic",
+        "acacia gum",
+        "xanthan gum",
+        "tara gum",
+        "gellan gum",
+        "konjac"
+      ],
+      "category": "thickener",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Seaweed, seed and tree-exudate polysaccharides."
+    },
+    {
+      "id": "cellulose",
+      "canonical": "Celluloses",
+      "codes": [
+        "E460",
+        "E461",
+        "E463",
+        "E464",
+        "E465",
+        "E466",
+        "E468",
+        "E469"
+      ],
+      "aliases": [
+        "cellulose",
+        "microcrystalline cellulose",
+        "MCC",
+        "methyl cellulose",
+        "hydroxypropyl methyl cellulose",
+        "HPMC",
+        "carboxymethyl cellulose",
+        "CMC",
+        "cellulose gum"
+      ],
+      "category": "thickener",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Plant fibre derivatives."
+    },
+    {
+      "id": "sorbitol",
+      "canonical": "Polyols",
+      "codes": [
+        "E420",
+        "E421",
+        "E953",
+        "E965",
+        "E966",
+        "E967",
+        "E968"
+      ],
+      "aliases": [
+        "sorbitol",
+        "mannitol",
+        "isomalt",
+        "maltitol",
+        "lactitol",
+        "xylitol",
+        "erythritol"
+      ],
+      "category": "sweetener",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Sugar alcohols produced by hydrogenating plant sugars. Despite the name they are not intoxicants."
+    },
+    {
+      "id": "sweeteners",
+      "canonical": "High-intensity sweeteners",
+      "codes": [
+        "E950",
+        "E951",
+        "E952",
+        "E954",
+        "E955",
+        "E957",
+        "E960",
+        "E961",
+        "E962"
+      ],
+      "aliases": [
+        "acesulfame k",
+        "acesulfame potassium",
+        "aspartame",
+        "cyclamate",
+        "saccharin",
+        "sucralose",
+        "thaumatin",
+        "steviol glycosides",
+        "stevia",
+        "neotame"
+      ],
+      "category": "sweetener",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Synthetic or plant-derived sweeteners with no animal input."
+    },
+    {
+      "id": "preservatives",
+      "canonical": "Common synthetic preservatives",
+      "codes": [
+        "E200",
+        "E202",
+        "E203",
+        "E210",
+        "E211",
+        "E212",
+        "E214",
+        "E218",
+        "E220",
+        "E221",
+        "E223",
+        "E224",
+        "E228",
+        "E234",
+        "E235",
+        "E249",
+        "E250",
+        "E251",
+        "E252",
+        "E261",
+        "E262",
+        "E263",
+        "E280",
+        "E281",
+        "E282",
+        "E283"
+      ],
+      "aliases": [
+        "sorbic acid",
+        "potassium sorbate",
+        "calcium sorbate",
+        "benzoic acid",
+        "sodium benzoate",
+        "sulphur dioxide",
+        "sodium metabisulphite",
+        "nisin",
+        "natamycin",
+        "sodium nitrite",
+        "potassium nitrate",
+        "sodium nitrate",
+        "propionic acid",
+        "calcium propionate",
+        "sodium acetate"
+      ],
+      "category": "preservative",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Synthetic or fermentation-derived preservatives with no animal-source concern. E235 natamycin and E234 nisin are microbial."
+    },
+    {
+      "id": "phosphates",
+      "canonical": "Phosphates (mineral)",
+      "codes": [
+        "E338",
+        "E339",
+        "E340",
+        "E341",
+        "E343",
+        "E450",
+        "E451",
+        "E452"
+      ],
+      "aliases": [
+        "phosphoric acid",
+        "sodium phosphate",
+        "potassium phosphate",
+        "calcium phosphate",
+        "diphosphates",
+        "triphosphates",
+        "polyphosphates"
+      ],
+      "category": "acidity regulator",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Mineral-sourced phosphates. Note this is distinct from E542 bone phosphate, which is animal-derived."
+    },
+    {
+      "id": "mineral-colours",
+      "canonical": "Mineral and plant colours",
+      "codes": [
+        "E100",
+        "E101",
+        "E102",
+        "E104",
+        "E110",
+        "E122",
+        "E124",
+        "E129",
+        "E131",
+        "E132",
+        "E133",
+        "E140",
+        "E141",
+        "E142",
+        "E150a",
+        "E150b",
+        "E150c",
+        "E150d",
+        "E151",
+        "E155",
+        "E162",
+        "E163",
+        "E170",
+        "E171",
+        "E172",
+        "E173",
+        "E174",
+        "E175"
+      ],
+      "aliases": [
+        "curcumin",
+        "riboflavin",
+        "tartrazine",
+        "quinoline yellow",
+        "sunset yellow",
+        "azorubine",
+        "ponceau 4r",
+        "allura red",
+        "patent blue",
+        "indigotine",
+        "brilliant blue",
+        "chlorophyll",
+        "chlorophyllin",
+        "green s",
+        "caramel colour",
+        "caramel color",
+        "brilliant black",
+        "brown ht",
+        "beetroot red",
+        "betanin",
+        "anthocyanins",
+        "calcium carbonate",
+        "titanium dioxide",
+        "iron oxides"
+      ],
+      "category": "colour",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Synthetic, mineral or plant colours with no animal input. E101 riboflavin is fermentation-produced; a small number of strict standards query its growth medium."
+    },
+    {
+      "id": "raising-agents",
+      "canonical": "Raising agents and mineral salts",
+      "codes": [
+        "E500",
+        "E501",
+        "E503",
+        "E504",
+        "E507",
+        "E508",
+        "E509",
+        "E511",
+        "E524",
+        "E525",
+        "E526",
+        "E527",
+        "E528",
+        "E529",
+        "E530",
+        "E535",
+        "E536",
+        "E541",
+        "E551",
+        "E552",
+        "E553",
+        "E554",
+        "E555",
+        "E556",
+        "E558",
+        "E559",
+        "E575",
+        "E576",
+        "E577",
+        "E578"
+      ],
+      "aliases": [
+        "sodium bicarbonate",
+        "baking soda",
+        "bicarbonate of soda",
+        "ammonium bicarbonate",
+        "sodium carbonate",
+        "magnesium carbonate",
+        "hydrochloric acid",
+        "potassium chloride",
+        "calcium chloride",
+        "magnesium chloride",
+        "sodium hydroxide",
+        "silicon dioxide",
+        "silica",
+        "calcium silicate",
+        "glucono delta-lactone",
+        "sodium aluminium phosphate"
+      ],
+      "category": "raising agent",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Inorganic mineral salts and acids."
+    },
+    {
+      "id": "propylene-glycol",
+      "canonical": "Propylene glycol",
+      "codes": [
+        "E1520",
+        "E1518",
+        "E1517"
+      ],
+      "aliases": [
+        "propane-1,2-diol",
+        "glyceryl triacetate",
+        "triacetin",
+        "glyceryl diacetate"
+      ],
+      "category": "solvent",
+      "ambiguity": "animal_source",
+      "rulings": {
+        "default": "halal",
+        "strict": "mashbooh"
+      },
+      "reason": "Propylene glycol is petrochemical and halal. Note that E1517/E1518 are glycerol acetates, so they carry the glycerol source question.",
+      "ask": "For glyceryl acetates, is the glycerol vegetable-sourced?"
+    },
+    {
+      "id": "vegetable-oils",
+      "canonical": "Vegetable oils and fats",
+      "aliases": [
+        "palm oil",
+        "sunflower oil",
+        "rapeseed oil",
+        "canola oil",
+        "soybean oil",
+        "olive oil",
+        "coconut oil",
+        "vegetable oil",
+        "vegetable fat",
+        "shea butter",
+        "cocoa butter",
+        "corn oil",
+        "palm kernel oil",
+        "hydrogenated vegetable oil"
+      ],
+      "category": "oil",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Plant-derived oils."
+    },
+    {
+      "id": "plant-proteins",
+      "canonical": "Plant proteins and flours",
+      "aliases": [
+        "soy protein",
+        "soya protein",
+        "wheat flour",
+        "wheat gluten",
+        "gluten",
+        "pea protein",
+        "rice flour",
+        "oat flour",
+        "chickpea flour",
+        "textured vegetable protein",
+        "TVP"
+      ],
+      "category": "protein",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Plant-derived proteins and cereals."
+    },
+    {
+      "id": "salt-spices",
+      "canonical": "Salt, herbs and spices",
+      "aliases": [
+        "salt",
+        "sea salt",
+        "iodised salt",
+        "pepper",
+        "black pepper",
+        "paprika",
+        "cumin",
+        "coriander",
+        "turmeric",
+        "cinnamon",
+        "garlic powder",
+        "onion powder",
+        "herbs",
+        "spices",
+        "spice extract",
+        "oregano",
+        "chilli powder"
+      ],
+      "category": "seasoning",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Mineral and plant seasonings."
+    },
+    {
+      "id": "cocoa-coffee-tea",
+      "canonical": "Cocoa, coffee and tea",
+      "aliases": [
+        "cocoa",
+        "cocoa mass",
+        "cocoa powder",
+        "cocoa solids",
+        "chocolate liquor",
+        "coffee",
+        "coffee extract",
+        "tea extract",
+        "green tea extract",
+        "caffeine"
+      ],
+      "category": "other",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Plant-derived."
+    },
+    {
+      "id": "fruit-veg",
+      "canonical": "Fruit and vegetable ingredients",
+      "aliases": [
+        "fruit juice",
+        "fruit juice concentrate",
+        "apple juice concentrate",
+        "tomato paste",
+        "vegetable puree",
+        "fruit puree",
+        "dried fruit",
+        "raisins",
+        "dates",
+        "lemon juice",
+        "orange juice"
+      ],
+      "category": "other",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Plant-derived."
+    },
+    {
+      "id": "nuts-seeds",
+      "canonical": "Nuts and seeds",
+      "aliases": [
+        "almonds",
+        "peanuts",
+        "hazelnuts",
+        "cashews",
+        "walnuts",
+        "sesame",
+        "tahini",
+        "sunflower seeds",
+        "pistachios",
+        "peanut butter"
+      ],
+      "category": "other",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Plant-derived."
+    },
+    {
+      "id": "shellfish",
+      "canonical": "Non-fish seafood",
+      "aliases": [
+        "shrimp",
+        "prawn",
+        "crab",
+        "lobster",
+        "squid",
+        "octopus",
+        "mussels",
+        "clams",
+        "oyster",
+        "scallops",
+        "crustacean extract",
+        "shellfish"
+      ],
+      "category": "seafood",
+      "ambiguity": "school",
+      "rulings": {
+        "default": "halal",
+        "strict": "mashbooh"
+      },
+      "certifiers": {
+        "JAKIM": "halal"
+      },
+      "reason": "The Maliki, Shafi'i and Hanbali schools permit all sea creatures. The Hanafi school permits only fish, treating shellfish as impermissible; shrimp is disputed even within it.",
+      "ask": "Does the consumer follow the Hanafi position on non-fish seafood?"
+    },
+    {
+      "id": "fish",
+      "canonical": "Fish",
+      "aliases": [
+        "tuna",
+        "salmon",
+        "cod",
+        "anchovy",
+        "sardine",
+        "fish extract",
+        "fish sauce",
+        "surimi"
+      ],
+      "category": "seafood",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Fish are permitted across all schools and require no ritual slaughter."
+    },
+    {
+      "id": "insects",
+      "canonical": "Insect protein",
+      "aliases": [
+        "cricket flour",
+        "mealworm",
+        "acheta protein"
+      ],
+      "category": "protein",
+      "ambiguity": "insect",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram"
+      },
+      "reason": "Insects other than locusts are impermissible in the majority view."
+    },
+    {
+      "id": "water",
+      "canonical": "Water",
+      "aliases": [
+        "aqua",
+        "mineral water",
+        "carbonated water",
+        "filtered water",
+        "spring water"
+      ],
+      "category": "other",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Water is pure and permitted."
+    },
+    {
+      "id": "poultry",
+      "canonical": "Poultry",
+      "aliases": [
+        "chicken",
+        "turkey",
+        "duck",
+        "goose",
+        "chicken breast",
+        "chicken fat",
+        "chicken extract",
+        "turkey breast"
+      ],
+      "category": "meat",
+      "ambiguity": "slaughter",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram"
+      },
+      "resolves": {
+        "bovine_halal": "halal"
+      },
+      "reason": "Poultry is halal in itself but only if ritually slaughtered. Uncertified poultry cannot be assumed compliant.",
+      "ask": "Was the poultry halal-slaughtered, and by which certifier?"
+    },
+    {
+      "id": "red-meat",
+      "canonical": "Beef, lamb and goat",
+      "aliases": [
+        "beef",
+        "lamb",
+        "mutton",
+        "goat",
+        "veal",
+        "steak",
+        "minced beef",
+        "beef extract",
+        "lamb fat",
+        "beef stock",
+        "meat extract"
+      ],
+      "category": "meat",
+      "ambiguity": "slaughter",
+      "rulings": {
+        "default": "mashbooh",
+        "strict": "haram"
+      },
+      "resolves": {
+        "bovine_halal": "halal",
+        "porcine": "haram"
+      },
+      "reason": "Cattle, sheep and goats are halal species but require ritual slaughter.",
+      "ask": "Was the meat halal-slaughtered, and by which certifier?"
+    },
+    {
+      "id": "stock",
+      "canonical": "Stock / bouillon (unspecified)",
+      "aliases": [
+        "stock",
+        "bouillon",
+        "broth",
+        "gravy",
+        "meat stock",
+        "bone broth",
+        "stock powder"
+      ],
+      "category": "seasoning",
+      "ambiguity": "slaughter",
+      "rulings": {
+        "default": "mashbooh"
+      },
+      "reason": "Stock may be built on uncertified meat or bone.",
+      "ask": "What animal material is the stock made from and was it halal-slaughtered?"
+    },
+    {
+      "id": "rice-cereal",
+      "canonical": "Rice, oats and cereals",
+      "aliases": [
+        "rice",
+        "oats",
+        "oatmeal",
+        "barley",
+        "rye",
+        "semolina",
+        "couscous",
+        "quinoa",
+        "corn",
+        "maize",
+        "bran",
+        "wholemeal flour"
+      ],
+      "category": "other",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Plant-derived cereals."
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "version": "0.1.0",
+  "default": "GLOBAL",
+  "countries": {
+    "GLOBAL": {
+      "name": "No country specified",
+      "code_system": "E",
+      "e_numbers_on_label": true,
+      "default_profile": "mainstream",
+      "certifiers": [],
+      "notes": ["No jurisdiction-specific labelling rules applied. Specify a country for a sharper verdict."]
+    },
+    "AE": {
+      "name": "United Arab Emirates",
+      "code_system": "E",
+      "e_numbers_on_label": true,
+      "default_profile": "mainstream",
+      "certifiers": ["ESMA", "MOIAT"],
+      "notes": [
+        "UAE.S GSO 2055-1 defines the national halal standard; the National Halal Mark is administered by MOIAT.",
+        "Imported food must be registered, and pork products are restricted to designated sections of licensed retailers.",
+        "Arabic labelling is mandatory, so ingredient names may appear only in Arabic."
+      ],
+      "resolves_if_certified": true
+    },
+    "SA": {
+      "name": "Saudi Arabia",
+      "code_system": "E",
+      "e_numbers_on_label": true,
+      "default_profile": "strict",
+      "certifiers": ["SFDA", "GSO"],
+      "notes": [
+        "SFDA enforces GSO halal requirements on all imported food.",
+        "Pork and alcohol are prohibited from import entirely, so a product legally on sale is unlikely to contain declared pork.",
+        "The stricter default profile reflects SFDA's position on doubtful additives."
+      ]
+    },
+    "MY": {
+      "name": "Malaysia",
+      "code_system": "E",
+      "e_numbers_on_label": true,
+      "default_profile": "JAKIM",
+      "certifiers": ["JAKIM"],
+      "notes": [
+        "MS 1500 is the national halal standard; the JAKIM logo is the authoritative mark.",
+        "JAKIM does not accept cochineal/carmine (E120) or wine vinegar.",
+        "Products bearing a valid JAKIM mark can be treated as halal without ingredient-level analysis."
+      ],
+      "resolves_if_certified": true
+    },
+    "ID": {
+      "name": "Indonesia",
+      "code_system": "E",
+      "e_numbers_on_label": true,
+      "default_profile": "MUI",
+      "certifiers": ["BPJPH", "MUI", "LPPOM"],
+      "notes": [
+        "Law 33/2014 makes halal certification mandatory for food circulating in Indonesia; BPJPH issues certificates on MUI fatwa.",
+        "Non-halal products must be explicitly labelled as such.",
+        "MUI treats carmine as impermissible."
+      ],
+      "resolves_if_certified": true
+    },
+    "GB": {
+      "name": "United Kingdom",
+      "code_system": "E",
+      "e_numbers_on_label": true,
+      "default_profile": "mainstream",
+      "certifiers": ["HFA", "HMC", "HFA"],
+      "notes": [
+        "Retained EU labelling law: additives are declared by category plus name or E-number.",
+        "The 14 regulated allergens must be emphasised, so fish-derived gelatine and egg lecithin are detectable via the allergen statement.",
+        "HMC applies a stricter standard than HFA, notably rejecting mechanically stunned poultry."
+      ]
+    },
+    "EU": {
+      "name": "European Union",
+      "code_system": "E",
+      "e_numbers_on_label": true,
+      "default_profile": "mainstream",
+      "certifiers": ["HDE", "HQC"],
+      "notes": [
+        "Regulation 1169/2011 requires additives by functional class plus name or E-number, and emphasis of the 14 allergens.",
+        "Because fish is a declarable allergen, gelatine with no fish allergen flag is very likely bovine or porcine.",
+        "'Natural flavouring' is permitted without source disclosure, so it stays doubtful.",
+        "Regulation 1169/2011 Annex VI requires the specific animal species to be named for added meat ingredients."
+      ],
+      "escalate": [],
+      "resolve_hints": ["gelatin"]
+    },
+    "US": {
+      "name": "United States",
+      "code_system": "name",
+      "e_numbers_on_label": false,
+      "default_profile": "mainstream",
+      "certifiers": ["IFANCA", "HFSAA", "ISWA"],
+      "notes": [
+        "FDA labelling uses common ingredient names, not E-numbers; do not expect 'E471' on a US label.",
+        "21 CFR 101.22 lets 'natural flavors' include animal-derived material with no further disclosure, which makes the term less resolvable here than in the EU.",
+        "Carmine and cochineal extract must be declared by name (21 CFR 73.100), so an undeclared carmine is unlikely.",
+        "Cane sugar in the US may be bone-char refined; beet sugar is not.",
+        "'Spices' and 'flavors' may lawfully hide individual components."
+      ],
+      "escalate": ["natural-flavours", "sugar"]
+    },
+    "CA": {
+      "name": "Canada",
+      "code_system": "name",
+      "e_numbers_on_label": false,
+      "default_profile": "mainstream",
+      "certifiers": ["ISNA Canada"],
+      "notes": [
+        "Ingredient names rather than E-numbers are used.",
+        "'Halal' claims are regulated: the certifying body's name must appear next to the claim (SFCR)."
+      ]
+    },
+    "AU": {
+      "name": "Australia / New Zealand",
+      "code_system": "INS",
+      "e_numbers_on_label": true,
+      "default_profile": "mainstream",
+      "certifiers": ["AFIC", "ICCV"],
+      "notes": [
+        "FSANZ uses bare INS numbers without the 'E' prefix, so '471' on the label means the same as E471.",
+        "Additive class names ('emulsifier (471)') are standard."
+      ]
+    },
+    "IN": {
+      "name": "India",
+      "code_system": "INS",
+      "e_numbers_on_label": true,
+      "default_profile": "mainstream",
+      "certifiers": ["JUH", "HIA"],
+      "notes": [
+        "FSSAI mandates a green dot for vegetarian products and a brown/red dot for non-vegetarian ones.",
+        "A green veg mark rules out meat, fish and egg ingredients, which resolves most animal-source doubt on additives such as E471, glycerol and gelatine.",
+        "It does not resolve alcohol-carrier doubt."
+      ],
+      "veg_mark": true
+    },
+    "PK": {
+      "name": "Pakistan",
+      "code_system": "E",
+      "e_numbers_on_label": true,
+      "default_profile": "mainstream",
+      "certifiers": ["PSQCA", "PNAC"],
+      "notes": ["PS 3733 is the national halal standard, administered by PSQCA."]
+    },
+    "TR": {
+      "name": "Türkiye",
+      "code_system": "E",
+      "e_numbers_on_label": true,
+      "default_profile": "mainstream",
+      "certifiers": ["HAK", "GIMDES"],
+      "notes": [
+        "The Halal Accreditation Agency (HAK) is the national accreditation authority; OIC/SMIIC 1 is the reference standard.",
+        "Labels use Turkish additive names alongside E-numbers."
+      ]
+    },
+    "SG": {
+      "name": "Singapore",
+      "code_system": "E",
+      "e_numbers_on_label": true,
+      "default_profile": "mainstream",
+      "certifiers": ["MUIS"],
+      "notes": ["MUIS is the sole authority for halal certification; its mark is legally protected."]
+    },
+    "ZA": {
+      "name": "South Africa",
+      "code_system": "E",
+      "e_numbers_on_label": true,
+      "default_profile": "mainstream",
+      "certifiers": ["SANHA", "MJC", "NIHT"],
+      "notes": ["Multiple recognised certifiers; SANHA and MJC marks are the most widely seen."]
+    }
+  },
+  "profiles": {
+    "strict": "Resolves any scholarly disagreement toward caution. Insect derivatives, transformed alcohol products and bone-char processing are all avoided.",
+    "mainstream": "The position common to most major certifiers: source-ambiguous additives are doubtful rather than prohibited, transformation (istihalah) is generally accepted for vinegar, and processing aids that leave no residue are permitted.",
+    "lenient": "Accepts istihalah broadly, permits trace alcohol carriers below carry-over limits, and follows the Maliki position permitting insect derivatives.",
+    "JAKIM": "Malaysian national standard MS 1500. Rejects carmine and wine vinegar.",
+    "MUI": "Indonesian standard under BPJPH. Rejects carmine.",
+    "HFA": "Halal Food Authority (UK). Accepts machine-stunned poultry; conservative on additives.",
+    "HMC": "Halal Monitoring Committee (UK). Stricter; rejects mechanical stunning.",
+    "IFANCA": "Islamic Food and Nutrition Council of America.",
+    "SFDA": "Saudi Food and Drug Authority, applying GSO halal requirements."
+  },
+  "signals": {
+    "vegan": {
+      "label": "Certified vegan / plant-based claim",
+      "resolves": ["animal_source", "insect", "slaughter"],
+      "note": "A vegan claim excludes all animal and insect derivatives, which settles source-ambiguity for additives such as E471, glycerol and gelatine. It does not address alcohol carriers."
+    },
+    "vegetarian": {
+      "label": "Certified vegetarian / India green veg mark",
+      "resolves": ["animal_source", "slaughter"],
+      "note": "Excludes meat, fish and their derivatives. Dairy and egg remain, which are halal in themselves. Does not resolve insect-derived colours such as carmine, nor alcohol carriers."
+    },
+    "halal_certified": {
+      "label": "Recognised halal certification mark on pack",
+      "resolves": ["animal_source", "slaughter", "insect", "alcohol", "process", "school"],
+      "note": "A valid mark from a recognised body means the certifier has already audited the sources. Verify the mark is genuine and current."
+    },
+    "kosher": {
+      "label": "Kosher certification mark",
+      "resolves": ["animal_source"],
+      "note": "Kosher certification excludes pork and requires supervised sources, which removes most porcine doubt. It is NOT equivalent to halal: it permits wine and alcohol, and kosher slaughter is accepted by some halal authorities but not all."
+    },
+    "plant_based_stated": {
+      "label": "Label states vegetable/plant origin for additives",
+      "resolves": ["animal_source"],
+      "note": "e.g. 'emulsifier (mono- and diglycerides of vegetable origin)'."
+    }
+  }
+}
