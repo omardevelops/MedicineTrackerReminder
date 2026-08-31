@@ -30,6 +30,21 @@ def _similar(a: str, b: str) -> float:
     return SequenceMatcher(None, a, b).ratio()
 
 
+def _singulars(key: str) -> list[str]:
+    """Candidate singular forms of a possibly-plural token.
+
+    Deliberately conservative: 'molasses' and other -ss words are left alone.
+    """
+    out: list[str] = []
+    if key.endswith("ies") and len(key) > 4:
+        out.append(key[:-3] + "y")
+    if key.endswith("es") and len(key) > 3:
+        out.append(key[:-2])
+    if key.endswith("s") and not key.endswith("ss") and len(key) > 2:
+        out.append(key[:-1])
+    return out
+
+
 def _default_severity(entry: Entry) -> int:
     """Severity of an entry's baseline ruling, independent of any profile.
 
@@ -47,6 +62,13 @@ def match(token: str, index: Index) -> tuple[Entry | None, str, float]:
     entry = index.by_alias.get(key)
     if entry is not None:
         return entry, "exact", 1.0
+
+    # Labels pluralise freely ("Eggs", "Nuts", "Crustaceans"). Try the
+    # singular before falling through to the costlier passes.
+    for singular in _singulars(key):
+        entry = index.by_alias.get(singular)
+        if entry is not None:
+            return entry, "exact", 0.99
 
     code = canonical_code(token)
     if code is not None:

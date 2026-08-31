@@ -9,10 +9,12 @@ import sys
 from .classify import classify
 from .data import load_countries, load_index
 from .models import Ruling
+from .panel import NotAnIngredientsList
 from .render import render
 
 # Exit codes let a caller branch on the verdict without parsing output.
 EXIT_CODE = {Ruling.HALAL: 0, Ruling.MASHBOOH: 2, Ruling.HARAM: 3}
+EXIT_NOT_A_LIST = 4
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -40,6 +42,11 @@ def build_parser() -> argparse.ArgumentParser:
     check.add_argument("--json", action="store_true", help="emit JSON instead of text")
     check.add_argument("-v", "--verbose", action="store_true", help="list halal ingredients too")
     check.add_argument("--no-colour", action="store_true", help="disable ANSI colour")
+    check.add_argument(
+        "--force",
+        action="store_true",
+        help="rule on the text even if it is not an ingredients declaration",
+    )
 
     sub.add_parser("countries", help="list supported countries and profiles")
 
@@ -56,12 +63,20 @@ def _cmd_check(args: argparse.Namespace) -> int:
         print("No ingredients provided.", file=sys.stderr)
         return 1
 
-    verdict = classify(
-        text,
-        country=args.country,
-        profile=args.profile,
-        signals=tuple(args.signal),
-    )
+    try:
+        verdict = classify(
+            text,
+            country=args.country,
+            profile=args.profile,
+            signals=tuple(args.signal),
+            force=args.force,
+        )
+    except NotAnIngredientsList as exc:
+        print(f"No verdict: {exc}", file=sys.stderr)
+        if exc.advisory:
+            print(f"\nWhat was found instead:\n  {exc.advisory}", file=sys.stderr)
+        print("\nRe-run with --force to rule on it anyway.", file=sys.stderr)
+        return EXIT_NOT_A_LIST
 
     if args.json:
         print(json.dumps(verdict.to_dict(), indent=2, ensure_ascii=False))

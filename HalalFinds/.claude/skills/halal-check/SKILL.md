@@ -21,7 +21,34 @@ eating pork. Route the ruling through the data.
 
 ## Workflow
 
-### 1. Transcribe the label
+### 1. Check what you are actually looking at
+
+Before anything else, decide whether the photo shows an **ingredients
+declaration**. Several other blocks look similar and cannot support a verdict:
+
+| Block | Why it cannot be ruled on |
+|---|---|
+| Allergen advisory — "may contain traces of…", "produced in a factory that handles…" | States contamination risk, not composition. Nearly every packaged food and restaurant menu carries one. |
+| Restaurant allergen matrix or menu disclaimer | Lists what dishes *might* contact, not what any dish contains. |
+| Nutrition table | Quantities, not identities. |
+| Marketing copy | Says nothing binding. |
+
+`classify()` refuses these by raising `NotAnIngredientsList`, and the CLI exits
+`4`. **Do not reach for `--force` to get past it.** A verdict on an advisory is
+a confident answer to a question nobody asked, and reads as a ruling on the
+product.
+
+Say plainly that it is not an ingredients list, say what it is, and ask for the
+`Ingredients:` panel. For a restaurant, the dish's ingredients usually have to
+be requested from the restaurant directly — the allergen sheet will not carry
+them.
+
+A real label often shows both a declaration and an advisory tail. That is
+fine: the advisory is split off automatically, reported alongside the verdict,
+and never ruled on. Whether trace contact matters to a user is a separate
+question from the ingredients ruling, and worth naming as separate.
+
+### 2. Transcribe the label
 
 Read the ingredients panel from the image **verbatim**. Preserve:
 
@@ -41,7 +68,7 @@ If part of the panel is unreadable — glare, a fold, a cut-off edge — say so 
 ask for another photo of that section. **Never** infer what an obscured
 ingredient probably was.
 
-### 2. Note what else is on the pack
+### 3. Note what else is on the pack
 
 Scan the whole image, not just the ingredients block:
 
@@ -58,7 +85,7 @@ changes the answer: US labelling law hides flavour sources that EU law does
 not, and Malaysia's national standard rejects additives that other certifiers
 allow.
 
-### 3. Classify
+### 4. Classify
 
 ```bash
 python3 -m halalfinds.cli check "<transcribed ingredients>" \
@@ -72,7 +99,7 @@ Set `--profile` only when the user has told you which standard they follow
 (`strict`, `mainstream`, `lenient`, or a certifier such as `JAKIM`). Otherwise
 let the country supply its own default.
 
-### 4. Report
+### 5. Report
 
 Lead with the verdict, then the reason. Structure:
 
@@ -103,6 +130,8 @@ the result look more universal than it is.
 - **Report genuine scholarly disagreement as disagreement.** Carmine, wine
   vinegar and non-fish seafood divide qualified scholars. Give the positions
   and the profile used; do not present one school's view as the ruling.
+- **Never force a verdict onto text that is not an ingredients list.** Ask for
+  the right photo instead.
 - **You are not a mufti.** This is ingredient analysis. For a personal ruling on
   a disputed matter, point the user to their own scholar or certifier.
 

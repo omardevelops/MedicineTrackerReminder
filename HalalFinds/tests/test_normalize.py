@@ -48,3 +48,19 @@ def test_canonical_code_forms():
 def test_bare_number_outside_additive_range_is_not_a_code():
     assert canonical_code("2024") is None
     assert canonical_code("12") is None
+
+
+def test_advisory_tail_is_separated_from_declaration():
+    from halalfinds.panel import split_panel
+
+    head, tail = split_panel("Ingredients: Sugar, Salt. May contain traces of nuts.")
+    assert head == "Sugar, Salt"
+    assert tail.startswith("May contain")
+
+
+def test_declaration_without_advisory_keeps_everything():
+    from halalfinds.panel import split_panel
+
+    head, tail = split_panel("Sugar, Salt")
+    assert head == "Sugar, Salt"
+    assert tail == ""

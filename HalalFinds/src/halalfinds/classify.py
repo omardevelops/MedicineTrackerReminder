@@ -11,6 +11,14 @@ from .data import Index, load_countries, load_index
 from .matcher import match
 from .models import Finding, Ruling, Verdict, worst
 from .normalize import tokenize_with_context
+from .panel import (
+    ADVISORY_EXPLANATION,
+    ADVISORY_ONLY,
+    INSUFFICIENT,
+    INSUFFICIENT_EXPLANATION,
+    NotAnIngredientsList,
+    detect,
+)
 from .qualifiers import find_qualifier
 
 UNKNOWN_REASON = (
@@ -34,6 +42,7 @@ def classify(
     profile: str | None = None,
     signals: tuple[str, ...] | list[str] = (),
     index: Index | None = None,
+    force: bool = False,
 ) -> Verdict:
     """Classify a raw ingredients panel.
 
@@ -42,7 +51,24 @@ def classify(
         country: ISO-style key into the country database, e.g. "US", "MY".
         profile: ruling profile override; defaults to the country's own.
         signals: label evidence that can resolve doubt, e.g. ("vegan",).
+        force: rule on the text even if it does not look like an ingredients
+            declaration. Off by default, because a verdict on an allergen
+            advisory is a confident answer to a question nobody asked.
+
+    Raises:
+        NotAnIngredientsList: the text is an allergen advisory or carries no
+            declaration at all, and `force` is not set.
     """
+    kind, declaration, advisory = detect(text)
+    if not force:
+        if kind == ADVISORY_ONLY:
+            raise NotAnIngredientsList(kind, ADVISORY_EXPLANATION, advisory)
+        if kind == INSUFFICIENT:
+            raise NotAnIngredientsList(kind, INSUFFICIENT_EXPLANATION, advisory)
+        # An advisory tail describes contamination risk, not composition, so
+        # only the declaration is ruled on.
+        text = declaration
+
     index = index or load_index()
     country = country.upper()
     countries = load_countries()
@@ -145,4 +171,6 @@ def classify(
         signals=signals,
     )
     verdict.notes = list(country_row.get("notes", []))
+    if advisory and not force:
+        verdict.advisory = advisory
     return verdict

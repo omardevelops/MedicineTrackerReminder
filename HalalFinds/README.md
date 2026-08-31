@@ -95,6 +95,25 @@ A signal never overturns a prohibition.
 **5. Aggregate**, worst case: one haram ingredient makes the product haram; one
 unresolved doubt makes it mashbooh.
 
+## What it refuses to rule on
+
+A photo of a pack often shows several blocks, and only one supports a verdict.
+An allergen advisory — "may contain traces of nuts", or a restaurant's menu
+disclaimer — states what the food might be *contaminated* with, not what it is
+made of. Ruling on one produces a confident verdict about nothing.
+
+So `classify()` raises `NotAnIngredientsList` on advisory-only text, and the
+CLI exits `4`:
+
+```
+$ halalfinds check "All dishes may contain traces of: Gluten, Crustaceans, Eggs..."
+No verdict: This is an allergen advisory, not an ingredients declaration...
+```
+
+Real labels carry both. The advisory tail is split off, reported alongside the
+verdict, and never ruled on — whether trace contact matters is a separate
+question from the ingredients ruling.
+
 ## The safety property
 
 **An ingredient not in the database is mashbooh, never halal.**
@@ -119,7 +138,7 @@ cane sugar may be bone-char refined and the label will not say. See
 
 ## Data
 
-- `data/ingredients.json` — 95 entries covering 227 E-numbers and 577 label
+- `data/ingredients.json` — 96 entries covering 227 E-numbers and 640 label
   aliases, each with a ruling, a reason, the ambiguity axis, and per-source
   resolutions
 - `data/countries.json` — 15 jurisdictions, 9 ruling profiles, 5 label signals

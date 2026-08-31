@@ -103,6 +103,9 @@ class Verdict:
     profile: str = "mainstream"
     signals: tuple[str, ...] = ()
     notes: list[str] = field(default_factory=list)
+    # An allergen advisory found alongside the declaration. Reported, never
+    # ruled on: it describes contamination risk, not composition.
+    advisory: str = ""
 
     @property
     def haram(self) -> list[Finding]:
@@ -140,4 +143,5 @@ class Verdict:
             "findings": [f.to_dict() for f in self.findings],
             "questions": self.questions,
             "notes": self.notes,
+            "advisory": self.advisory or None,
         }

@@ -76,6 +76,16 @@ def render(verdict: Verdict, colour: bool = False, verbose: bool = False) -> str
         lines.extend(f"  - {n}" for n in verdict.notes)
         lines.append("")
 
+    if verdict.advisory:
+        lines.append("Allergen advisory on the pack (not part of the verdict):")
+        lines.append(f"  {verdict.advisory}")
+        lines.append(
+            "  This describes possible cross-contamination, not composition. "
+            "Whether trace contact matters is a separate question from the "
+            "ingredients ruling."
+        )
+        lines.append("")
+
     lines.append(
         "This is an ingredient-label analysis, not a certification. Where a "
         "recognised halal mark is present, it supersedes this reading."

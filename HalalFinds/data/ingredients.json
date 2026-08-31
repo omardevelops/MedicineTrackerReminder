@@ -1961,7 +1961,20 @@
         "spices",
         "spice extract",
         "oregano",
-        "chilli powder"
+        "chilli powder",
+        "mustard",
+        "mustard seed",
+        "mustard powder",
+        "mustard flour",
+        "ginger",
+        "nutmeg",
+        "cardamom",
+        "cloves",
+        "fenugreek",
+        "bay leaf",
+        "thyme",
+        "rosemary",
+        "basil"
       ],
       "category": "seasoning",
       "ambiguity": "none",
@@ -2006,7 +2019,18 @@
         "raisins",
         "dates",
         "lemon juice",
-        "orange juice"
+        "orange juice",
+        "celery",
+        "celeriac",
+        "celery salt",
+        "onion",
+        "garlic",
+        "carrot",
+        "potato",
+        "peas",
+        "spinach",
+        "mushroom",
+        "olives"
       ],
       "category": "other",
       "ambiguity": "none",
@@ -2028,7 +2052,19 @@
         "tahini",
         "sunflower seeds",
         "pistachios",
-        "peanut butter"
+        "peanut butter",
+        "pecan",
+        "pecan nuts",
+        "brazil nut",
+        "brazil nuts",
+        "macadamia",
+        "macadamia nuts",
+        "pistachio nuts",
+        "pine nuts",
+        "nuts",
+        "nut",
+        "chestnuts",
+        "coconut"
       ],
       "category": "other",
       "ambiguity": "none",
@@ -2052,7 +2088,13 @@
         "oyster",
         "scallops",
         "crustacean extract",
-        "shellfish"
+        "shellfish",
+        "crustacean",
+        "crustaceans",
+        "mollusc",
+        "molluscs",
+        "mollusk",
+        "shellfish extract"
       ],
       "category": "seafood",
       "ambiguity": "school",
@@ -2216,6 +2258,28 @@
         "default": "halal"
       },
       "reason": "Plant-derived cereals."
+    },
+    {
+      "id": "legumes",
+      "canonical": "Legumes",
+      "aliases": [
+        "lupin",
+        "lupin flour",
+        "lentils",
+        "beans",
+        "chickpeas",
+        "broad beans",
+        "kidney beans",
+        "soybean",
+        "soya bean",
+        "green peas"
+      ],
+      "category": "other",
+      "ambiguity": "none",
+      "rulings": {
+        "default": "halal"
+      },
+      "reason": "Plant-derived pulses and legumes."
     }
   ]
 }
